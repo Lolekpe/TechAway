@@ -24,7 +24,6 @@ app.route('/')
                 return res.redirect("/rejestracja?failed=true")
             });
         });
-        con.destroy();
     });
 
 module.exports = app;

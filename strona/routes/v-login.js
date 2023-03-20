@@ -22,17 +22,15 @@ app.route('/')
                     row.map((item) => item.nazwisko),
                     row.map((item) => item.sprzedawca)
                 ]
-                app.locals.mail = x[0];
-                app.locals.imie = x[2];
-                app.locals.nazwisko = x[3];
-                app.locals.sprzedawca = x[4];
+                app.locals.mail = 0;
+                app.locals.imie = 0; 
+                app.locals.nazwisko = 0;
+                app.locals.sprzedawca = 0;
                 console.log(row)
 
                 res.cookie("logged", "true", { maxAge: 1920000 })
                 res.redirect("/");
             });
         });
-        con.destroy();
     });
-
 module.exports = app;
