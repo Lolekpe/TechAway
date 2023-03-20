@@ -147,10 +147,6 @@ a
     height: 68%;
     border-radius: 10px;
 }
-.form-container2 > form
-{
-    margin-top: 20px;
-}
 .form-container2 > form > p
 {
     margin-top: 4px;
@@ -211,7 +207,6 @@ a
 .form-container2 > p
 {
     font-size: 13px;
-    margin-top: 17px;
     color: grey;
 }
 .form-container2 > p > a > span
