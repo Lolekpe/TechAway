@@ -333,46 +333,7 @@ a
     padding-right: 20px;
     border-radius: 10px;
 }
-.button-text > .tatrujka > li
-{
-    margin-top: 25px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    transition-duration: 0.1s;
-    border-radius: 10px;
-}
 
-.button-icons > .tatrujka > li:hover
-{
-    background-color: var(--addon-zielony);
-    border-radius: 10px;
-}
-
-.button-text > .tatrujka > li:hover
-{
-    background-color: var(--addon-zielony);
-    border-radius: 10px;
-}
-.button-icons > .tatrujka > li:active
-{
-    background-color: var(--addon-zielony);
-    border-radius: 5px;
-    box-shadow: 0 0 7px 0px var(--addon-zielony);
-
-}
-
-.button-text > .tatrujka > li:active
-{
-    background-color: var(--addon-zielony);
-    border-radius: 5px;
-    box-shadow: 0 0 7px 0px var(--addon-zielony);
-}
-.lieutant
-{
-    border-radius: 10px;
-}
 .lieutant1
 {
     background-color: var(--addon-zielony);
@@ -389,10 +350,7 @@ a
 {
     color: var(--addon-cztery);
 }
-.tatrujka
-{
-    margin-top: 300px;
-}
+
 @media only screen and (max-width: 450px)
 {
     .login-conatiner2
