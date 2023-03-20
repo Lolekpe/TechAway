@@ -7,15 +7,14 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var v_login = require('./routes/v-login');
 var login = require("./routes/login")
+var v_login = require('./routes/v-login');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());

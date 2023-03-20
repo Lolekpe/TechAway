@@ -5,7 +5,8 @@
             <img src="images/logo/przykladowelogo.png" alt="" class="logo-image-login-register">
         </div>
         <div class="form-container">
-            <form action="/login/validate" type="post">
+            <%- message %>
+            <form action="/login/validate" method="post">
                 <p>Podaj Mail: </p>
                 <span><i class="fa-regular fa-envelope"></i></span>
                 <input type="email" name="mail" required>
