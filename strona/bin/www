@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('strona');
 var http = require('http');
+var app2 = require('../admin');
 
 /**
  * Get port from environment and store in Express.
@@ -20,12 +21,14 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var server2 = http.createServer(app2)
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
+server2.listen(8000)
 server.on('error', onError);
 server.on('listening', onListening);
 

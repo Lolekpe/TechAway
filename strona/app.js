@@ -66,4 +66,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app, app_sprzed;
+module.exports = app;
