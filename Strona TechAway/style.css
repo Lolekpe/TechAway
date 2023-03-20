@@ -67,10 +67,29 @@ body, html
 .form-container > form > input:hover
 {
     box-shadow: 0 0 5px 0px var(--light-brown);
-
 }
 .form-container > form > input:active
 {
     box-shadow: 0 0 5px 0px var(--light-brown);
-    
+}
+.form-container > form > p > button
+{
+    border: none;
+    width: 100px;
+    height: 25px;
+    background-color: var(--light-brown);
+    color: var(--light-carmel);
+    border-radius: 5px;
+    margin-top: 20px;
+    transition-duration: 0.3s;
+}
+.form-container > form > p > button:hover
+{
+    background-color: var(--carmel);
+    box-shadow: 0 0 2px 0px var(--carmel);
+}
+.form-container > form > p > button:active
+{
+    background-color: var(--light-brown);
+    box-shadow: 0 0 7px 0px var(--light-brown);
 }
