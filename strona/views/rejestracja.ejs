@@ -6,8 +6,8 @@
         </div>
         <div class="form-container2">
             <%- message %>
-            <form action="/rejestracja/nowe" method="post">
-                <p>Podaj Imię: </p>
+            <form action="/rejestracja/nowe" method="post" autocomplete="off">
+			p>Podaj Imię: </p>
                 <span><i class="fa-solid fa-signature"></i></span>
                 <input type="text" name="name" required>
                 <p>Podaj Nazwisko: </p>
@@ -20,7 +20,6 @@
                 <span><i class="fa-solid fa-lock"></i></span>
                 <input type="password" name="haslo" required>
                 <p><button type="submit">Zaloguj</button></p>
-
             </form>
             <p>Posiadasz już konto?<br><a href="/login"><span>Zaloguj się!</span></a></p>
         </div>

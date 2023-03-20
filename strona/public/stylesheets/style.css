@@ -18,6 +18,7 @@ body, html
     --addon-trzy: #22191c;
     --addon-dwa: #33cc66;
     --addon-cztery: #e21e13;
+    --addon-zielony: #00804b;
     --main-font: 'Open Sans', sans-serif;
     --addon-font: 'Roboto Condensed', sans-serif;
 }
@@ -84,24 +85,25 @@ a
 }
 .form-container > form > input
 {
-    width: 80%;
+    width: 40%;
     height: 25px;
     border: none;
     outline: none;
-    text-align: center;
-    border-radius: 5px;
-    background-color: var(--addon-trzy);
+    background-color: var(--addon-color);
     color: white;
     transition-duration: 0.2s;
     font-size: 16px;
+    border-bottom: 2px solid var(--addon-zielony);
+    padding-left: 40px;
+
 }
 .form-container > form > input:hover
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container > form > input:focus
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container > form > p > button
 {
@@ -121,8 +123,8 @@ a
 }
 .form-container > form > p > button:active
 {
-    background-color: var(--addon-trzy);
-    box-shadow: 0 0 0px 0px var(--addon-trzy);
+    background-color: var(--addon-zielony);
+    box-shadow: 0 0 0px 0px var(--addon-zielony);
 }
 .form-container > p
 {
@@ -164,24 +166,25 @@ a
 }
 .form-container2 > form > input
 {
-    width: 80%;
+    width: 40%;
     height: 25px;
     border: none;
     outline: none;
-    text-align: center;
-    border-radius: 5px;
-    background-color: var(--addon-trzy);
+    background-color: var(--addon-color);
     color: white;
     transition-duration: 0.2s;
     font-size: 16px;
+    border-bottom: 2px solid var(--addon-zielony);
+    padding-left: 40px;
+
 }
 .form-container2 > form > input:hover
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container2 > form > input:focus
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container2 > form > p > button
 {
@@ -201,8 +204,8 @@ a
 }
 .form-container2 > form > p > button:active
 {
-    background-color: var(--addon-trzy);
-    box-shadow: 0 0 0px 0px var(--addon-trzy);
+    background-color: var(--addon-zielony);
+    box-shadow: 0 0 0px 0px var(--addon-zielony);
 }
 .form-container2 > p
 {
@@ -221,9 +224,9 @@ a
 .nav-bar
 {
     height: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
-    width: 100px;
+    width: 80px;
     display: flex;
     justify-content: center;
     background-color: var(--addon-color);
@@ -232,7 +235,7 @@ a
 
 .image-logo-top-nav-bar
 {
-    width: 80px;
+    width: 60px;
     border-radius: 20px;
     transition-duration: 0.2s;
 }
@@ -246,7 +249,7 @@ a
     position: absolute;
     font-size: 30px;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 30px;
     transition-delay: 0.1s;
     transition-duration: 0.2s;
 }
@@ -264,40 +267,131 @@ a
 }
 .button-text
 {
-    display: block;
-    opacity: 0;
+    display: none;
     position: absolute;
     top: 0;
     margin-top: 180px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bolder;
     text-shadow: 1px 1px 3px black;
-    transition-delay: 0.1s;
-    transition-duration: 0.2s;
 }
 .button-text > li
 {
-    margin-top: 40px;
+    margin-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition-duration: 0.1s;
+    border-radius: 10px;
 }
+
 .button-icons
 {
-    font-size: 30px;
+    font-size: 20px;
     position: absolute;
     top: 0;
     margin-top: 150px;
     display: block;
-    opacity: 1;
     transition-duration: 0.2s;
-    transition-delay: 0.1s;
+    transition-delay: 0.2s;
 }
-.button-icons > li
+.button-icons > li:hover
 {
-    margin-top: 20px;
-    
+    background-color: var(--addon-zielony);
+    border-radius: 10px;
+}
+
+.button-text > li:hover
+{
+    background-color: var(--addon-zielony);
+    border-radius: 10px;
+}
+.button-icons > li:active
+{
+    background-color: var(--addon-zielony);
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0px var(--addon-zielony);
+
+}
+
+.button-text > li:active
+{
+    background-color: var(--addon-zielony);
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0px var(--addon-zielony);
+}
+.lieutant
+{
+    border-radius: 10px;
+}
+.button-icons >  li
+{
+    margin-top: 25px;
+    padding-left: 20px;
+    transition-duration: 0.1s;
+    padding-right: 20px;
+    border-radius: 10px;
+}
+.button-text > .tatrujka > li
+{
+    margin-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition-duration: 0.1s;
+    border-radius: 10px;
+}
+
+.button-icons > .tatrujka > li:hover
+{
+    background-color: var(--addon-zielony);
+    border-radius: 10px;
+}
+
+.button-text > .tatrujka > li:hover
+{
+    background-color: var(--addon-zielony);
+    border-radius: 10px;
+}
+.button-icons > .tatrujka > li:active
+{
+    background-color: var(--addon-zielony);
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0px var(--addon-zielony);
+
+}
+
+.button-text > .tatrujka > li:active
+{
+    background-color: var(--addon-zielony);
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0px var(--addon-zielony);
+}
+.lieutant
+{
+    border-radius: 10px;
+}
+.lieutant1
+{
+    background-color: var(--addon-zielony);
+}
+.button-icons > .tatrujka > li
+{
+    margin-top: 25px;
+    padding-left: 20px;
+    transition-duration: 0.1s;
+    padding-right: 20px;
+    border-radius: 10px;
 }
 .jedendwatrzy
 {
     color: var(--addon-cztery);
+}
+.tatrujka
+{
+    margin-top: 300px;
 }
 @media only screen and (max-width: 450px)
 {
