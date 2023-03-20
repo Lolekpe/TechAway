@@ -1,0 +1,260 @@
+body, html 
+{
+    background-color: var(--main-color);
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: var(--main-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    user-select: none;
+}
+:root
+{
+    --main-color: #161719;
+    --addon-color: #201f25;
+    --addon-trzy: #22191c;
+    --addon-dwa: #33cc66;
+    --addon-cztery: #e21e13;
+    --main-font: 'Open Sans', sans-serif;
+    --addon-font: 'Roboto Condensed', sans-serif;
+}
+a
+{
+    text-decoration: none;
+}
+.login-conatiner
+{
+    width: 45rem;
+    height: 28rem;
+    background-color: var(--addon-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+.login-conatiner2
+{
+    width: 45rem;
+    height: 28rem;
+    background-color: var(--addon-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo-image-login-register
+{
+    width: 80px;
+}
+.logo-container
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    position: absolute;
+}
+.form-container
+{
+    text-align: center;
+    margin-top: 120px;
+    width: 60%;
+    height: 45%;
+    border-radius: 10px;
+}
+.form-container > form
+{
+    margin-top: 20px;
+}
+.form-container > form > p
+{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bolder;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px black;
+}
+.form-container > form > span
+{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.form-container > form > input
+{
+    width: 80%;
+    height: 25px;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--addon-trzy);
+    color: white;
+    transition-duration: 0.2s;
+    font-size: 16px;
+}
+.form-container > form > input:hover
+{
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
+}
+.form-container > form > input:focus
+{
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
+}
+.form-container > form > p > button
+{
+    border: none;
+    width: 200px;
+    height: 25px;
+    background-color: var(--addon-dwa);
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition-duration: 0.2s;
+}
+.form-container > form > p > button:hover
+{
+    background-color: var(--addon-cztery);
+    box-shadow: 0 0 5px 0px var(--addon-cztery);
+}
+.form-container > form > p > button:active
+{
+    background-color: var(--addon-trzy);
+    box-shadow: 0 0 0px 0px var(--addon-trzy);
+}
+.form-container > p
+{
+    font-size: 13px;
+    margin-top: 100px;
+    color: grey;
+}
+.form-container > p > a > span
+{
+    color: var(--addon-cztery);
+    transition-duration: 0.2s;
+}
+.form-container > p > a > span:hover
+{
+    color: var(--addon-dwa);
+}
+.form-container2
+{
+    text-align: center;
+    margin-top: 95px;
+    width: 60%;
+    height: 68%;
+    border-radius: 10px;
+}
+.form-container2 > form
+{
+    margin-top: 20px;
+}
+.form-container2 > form > p
+{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bolder;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px black;
+}
+.form-container2 > form > span
+{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.form-container2 > form > input
+{
+    width: 80%;
+    height: 25px;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--addon-trzy);
+    color: white;
+    transition-duration: 0.2s;
+    font-size: 16px;
+}
+.form-container2 > form > input:hover
+{
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
+}
+.form-container2 > form > input:focus
+{
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
+}
+.form-container2 > form > p > button
+{
+    border: none;
+    width: 200px;
+    height: 25px;
+    background-color: var(--addon-dwa);
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition-duration: 0.2s;
+}
+.form-container2 > form > p > button:hover
+{
+    background-color: var(--addon-cztery);
+    box-shadow: 0 0 5px 0px var(--addon-cztery);
+}
+.form-container2 > form > p > button:active
+{
+    background-color: var(--addon-trzy);
+    box-shadow: 0 0 0px 0px var(--addon-trzy);
+}
+.form-container2 > p
+{
+    font-size: 13px;
+    margin-top: 17px;
+    color: grey;
+}
+.form-container2 > p > a > span
+{
+    color: var(--addon-cztery);
+    transition-duration: 0.2s;
+}
+.form-container2 > p > a > span:hover
+{
+    color: var(--addon-dwa);
+}
+@media only screen and (max-width: 450px)
+{
+    .login-conatiner2
+    {
+        width: 20rem;
+        height: 21rem;
+    }
+    .login-conatiner
+    {
+        width: 20rem;
+    }
+    .form-container2
+    {
+        width: 100%;
+        background-color: transparent;
+    }
+    .form-container2 > form > input
+    {
+        font-size: 13px;
+    }
+    .form-container
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 80px;
+    }
+    .form-container > form > input
+    {
+        font-size: 13px;
+    }
+    .form-container > p
+    {
+        font-size: 13px;
+        margin-top: 17px;
+    }
+}
