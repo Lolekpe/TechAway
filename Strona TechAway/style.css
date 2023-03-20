@@ -337,6 +337,15 @@ a
 .lieutant1
 {
     background-color: var(--addon-zielony);
+
+}
+.lieutant1:hover
+{
+    background-color: var(--addon-zielony);
+}
+.lieutant1:active
+{
+    background-color: var(--addon-zielony);
 }
 .button-icons > .tatrujka > li
 {
