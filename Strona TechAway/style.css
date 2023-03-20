@@ -1,0 +1,76 @@
+body, html 
+{
+    background-color: var(--main-color);
+    margin: 0;
+    padding: 0;
+    color: var(--light-carmel);
+    font-family: var(--main-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%
+}
+:root
+{
+    --main-color: #0E0C0B;
+    --blue-color: #22333B;
+    --light-carmel: #EAE0D5;
+    --carmel: #C6AC8F;
+    --light-brown: #5E503F;
+    --contrast-orange: #FF7518;
+    --main-font: 'Open Sans', sans-serif;
+    --addon-font: 'Roboto Condensed', sans-serif;
+}
+.login-conatiner
+{
+    width: 45rem;
+    height: 28rem;
+    background-color: var(--blue-color);
+    border-radius: 10px;
+}
+.logo-image-login-register
+{
+    width: 128px;
+}
+.logo-container
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.form-container
+{
+    text-align: center;
+    margin-top: 30px;
+}
+.form-container > form > p
+{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bolder;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px black;
+}
+.form-container > form > input
+{
+    width: 50%;
+    height: 25px;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--light-brown);
+    color: var(--light-carmel);
+    transition-duration: 0.2s;
+    font-size: 16px;
+}
+.form-container > form > input:hover
+{
+    box-shadow: 0 0 5px 0px var(--light-brown);
+
+}
+.form-container > form > input:active
+{
+    box-shadow: 0 0 5px 0px var(--light-brown);
+    
+}
