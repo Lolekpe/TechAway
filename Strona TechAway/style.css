@@ -223,7 +223,7 @@ a
     height: 100%;
     position: absolute;
     left: 0;
-    width: 100px;
+    width: 80px;
     display: flex;
     justify-content: center;
     background-color: var(--addon-color);
@@ -232,7 +232,7 @@ a
 
 .image-logo-top-nav-bar
 {
-    width: 80px;
+    width: 60px;
     border-radius: 20px;
     transition-duration: 0.2s;
 }
@@ -246,7 +246,7 @@ a
     position: absolute;
     font-size: 30px;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 30px;
     transition-delay: 0.1s;
     transition-duration: 0.2s;
 }
@@ -264,41 +264,52 @@ a
 }
 .button-text
 {
-    display: block;
-    opacity: 0;
+    display: none;
     position: absolute;
     top: 0;
     margin-top: 180px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bolder;
     text-shadow: 1px 1px 3px black;
-    transition-delay: 0.1s;
-    transition-duration: 0.2s;
 }
 .button-text > li
 {
-    margin-top: 40px;
+    margin-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
+
 .button-icons
 {
-    font-size: 30px;
+    font-size: 20px;
     position: absolute;
     top: 0;
     margin-top: 150px;
     display: block;
-    opacity: 1;
     transition-duration: 0.2s;
-    transition-delay: 0.1s;
+    transition-delay: 0.2s;
+}
+.button-icons > li:hover
+{
+    color: var(--addon-dwa);
+}
+.button-text > li:hover
+{
+    color: var(--addon-dwa)
 }
 .button-icons > li
 {
-    margin-top: 20px;
-    
+    margin-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .jedendwatrzy
 {
     color: var(--addon-cztery);
 }
+
 @media only screen and (max-width: 450px)
 {
     .login-conatiner2
