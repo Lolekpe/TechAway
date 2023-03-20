@@ -4,7 +4,7 @@
         <div class="logo-container">
             <img src="images/logo/przykladowelogo.png" alt="" class="logo-image-login-register">
         </div>
-        <div class="form-container">
+        <div class="form-container" id="conteiner">
             <%- message %>
             <form action="/login/validate" method="post">
                 <p>Podaj Mail: </p>
@@ -18,5 +18,6 @@
             <p>Jeśli nie posiadasz jeszcze konta?<br><a href="/rejestracja"><span>Zarejestruj się!</span></a></p>
         </div>
     </div>
+    <script src="/javascripts/cookie.js" crossorigin="anonymous"></script>
 </body>
 </html>
