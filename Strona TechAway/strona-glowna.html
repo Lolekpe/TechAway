@@ -15,6 +15,43 @@
     <title>TechAway | HomePage</title>
 </head>
 <body>
-
+    <div class="nav-bar" id="navbar">
+        <span id="strzalka" class="arrow arrow-show-hide" onclick="zmiana()"><i class="fa-solid fa-arrow-right"></i></span>
+        <div class="logo-top">
+            <img src="img/przykladowelogo.png" alt="" class="image-logo-top-nav-bar" id="logo">
+        </div>
+        <div class="buttons-container">
+            <div class="button-text button-uwu" id="litery">
+                <li>Strona Główna</li>
+                <li>Twoje sklepy</li>
+                <li>Zamówienia</li>
+                <li>Ustawienia</li>
+                <li>Regulamin</li>
+                <li>Profil </li>
+                <li>Opinie</li>
+                <li>Admin</li>
+            </div>
+            <div class="button-icons button-uwu" id="ikony">
+                <li><i class="fa-solid fa-house"></i></li>
+                <li><i class="fa-solid fa-shop-lock"></i></li>
+                <li><i class="fa-solid fa-bag-shopping"></i></li>
+                <li><i class="fa-solid fa-gear"></i></li>
+                <li><i class="fa-solid fa-scroll"></i></li>
+                <li><i class="fa-solid fa-user"></i></li>
+                <li><i class="fa-solid fa-comment"></i></li>
+                <li><i class="fa-solid fa-lock"></i></li>
+            </div>
+        </div>
+    </div>
+    <script>
+        function zmiana(){
+            document.getElementById("navbar").style.width = '200px';
+            document.getElementById("strzalka").style.marginLeft = '150px';
+            document.getElementById("strzalka").style.transform = 'rotate(180deg)';
+            document.getElementById("logo").style.width = '128px';
+            document.getElementById("ikony").style.opacity = '0';
+            document.getElementById("litery").style.opacity = '1';
+        }
+    </script>
 </body>
 </html>
