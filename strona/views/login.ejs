@@ -6,13 +6,13 @@
         </div>
         <div class="form-container" id="conteiner">
             <%- message %>
-            <form action="/login/validate" method="post">
+            <form action="/login/validate" method="post" autocomplete="off">
                 <p>Podaj Mail: </p>
                 <span><i class="fa-regular fa-envelope"></i></span>
-                <input type="email" name="mail" required>
+                <input type="email" name="mail" required autocomplete="off">
                 <p>Podaj Hasło: </p>
                 <span><i class="fa-solid fa-lock"></i></span>
-                <input type="password" name="haslo" required>
+                <input type="password" name="haslo" required autocomplete="off">
                 <p><button type="submit">Zaloguj</button></p>
             </form>
             <p>Jeśli nie posiadasz jeszcze konta?<br><a href="/rejestracja"><span>Zarejestruj się!</span></a></p>
