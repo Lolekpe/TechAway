@@ -35,6 +35,15 @@ a
     display: flex;
     justify-content: center;
 }
+.login-conatiner2
+{
+    width: 45rem;
+    height: 28rem;
+    background-color: var(--addon-color);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
 .logo-image-login-register
 {
     width: 80px;
@@ -213,4 +222,40 @@ a
 .form-container2 > p > a > span:hover
 {
     color: var(--corect);
+}
+@media only screen and (max-width: 450px)
+{
+    .login-conatiner2
+    {
+        width: 20rem;
+        height: 21rem;
+    }
+    .login-conatiner
+    {
+        width: 20rem;
+    }
+    .form-container2
+    {
+        width: 100%;
+        background-color: transparent;
+    }
+    .form-container2 > form > input
+    {
+        font-size: 13px;
+    }
+    .form-container
+    {
+        width: 100%;
+        background-color: transparent;
+        margin-top: 80px;
+    }
+    .form-container > form > input
+    {
+        font-size: 13px;
+    }
+    .form-container > p
+    {
+        font-size: 13px;
+        margin-top: 17px;
+    }
 }
