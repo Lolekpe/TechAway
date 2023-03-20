@@ -3,45 +3,61 @@ body, html
     background-color: var(--main-color);
     margin: 0;
     padding: 0;
-    color: var(--light-carmel);
+    color: white;
     font-family: var(--main-font);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%
+    height: 100%;
+    user-select: none;
 }
 :root
 {
-    --main-color: #0E0C0B;
-    --blue-color: #22333B;
-    --light-carmel: #EAE0D5;
-    --carmel: #C6AC8F;
-    --light-brown: #5E503F;
-    --contrast-orange: #FF7518;
+    --main-color: #455761;
+    --addon-color: #284C61;
+    --addon-trzy: #5EB4E6;
+    --addon-dwa: #7B9BAD;
+    --error: #e21e13;
+    --corect: #33cc66;
     --main-font: 'Open Sans', sans-serif;
     --addon-font: 'Roboto Condensed', sans-serif;
+}
+a
+{
+    text-decoration: none;
 }
 .login-conatiner
 {
     width: 45rem;
     height: 28rem;
-    background-color: var(--blue-color);
+    background-color: var(--addon-color);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
 }
 .logo-image-login-register
 {
-    width: 128px;
+    width: 80px;
 }
 .logo-container
 {
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    position: absolute;
 }
 .form-container
 {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 120px;
+    width: 60%;
+    background-color: var(--addon-dwa);
+    height: 45%;
+    border-radius: 10px;
+}
+.form-container > form
+{
+    margin-top: 20px;
 }
 .form-container > form > p
 {
@@ -51,45 +67,150 @@ body, html
     font-size: 16px;
     text-shadow: 1px 1px 3px black;
 }
+.form-container > form > span
+{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
 .form-container > form > input
 {
-    width: 50%;
+    width: 80%;
     height: 25px;
     border: none;
     outline: none;
     text-align: center;
     border-radius: 5px;
-    background-color: var(--light-brown);
-    color: var(--light-carmel);
+    background-color: var(--addon-trzy);
+    color: white;
     transition-duration: 0.2s;
     font-size: 16px;
 }
 .form-container > form > input:hover
 {
-    box-shadow: 0 0 5px 0px var(--light-brown);
+    box-shadow: 0 0 5px 0px var(--addon-trzy);
 }
-.form-container > form > input:active
+.form-container > form > input:focus
 {
-    box-shadow: 0 0 5px 0px var(--light-brown);
+    box-shadow: 0 0 5px 0px var(--addon-trzy);
 }
 .form-container > form > p > button
 {
     border: none;
     width: 100px;
     height: 25px;
-    background-color: var(--light-brown);
-    color: var(--light-carmel);
+    background-color: var(--addon-trzy);
+    color: white;
     border-radius: 5px;
     margin-top: 20px;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
 }
 .form-container > form > p > button:hover
 {
-    background-color: var(--carmel);
-    box-shadow: 0 0 2px 0px var(--carmel);
+    background-color: var(--addon-trzy);
+    box-shadow: 0 0 5px 0px var(--addon-trzy);
 }
 .form-container > form > p > button:active
 {
-    background-color: var(--light-brown);
-    box-shadow: 0 0 7px 0px var(--light-brown);
+    background-color: var(--addon-dwa);
+    box-shadow: 0 0 0px 0px var(--addon-dwa);
+}
+.form-container > p
+{
+    font-size: 13px;
+    margin-top: 100px;
+}
+.form-container > p > a > span
+{
+    color: var(--error);
+    transition-duration: 0.2s;
+}
+.form-container > p > a > span:hover
+{
+    color: var(--corect);
+}
+.form-container2
+{
+    text-align: center;
+    margin-top: 95px;
+    width: 60%;
+    background-color: var(--addon-dwa);
+    height: 68%;
+    border-radius: 10px;
+}
+.form-container2 > form
+{
+    margin-top: 20px;
+}
+.form-container2 > form > p
+{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bolder;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px black;
+}
+.form-container2 > form > span
+{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.form-container2 > form > input
+{
+    width: 80%;
+    height: 25px;
+    border: none;
+    outline: none;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--addon-trzy);
+    color: white;
+    transition-duration: 0.2s;
+    font-size: 16px;
+}
+.form-container2 > form > input:hover
+{
+    box-shadow: 0 0 5px 0px var(--addon-trzy);
+}
+.form-container2 > form > input:focus
+{
+    box-shadow: 0 0 5px 0px var(--addon-trzy);
+}
+.form-container2 > form > p > button
+{
+    border: none;
+    width: 100px;
+    height: 25px;
+    background-color: var(--addon-trzy);
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition-duration: 0.2s;
+}
+.form-container2 > form > p > button:hover
+{
+    background-color: var(--addon-trzy);
+    box-shadow: 0 0 5px 0px var(--addon-trzy);
+}
+.form-container2 > form > p > button:active
+{
+    background-color: var(--addon-dwa);
+    box-shadow: 0 0 0px 0px var(--addon-dwa);
+}
+.form-container2 > p
+{
+    font-size: 13px;
+    margin-top: 17px;
+}
+.form-container2 > p > a > span
+{
+    color: var(--error);
+    transition-duration: 0.2s;
+}
+.form-container2 > p > a > span:hover
+{
+    color: var(--corect);
 }
