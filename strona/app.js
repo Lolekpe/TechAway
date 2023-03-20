@@ -11,8 +11,10 @@ var login = require("./routes/login")
 var v_login = require('./routes/v-login');
 var rejestracja = require("./routes/rejestracja")
 var v_rejestracja = require('./routes/v-rejestracja');
+var index = require("./routes/index-s")
 
 var app = express();
+var app_sprzed = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +26,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app_sprzed.set('views', path.join(__dirname, 'views'));
+app_sprzed.use(favicon());
+app_sprzed.set('view engine', 'ejs');
+app_sprzed.use(logger('dev'));
+app_sprzed.use(bodyParser.json());
+app_sprzed.use(bodyParser.urlencoded({extended: false}));
+app_sprzed.use(cookieParser());
+app_sprzed.use(express.static(path.join(__dirname, 'public')));
+
+app_sprzed.use('/', index)
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login/validate', v_login);
@@ -63,4 +75,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+module.exports = app, app_sprzed;
