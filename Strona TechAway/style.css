@@ -13,12 +13,11 @@ body, html
 }
 :root
 {
-    --main-color: #455761;
-    --addon-color: #284C61;
-    --addon-trzy: #5EB4E6;
-    --addon-dwa: #7B9BAD;
-    --error: #e21e13;
-    --corect: #33cc66;
+    --main-color: #161719;
+    --addon-color: #201f25;
+    --addon-trzy: #22191c;
+    --addon-dwa: #33cc66;
+    --addon-cztery: #e21e13;
     --main-font: 'Open Sans', sans-serif;
     --addon-font: 'Roboto Condensed', sans-serif;
 }
@@ -60,7 +59,6 @@ a
     text-align: center;
     margin-top: 120px;
     width: 60%;
-    background-color: var(--addon-dwa);
     height: 45%;
     border-radius: 10px;
 }
@@ -98,18 +96,18 @@ a
 }
 .form-container > form > input:hover
 {
-    box-shadow: 0 0 5px 0px var(--addon-trzy);
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
 }
 .form-container > form > input:focus
 {
-    box-shadow: 0 0 5px 0px var(--addon-trzy);
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
 }
 .form-container > form > p > button
 {
     border: none;
-    width: 100px;
+    width: 200px;
     height: 25px;
-    background-color: var(--addon-trzy);
+    background-color: var(--addon-dwa);
     color: white;
     border-radius: 5px;
     margin-top: 20px;
@@ -117,13 +115,13 @@ a
 }
 .form-container > form > p > button:hover
 {
-    background-color: var(--addon-trzy);
-    box-shadow: 0 0 5px 0px var(--addon-trzy);
+    background-color: var(--addon-cztery);
+    box-shadow: 0 0 5px 0px var(--addon-cztery);
 }
 .form-container > form > p > button:active
 {
-    background-color: var(--addon-dwa);
-    box-shadow: 0 0 0px 0px var(--addon-dwa);
+    background-color: var(--addon-trzy);
+    box-shadow: 0 0 0px 0px var(--addon-trzy);
 }
 .form-container > p
 {
@@ -132,19 +130,18 @@ a
 }
 .form-container > p > a > span
 {
-    color: var(--error);
+    color: var(--addon-cztery);
     transition-duration: 0.2s;
 }
 .form-container > p > a > span:hover
 {
-    color: var(--corect);
+    color: var(--addon-dwa);
 }
 .form-container2
 {
     text-align: center;
     margin-top: 95px;
     width: 60%;
-    background-color: var(--addon-dwa);
     height: 68%;
     border-radius: 10px;
 }
@@ -182,18 +179,18 @@ a
 }
 .form-container2 > form > input:hover
 {
-    box-shadow: 0 0 5px 0px var(--addon-trzy);
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
 }
 .form-container2 > form > input:focus
 {
-    box-shadow: 0 0 5px 0px var(--addon-trzy);
+    box-shadow: 0 0 10px 1px var(--addon-trzy);
 }
 .form-container2 > form > p > button
 {
     border: none;
-    width: 100px;
+    width: 200px;
     height: 25px;
-    background-color: var(--addon-trzy);
+    background-color: var(--addon-dwa);
     color: white;
     border-radius: 5px;
     margin-top: 20px;
@@ -201,13 +198,13 @@ a
 }
 .form-container2 > form > p > button:hover
 {
-    background-color: var(--addon-trzy);
-    box-shadow: 0 0 5px 0px var(--addon-trzy);
+    background-color: var(--addon-cztery);
+    box-shadow: 0 0 5px 0px var(--addon-cztery);
 }
 .form-container2 > form > p > button:active
 {
-    background-color: var(--addon-dwa);
-    box-shadow: 0 0 0px 0px var(--addon-dwa);
+    background-color: var(--addon-trzy);
+    box-shadow: 0 0 0px 0px var(--addon-trzy);
 }
 .form-container2 > p
 {
@@ -216,12 +213,12 @@ a
 }
 .form-container2 > p > a > span
 {
-    color: var(--error);
+    color: var(--addon-cztery);
     transition-duration: 0.2s;
 }
 .form-container2 > p > a > span:hover
 {
-    color: var(--corect);
+    color: var(--addon-dwa);
 }
 @media only screen and (max-width: 450px)
 {
