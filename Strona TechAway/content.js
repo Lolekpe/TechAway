@@ -42,8 +42,8 @@ function jeden(){
     document.getElementById("osiom2").style.backgroundColor = '';
 }
 function dwa(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = 'var(--addon-zielony)';
     document.getElementById("dwa2").style.backgroundColor = 'var(--addon-zielony)';
     document.getElementById("trzy").style.backgroundColor = '';
@@ -60,8 +60,8 @@ function dwa(){
     document.getElementById("osiom2").style.backgroundColor = '';
 }
 function trzy(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = 'var(--addon-zielony)';
@@ -79,8 +79,8 @@ function trzy(){
 }
 
 function cztery(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = '';
@@ -98,8 +98,8 @@ function cztery(){
 }
 
 function pienc(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = '';
@@ -117,8 +117,8 @@ function pienc(){
 }
 
 function szesc(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = '';
@@ -136,8 +136,8 @@ function szesc(){
 }
 
 function siedem(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = '';
@@ -155,8 +155,8 @@ function siedem(){
 }
 
 function osiom(){
-    document.getElementById("jeden").style.backgroundColor = '';
-    document.getElementById("jeden2").style.backgroundColor = '';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = '';
