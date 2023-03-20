@@ -1,0 +1,21 @@
+<%- include('./parts/head') %>
+<body>
+    <div class="login-conatiner2">
+        <div class="logo-container">
+            <img src="images/logo/przykladowelogo.png" alt="" class="logo-image-login-register">
+        </div>
+        <div class="form-container">
+            <form action="/login/validate" type="post">
+                <p>Podaj Mail: </p>
+                <span><i class="fa-regular fa-envelope"></i></span>
+                <input type="email" name="mail" required>
+                <p>Podaj Hasło: </p>
+                <span><i class="fa-solid fa-lock"></i></span>
+                <input type="password" name="haslo" required>
+                <p><button type="submit">Zaloguj</button></p>
+            </form>
+            <p>Jeśli nie posiadasz jeszcze konta?<br><a href="/rejestracja"><span>Zarejestruj się!</span></a></p>
+        </div>
+    </div>
+</body>
+</html>
