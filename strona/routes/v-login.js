@@ -32,7 +32,7 @@ app.route('/')
                 res.redirect("/");
             });
         });
-
+        con.destroy();
     });
 
 module.exports = app;
