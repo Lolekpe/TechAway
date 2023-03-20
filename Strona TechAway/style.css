@@ -18,6 +18,7 @@ body, html
     --addon-trzy: #22191c;
     --addon-dwa: #33cc66;
     --addon-cztery: #e21e13;
+    --addon-zielony: #00804b;
     --main-font: 'Open Sans', sans-serif;
     --addon-font: 'Roboto Condensed', sans-serif;
 }
@@ -84,24 +85,25 @@ a
 }
 .form-container > form > input
 {
-    width: 80%;
+    width: 40%;
     height: 25px;
     border: none;
     outline: none;
-    text-align: center;
-    border-radius: 5px;
-    background-color: var(--addon-trzy);
+    background-color: var(--addon-color);
     color: white;
     transition-duration: 0.2s;
     font-size: 16px;
+    border-bottom: 2px solid var(--addon-zielony);
+    padding-left: 40px;
+
 }
 .form-container > form > input:hover
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container > form > input:focus
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container > form > p > button
 {
@@ -121,8 +123,8 @@ a
 }
 .form-container > form > p > button:active
 {
-    background-color: var(--addon-trzy);
-    box-shadow: 0 0 0px 0px var(--addon-trzy);
+    background-color: var(--addon-zielony);
+    box-shadow: 0 0 0px 0px var(--addon-zielony);
 }
 .form-container > p
 {
@@ -164,24 +166,25 @@ a
 }
 .form-container2 > form > input
 {
-    width: 80%;
+    width: 40%;
     height: 25px;
     border: none;
     outline: none;
-    text-align: center;
-    border-radius: 5px;
-    background-color: var(--addon-trzy);
+    background-color: var(--addon-color);
     color: white;
     transition-duration: 0.2s;
     font-size: 16px;
+    border-bottom: 2px solid var(--addon-zielony);
+    padding-left: 40px;
+
 }
 .form-container2 > form > input:hover
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container2 > form > input:focus
 {
-    box-shadow: 0 0 10px 1px var(--addon-trzy);
+    width: 80%;
 }
 .form-container2 > form > p > button
 {
@@ -201,8 +204,8 @@ a
 }
 .form-container2 > form > p > button:active
 {
-    background-color: var(--addon-trzy);
-    box-shadow: 0 0 0px 0px var(--addon-trzy);
+    background-color: var(--addon-zielony);
+    box-shadow: 0 0 0px 0px var(--addon-zielony);
 }
 .form-container2 > p
 {
@@ -279,7 +282,8 @@ a
     padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
+    border-radius: 10px;
 }
 
 .button-icons
@@ -294,18 +298,40 @@ a
 }
 .button-icons > li:hover
 {
-    color: var(--addon-dwa);
+    background-color: var(--addon-zielony);
+    border-radius: 10px;
 }
+
 .button-text > li:hover
 {
-    color: var(--addon-dwa)
+    background-color: var(--addon-zielony);
+    border-radius: 10px;
+}
+.button-icons > li:active
+{
+    background-color: var(--addon-zielony);
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0px var(--addon-zielony);
+
+}
+
+.button-text > li:active
+{
+    background-color: var(--addon-zielony);
+    border-radius: 5px;
+    box-shadow: 0 0 7px 0px var(--addon-zielony);
+}
+.lieutant
+{
+    border-radius: 10px;
 }
 .button-icons > li
 {
     margin-top: 25px;
     padding-left: 20px;
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
     padding-right: 20px;
+    border-radius: 10px;
 }
 .jedendwatrzy
 {
