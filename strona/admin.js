@@ -20,6 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res, next) => {
+    if(!req.cookies.logged) { 
+        return res.render("login", {message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie"})
+    }
     res.render('admin/index');
 })
 
