@@ -288,30 +288,16 @@ a
 }
 .button-icons > li:hover
 {
-    background-color: #0075D8;
+    background-color: #f83439;
     border-radius: 10px;
     color: white;
 }
 
 .button-text > li:hover
 {
-    background-color: #0075D8;
+    background-color: #f83439;
     border-radius: 10px;
     color: white;
-}
-.button-icons > li:active
-{
-    background-color: var(--addon-zielony);
-    border-radius: 5px;
-    box-shadow: 0 0 7px 0px var(--addon-zielony);
-
-}
-
-.button-text > li:active
-{
-    background-color: var(--addon-zielony);
-    border-radius: 5px;
-    box-shadow: 0 0 7px 0px var(--addon-zielony);
 }
 .lieutant
 {
@@ -327,19 +313,18 @@ a
     color: #0f1621;
 
 }
-
 .lieutant1
 {
-    background-color: var(--addon-zielony);
+    background-color: #f83439;
 
 }
 .lieutant1:hover
 {
-    background-color: var(--addon-zielony);
+    background-color: #f83439;
 }
 .lieutant1:active
 {
-    background-color: var(--addon-zielony);
+    background-color: #f83439;
 }
 .button-icons > .tatrujka > li
 {
@@ -351,7 +336,7 @@ a
 }
 .jedendwatrzy
 {
-    color: var(--addon-cztery);
+    color: #f83439;
 }
 
 @media only screen and (max-width: 450px)

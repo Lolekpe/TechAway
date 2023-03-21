@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res, next) => {
-    res.send("Siema xDDD")
+    res.render('admin/index');
 })
 
 module.exports = app;
