@@ -25,8 +25,8 @@ function zmiana(){
 }
 
 function schowaj(){
-    document.getElementById("jeden").style.backgroundColor = 'var(--addon-color)';
-    document.getElementById("jeden2").style.backgroundColor = 'var(--addon-color)';
+    document.getElementById("jeden").style.backgroundColor = 'transparent';
+    document.getElementById("jeden2").style.backgroundColor = 'transparent';
     document.getElementById("dwa").style.backgroundColor = '';
     document.getElementById("dwa2").style.backgroundColor = '';
     document.getElementById("trzy").style.backgroundColor = '';
@@ -44,48 +44,48 @@ function schowaj(){
 }
 function jeden(){
     schowaj()
-    document.getElementById("jeden").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("jeden2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("jeden").style.backgroundColor = '#f83439';
+    document.getElementById("jeden2").style.backgroundColor = '#f83439';
 }
 function dwa(){
     schowaj()
-    document.getElementById("dwa").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("dwa2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("dwa").style.backgroundColor = '#f83439';
+    document.getElementById("dwa2").style.backgroundColor = '#f83439';
 
 }
 function trzy(){
     schowaj()
-    document.getElementById("trzy").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("trzy2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("trzy").style.backgroundColor = '#f83439';
+    document.getElementById("trzy2").style.backgroundColor = '#f83439';
 }
 
 function cztery(){
     schowaj()
-    document.getElementById("cztery").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("cztery2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("cztery").style.backgroundColor = '#f83439';
+    document.getElementById("cztery2").style.backgroundColor = '#f83439';
 }
 
 function pienc(){
     schowaj()
-    document.getElementById("pienc").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("pienc2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("pienc").style.backgroundColor = '#f83439';
+    document.getElementById("pienc2").style.backgroundColor = '#f83439';
 }
 
 function szesc(){
     schowaj()
-    document.getElementById("szesc").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("szesc2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("szesc").style.backgroundColor = '#f83439';
+    document.getElementById("szesc2").style.backgroundColor = '#f83439';
 }
 
 function siedem(){
     schowaj()
-    document.getElementById("siedem").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("siedem2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("siedem").style.backgroundColor = '#f83439';
+    document.getElementById("siedem2").style.backgroundColor = '#f83439';
 }
 
 function osiom(){
     schowaj()
-    document.getElementById("osiom").style.backgroundColor = 'var(--addon-zielony)';
-    document.getElementById("osiom2").style.backgroundColor = 'var(--addon-zielony)';
+    document.getElementById("osiom").style.backgroundColor = '#f83439';
+    document.getElementById("osiom2").style.backgroundColor = '#f83439';
 }
 
