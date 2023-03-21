@@ -25,67 +25,67 @@ function zmiana(){
 }
 
 function schowaj(){
-    document.getElementById("jeden").style.backgroundColor = 'transparent';
-    document.getElementById("jeden2").style.backgroundColor = 'transparent';
-    document.getElementById("dwa").style.backgroundColor = '';
-    document.getElementById("dwa2").style.backgroundColor = '';
-    document.getElementById("trzy").style.backgroundColor = '';
-    document.getElementById("trzy2").style.backgroundColor = '';
-    document.getElementById("cztery").style.backgroundColor = '';
-    document.getElementById("cztery2").style.backgroundColor = '';
-    document.getElementById("pienc").style.backgroundColor = '';
-    document.getElementById("pienc2").style.backgroundColor = '';
-    document.getElementById("szesc").style.backgroundColor = '';
-    document.getElementById("szesc2").style.backgroundColor = '';
-    document.getElementById("siedem").style.backgroundColor = '';
-    document.getElementById("siedem2").style.backgroundColor = '';
-    document.getElementById("osiom").style.backgroundColor = '';
-    document.getElementById("osiom2").style.backgroundColor = '';
+    document.getElementById("jeden").style.color = 'black';
+    document.getElementById("jeden2").style.color = 'black';
+    document.getElementById("dwa").style.color = '';
+    document.getElementById("dwa2").style.color = '';
+    document.getElementById("trzy").style.color = '';
+    document.getElementById("trzy2").style.color = '';
+    document.getElementById("cztery").style.color = '';
+    document.getElementById("cztery2").style.color = '';
+    document.getElementById("pienc").style.color = '';
+    document.getElementById("pienc2").style.color = '';
+    document.getElementById("szesc").style.color = '';
+    document.getElementById("szesc2").style.color = '';
+    document.getElementById("siedem").style.color = '';
+    document.getElementById("siedem2").style.color = '';
+    document.getElementById("osiom").style.color = '';
+    document.getElementById("osiom2").style.color = '';
 }
 function jeden(){
     schowaj()
-    document.getElementById("jeden").style.backgroundColor = '#f83439';
-    document.getElementById("jeden2").style.backgroundColor = '#f83439';
+    document.getElementById("jeden").style.color = '#f83439';
+    document.getElementById("jeden2").style.color = '#f83439';
 }
 function dwa(){
     schowaj()
-    document.getElementById("dwa").style.backgroundColor = '#f83439';
-    document.getElementById("dwa2").style.backgroundColor = '#f83439';
+    document.getElementById("dwa").style.color = '#f83439';
+    document.getElementById("dwa2").style.color = '#f83439';
 
 }
 function trzy(){
     schowaj()
-    document.getElementById("trzy").style.backgroundColor = '#f83439';
-    document.getElementById("trzy2").style.backgroundColor = '#f83439';
+    document.getElementById("trzy").style.color = '#f83439';
+    document.getElementById("trzy2").style.color = '#f83439';
 }
 
 function cztery(){
     schowaj()
-    document.getElementById("cztery").style.backgroundColor = '#f83439';
-    document.getElementById("cztery2").style.backgroundColor = '#f83439';
+    document.getElementById("cztery").style.color = '#f83439';
+    document.getElementById("cztery2").style.color = '#f83439';
 }
 
 function pienc(){
     schowaj()
-    document.getElementById("pienc").style.backgroundColor = '#f83439';
-    document.getElementById("pienc2").style.backgroundColor = '#f83439';
+    document.getElementById("pienc").style.color = '#f83439';
+    document.getElementById("pienc2").style.color = '#f83439';
 }
 
 function szesc(){
     schowaj()
-    document.getElementById("szesc").style.backgroundColor = '#f83439';
-    document.getElementById("szesc2").style.backgroundColor = '#f83439';
+    document.getElementById("szesc").style.color = '#f83439';
+    document.getElementById("szesc2").style.color = '#f83439';
 }
 
 function siedem(){
     schowaj()
-    document.getElementById("siedem").style.backgroundColor = '#f83439';
-    document.getElementById("siedem2").style.backgroundColor = '#f83439';
+    document.getElementById("siedem").style.color = '#f83439';
+    document.getElementById("siedem2").style.color = '#f83439';
 }
 
 function osiom(){
     schowaj()
-    document.getElementById("osiom").style.backgroundColor = '#f83439';
-    document.getElementById("osiom2").style.backgroundColor = '#f83439';
+    document.getElementById("osiom").style.color = '#f83439';
+    document.getElementById("osiom2").style.color = '#f83439';
 }
 
