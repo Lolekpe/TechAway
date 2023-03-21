@@ -5,8 +5,8 @@ var router = express.Router();
 router.get('/', function (req, res) {
   if(!req.cookies.logged) {
     return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Strona Główna"})
+    
   }
-
   res.render('index', { stage: "TechAway | Strona Główna"});
 });
 
