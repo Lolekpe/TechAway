@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', routes);
+app.use('/index', routes);
 app.use('/users', users);
 app.use('/login/validate', v_login);
 app.use('/login', login)

@@ -7,28 +7,24 @@ var con = sql.createConnection({
     password: "",
     database: 'techaway'
 })
+var crypto = require("crypto");
+var sha256 = crypto.createHash("sha256");
+var resul = 0;
 
 /* GET home page. */
 app.route('/')
     .post(function (req, res) {
+        sha256.update(req.body.haslo, "utf")
+        resul = sha256.digest("base64");
         con.connect(function () {
-            con.query(`SELECT * FROM uzytkownicy WHERE email = '${req.body.mail}' AND haslo = '${req.body.haslo}'`, (err, row) => {
+            con.query(`SELECT * FROM uzytkownicy WHERE email = '${req.body.mail}' AND haslo = '${resul}'`, (err, row) => {
                 if (err) return console.log(err);
                 if (row.length === 0) return res.redirect("/login?failedLogin=true");
-                var x = [
-                    row.map((item) => item.email),
-                    row.map((item) => item.haslo),
-                    row.map((item) => item.imie),
-                    row.map((item) => item.nazwisko),
-                    row.map((item) => item.sprzedawca)
-                ]
-                app.locals.mail = 0;
-                app.locals.imie = 0; 
-                app.locals.nazwisko = 0;
-                app.locals.sprzedawca = 0;
-                console.log(row)
+                let x = row.map((item) => item.ID).toString();
+                
 
-                res.cookie("logged", "true", { maxAge: 1920000 })
+                res.cookie("logged", "true", { maxAge: 192000000 });
+                res.cookie("user", x, {maxAge: 192000000});
                 res.redirect("/");
             });
         });
