@@ -23,8 +23,7 @@ app.route('/')
                 if (row.length === 0) return con.query(`INSERT INTO uzytkownicy (ID, imie, nazwisko, telefon, email, haslo, sprzedawca) VALUES ('','${req.body.name}','${req.body.naz}','','${req.body.mail}','${resul}','0')`, (err) => {
                     if (err) return res.send(err)
 
-                    res.cookie("logged", "true", { maxAge: 1920000 });
-                    res.redirect("/");
+                    res.redirect("/login?register=pass");
                 });
 
                 return res.redirect("/rejestracja?failed=true")

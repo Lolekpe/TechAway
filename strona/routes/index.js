@@ -4,14 +4,10 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res) {
   if (!req.cookies.logged) {
-    return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Strona Główna" })
+    return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Strona Główna" });
 
   }
-  switch (req.query.select) {
-    case 'glowna':
-      res.render('index', { stage: "Działa xD" });
-      break;
-  }
+
   res.render('index', { stage: "TechAway | Strona Główna" });
 });
 
