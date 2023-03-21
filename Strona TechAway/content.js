@@ -25,8 +25,8 @@ function zmiana(){
 }
 
 function schowaj(){
-    document.getElementById("jeden").style.color = 'black';
-    document.getElementById("jeden2").style.color = 'black';
+    document.getElementById("jeden").style.color = '#dfe0e0';
+    document.getElementById("jeden2").style.color = '#dfe0e0';
     document.getElementById("dwa").style.color = '';
     document.getElementById("dwa2").style.color = '';
     document.getElementById("trzy").style.color = '';
