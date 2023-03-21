@@ -216,10 +216,9 @@ a
     width: 80px;
     display: flex;
     justify-content: center;
-    background-color: #dfe0e0;
-    border-right: 2px solid #0f1621;
+    background-color: white;
+    border-right: lightgray 2px solid;
     transition-duration: 0.3s;
-    box-shadow: 0 0 10px 2px #0f1621;
 }
 
 
