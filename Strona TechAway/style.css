@@ -19,7 +19,29 @@ a
 {
     text-decoration: none;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+    transition-duration: 0.2s;
 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #002461;
+    transition-duration: 0.2s;
+    border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c21b21;
+  }
 
 .nav-bar
 {
