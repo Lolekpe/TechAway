@@ -1,34 +1,68 @@
-<%- include('./parts/head') %>
-<body>
-    <div class="nav-bar" id="navbar">
-        <span id="strzalka" class="arrow arrow-show-hide" onclick="zmiana()"><i class="fa-solid fa-arrow-right"></i></span>
-        <div class="logo-top">
-            <img src="images/logo/przykladowelogo.png" alt="" class="image-logo-top-nav-bar" id="logo">
-        </div>
-        <div class="buttons-container" id="container">
-            <div class="button-text button-uwu znikanietext" id="litery">
-                <li id="jeden" class="lieutant1" onclick="jeden()"><div>Strona Główna</div></li>
-                <li id="dwa"  class="lieutant" onclick="dwa()"><div>Twoje sklepy</div></li>
-                <li id="trzy"  class="lieutant" onclick="trzy()"><div>Zamówienia</div></li>
-                <li id="cztery" class="lieutant"  onclick="cztery()"><a href="/ustawienia"><div>Ustawienia</div></a></li>
-                <li id="pienc" class="lieutant"  onclick="pienc()"><div>Regulamin</div></li>
-                <li id="szesc" class="lieutant"  onclick="szesc()"><a href="/profil"><div>Profil </div></a></li>
-                <li id="siedem" class="lieutant"  onclick="siedem()"><div>Opinie</div></li>
-               <li id="osiom" class="lieutant"  onclick="osiom()"> <a href="http://127.0.0.1:8000"><div>Admin</div></a></li>
-            </div>
-            <div class="button-icons button-uwu znikanieikony" id="ikony">
-                <li id="jeden2" class="lieutant1"  onclick="jeden()"><i class="fa-solid fa-house"></i></li>
-                <li id="dwa2" class="lieutant"  onclick="dwa()"><i class="fa-solid fa-shop-lock"></i></li>
-                <li id="trzy2" class="lieutant"  onclick="trzy()"><i class="fa-solid fa-bag-shopping"></i></li>
-                <li id="cztery2" class="lieutant"  onclick="cztery()"><a href="/ustawienia"><i class="fa-solid fa-gear"></i></a></li>
-                <li id="pienc2"  class="lieutant" onclick="pienc()"><i class="fa-solid fa-scroll"></i></li>
-                <li id="szesc2"  class="lieutant" onclick="szesc()"><a href="/profil"><i class="fa-solid fa-user"></i></a></li>
-                <li id="siedem2"  class="lieutant" onclick="siedem()"><i class="fa-solid fa-comment"></i></li>
-                <li id="osiom2" class="lieutant"  onclick="osiom()"><a href="http://127.0.0.1:8000"><i class="fa-solid fa-lock"></i></a></li>
-            </div>
-        </div>
-    </div>
-    <script src="/javascripts/content.js"></script>
+<%- include('./parts/header') %>
 
-</body>
-</html>
+    <body>
+        <div class="nav-bar" id="navbar">
+            <span id="strzalka" class="arrow arrow-show-hide" onclick="zmiana()"><i
+                    class="fa-solid fa-arrow-right"></i></span>
+            <div class="logo-top">
+                <img src="images/strona/logo.png" alt="" class="image-logo-top-nav-bar" id="logo">
+            </div>
+            <div class="buttons-container" id="container">
+                <div class="button-text button-uwu znikanietext" id="litery">
+                    <li id="jeden" class="lieutant1" onclick="jeden()">
+                        <div>Strona Główna</div>
+                    </li>
+                    <li id="dwa" class="lieutant" onclick="dwa()">
+                        <div>Twoje sklepy</div>
+                    </li>
+                    <li id="trzy" class="lieutant" onclick="trzy()">
+                        <div>Zamówienia</div>
+                    </li>
+                    <li id="cztery" class="lieutant" onclick="cztery()"><a href="/ustawienia">
+                            <div>Ustawienia</div>
+                        </a></li>
+                    <li id="pienc" class="lieutant" onclick="pienc()">
+                        <div>Regulamin</div>
+                    </li>
+                    <li id="szesc" class="lieutant" onclick="szesc()"><a href="/profil">
+                            <div>Profil</div>
+                        </a></li>
+                    <li id="siedem" class="lieutant" onclick="siedem()">
+                        <div>Opinie</div>
+                    </li>
+                    <li id="osiom" class="lieutant" onclick="osiom()"> <a href="http://127.0.0.1:8000">
+                            <div>Admin</div>
+                        </a></li>
+                </div>
+                <div class="button-icons button-uwu znikanieikony" id="ikony">
+                    <li id="jeden2" class="lieutant1" onclick="jeden()"><i class="fa-solid fa-house"></i></li>
+                    <li id="dwa2" class="lieutant" onclick="dwa()"><i class="fa-solid fa-shop-lock"></i></li>
+                    <li id="trzy2" class="lieutant" onclick="trzy()"><i class="fa-solid fa-bag-shopping"></i></li>
+                    <li id="cztery2" class="lieutant" onclick="cztery()"><a href="/ustawienia"><i
+                                class="fa-solid fa-gear"></i></a></li>
+                    <li id="pienc2" class="lieutant" onclick="pienc()"><i class="fa-solid fa-scroll"></i></li>
+                    <li id="szesc2" class="lieutant" onclick="szesc()"><a href="/profil"><i
+                                class="fa-solid fa-user"></i></a></li>
+                    <li id="siedem2" class="lieutant" onclick="siedem()"><i class="fa-solid fa-comment"></i></li>
+                    <li id="osiom2" class="lieutant" onclick="osiom()"><a href="http://127.0.0.1:8000"><i
+                                class="fa-solid fa-lock"></i></a></li>
+                </div>
+            </div>
+        </div>
+        <div class="main-container">
+
+            <div class="sklepy-glowna-strona-screen">
+                <div class="shops-container">
+                    <%- sklepy %>
+                    <%- nowy %>
+                </div>
+            </div>
+        </div>
+        <script src="/javascripts/content.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+    </body>
+
+    </html>
