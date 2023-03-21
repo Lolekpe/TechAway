@@ -7,13 +7,13 @@ var con = sql.createConnection({
     password: "",
     database: 'techaway'
 })
-var crypto = require("crypto");
-var sha256 = crypto.createHash("sha256");
-var resul = 0;
+let resul = 0;
 
 /* GET home page. */
 app.route('/')
     .post(function (req, res) {
+        var crypto = require("crypto");
+        var sha256 = crypto.createHash("sha256");
         sha256.update(req.body.haslo, "utf")
         resul = sha256.digest("base64");
         con.connect(function () {
@@ -21,10 +21,10 @@ app.route('/')
                 if (err) return console.log(err);
                 if (row.length === 0) return res.redirect("/login?failedLogin=true");
                 let x = row.map((item) => item.ID).toString();
-                
+
 
                 res.cookie("logged", "true", { maxAge: 192000000 });
-                res.cookie("user", x, {maxAge: 192000000});
+                res.cookie("user", x, { maxAge: 192000000 });
                 res.redirect("/");
             });
         });

@@ -1,9 +1,8 @@
 body, html 
 {
-    background-color: var(--main-color);
+    background-color: #dfe0e0;
     margin: 0;
     padding: 0;
-    color: white;
     font-family: var(--main-font);
     display: flex;
     justify-content: center;
@@ -13,12 +12,6 @@ body, html
 }
 :root
 {
-    --main-color: #161719;
-    --addon-color: #201f25;
-    --addon-trzy: #22191c;
-    --addon-dwa: #33cc66;
-    --addon-cztery: #e21e13;
-    --addon-zielony: #00804b;
     --main-font: 'Open Sans', sans-serif;
     --addon-font: 'Roboto Condensed', sans-serif;
 }
@@ -30,7 +23,6 @@ a
 {
     width: 45rem;
     height: 28rem;
-    background-color: var(--addon-color);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -39,7 +31,6 @@ a
 {
     width: 45rem;
     height: 28rem;
-    background-color: var(--addon-color);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -74,12 +65,11 @@ a
     margin-bottom: 4px;
     font-weight: bolder;
     font-size: 16px;
-    text-shadow: 1px 1px 3px black;
 }
 .form-container > form > span
 {
     position: absolute;
-    color: white;
+    color: #f83439;
     font-size: 20px;
     margin-left: 10px;
 }
@@ -89,11 +79,11 @@ a
     height: 25px;
     border: none;
     outline: none;
-    background-color: var(--addon-color);
-    color: white;
+    background-color: transparent;
+    color: black;
     transition-duration: 0.2s;
     font-size: 16px;
-    border-bottom: 2px solid var(--addon-zielony);
+    border-bottom: 2px solid #0f1621;
     padding-left: 40px;
 
 }
@@ -108,9 +98,9 @@ a
 .form-container > form > p > button
 {
     border: none;
-    width: 200px;
+    width: 150px;
     height: 25px;
-    background-color: var(--addon-dwa);
+    background-color: #f83439;
     color: white;
     border-radius: 5px;
     margin-top: 20px;
@@ -118,13 +108,12 @@ a
 }
 .form-container > form > p > button:hover
 {
-    background-color: var(--addon-cztery);
-    box-shadow: 0 0 5px 0px var(--addon-cztery);
+    box-shadow: 0 0 5px 0px #f83439;
+    width: 200px;
 }
 .form-container > form > p > button:active
 {
-    background-color: var(--addon-zielony);
-    box-shadow: 0 0 0px 0px var(--addon-zielony);
+    box-shadow: 0 0 20px 0px #f83439;
 }
 .form-container > p
 {
@@ -134,12 +123,12 @@ a
 }
 .form-container > p > a > span
 {
-    color: var(--addon-cztery);
+    color: grey;
     transition-duration: 0.2s;
 }
 .form-container > p > a > span:hover
 {
-    color: var(--addon-dwa);
+    color: #f83439;
 }
 .form-container2
 {
@@ -155,12 +144,11 @@ a
     margin-bottom: 4px;
     font-weight: bolder;
     font-size: 16px;
-    text-shadow: 1px 1px 3px black;
 }
 .form-container2 > form > span
 {
     position: absolute;
-    color: white;
+    color: #f83439;
     font-size: 20px;
     margin-left: 10px;
 }
@@ -170,11 +158,11 @@ a
     height: 25px;
     border: none;
     outline: none;
-    background-color: var(--addon-color);
-    color: white;
+    background-color: transparent;
+    color: black;
     transition-duration: 0.2s;
     font-size: 16px;
-    border-bottom: 2px solid var(--addon-zielony);
+    border-bottom: 2px solid #0f1621;
     padding-left: 40px;
 
 }
@@ -189,9 +177,9 @@ a
 .form-container2 > form > p > button
 {
     border: none;
-    width: 200px;
+    width: 150px;
     height: 25px;
-    background-color: var(--addon-dwa);
+    background-color: #f83439;
     color: white;
     border-radius: 5px;
     margin-top: 20px;
@@ -199,13 +187,12 @@ a
 }
 .form-container2 > form > p > button:hover
 {
-    background-color: var(--addon-cztery);
-    box-shadow: 0 0 5px 0px var(--addon-cztery);
+    width: 200px;
+    box-shadow: 0 0 5px 0px #f83439;
 }
 .form-container2 > form > p > button:active
 {
-    background-color: var(--addon-zielony);
-    box-shadow: 0 0 0px 0px var(--addon-zielony);
+    box-shadow: 0 0 20px 0px #f83439;
 }
 .form-container2 > p
 {
@@ -214,12 +201,12 @@ a
 }
 .form-container2 > p > a > span
 {
-    color: var(--addon-cztery);
+    color: grey;
     transition-duration: 0.2s;
 }
 .form-container2 > p > a > span:hover
 {
-    color: var(--addon-dwa);
+    color: #f83439;
 }
 .nav-bar
 {
@@ -229,9 +216,12 @@ a
     width: 80px;
     display: flex;
     justify-content: center;
-    background-color: var(--addon-color);
+    background-color: #dfe0e0;
+    border-right: 2px solid #0f1621;
     transition-duration: 0.3s;
+    box-shadow: 0 0 10px 2px #0f1621;
 }
+
 
 .image-logo-top-nav-bar
 {
@@ -252,6 +242,7 @@ a
     margin-left: 30px;
     transition-delay: 0.1s;
     transition-duration: 0.2s;
+    color: #f83439;
 }
 .button-uwu{
     list-style: none;
@@ -271,9 +262,8 @@ a
     position: absolute;
     top: 0;
     margin-top: 180px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bolder;
-    text-shadow: 1px 1px 3px black;
 }
 .button-text > li
 {
@@ -282,7 +272,7 @@ a
     padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
-    transition-duration: 0.1s;
+    transition-duration: 0.2s;
     border-radius: 10px;
 }
 
@@ -298,14 +288,16 @@ a
 }
 .button-icons > li:hover
 {
-    background-color: var(--addon-zielony);
+    background-color: #0075D8;
     border-radius: 10px;
+    color: white;
 }
 
 .button-text > li:hover
 {
-    background-color: var(--addon-zielony);
+    background-color: #0075D8;
     border-radius: 10px;
+    color: white;
 }
 .button-icons > li:active
 {
@@ -329,9 +321,11 @@ a
 {
     margin-top: 25px;
     padding-left: 20px;
-    transition-duration: 0.1s;
+    transition-duration: 0.2s;
     padding-right: 20px;
     border-radius: 10px;
+    color: #0f1621;
+
 }
 
 .lieutant1
