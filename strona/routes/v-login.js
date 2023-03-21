@@ -20,7 +20,8 @@ app.route('/')
             con.query(`SELECT * FROM uzytkownicy WHERE email = '${req.body.mail}' AND haslo = '${resul}'`, (err, row) => {
                 if (err) return console.log(err);
                 if (row.length === 0) return res.redirect("/login?failedLogin=true");
-                let x = row.map((item) => item.ID)
+                let x = row.map((item) => item.ID).toString();
+                
 
                 res.cookie("logged", "true", { maxAge: 192000000 });
                 res.cookie("user", x, {maxAge: 192000000});
