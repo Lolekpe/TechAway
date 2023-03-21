@@ -1,6 +1,6 @@
 body, html 
 {
-    background-color: #dfe0e0;
+    background-image: url("img/Bez_nazwy-2.png");
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
@@ -13,201 +13,14 @@ body, html
 :root
 {
     --main-font: 'Open Sans', sans-serif;
-    --addon-font: 'Roboto Condensed', sans-serif;
+    --addon-font: 'Chivo Mono', monospace;;
 }
 a
 {
     text-decoration: none;
 }
-.login-conatiner
-{
-    width: 45rem;
-    height: 28rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-}
-.login-conatiner2
-{
-    width: 45rem;
-    height: 28rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-}
-.logo-image-login-register
-{
-    width: 80px;
-    border-radius: 10px;
-}
-.logo-container
-{
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    position: absolute;
-}
-.form-container
-{
-    text-align: center;
-    margin-top: 120px;
-    width: 60%;
-    height: 45%;
-    border-radius: 10px;
-}
-.form-container > form
-{
-    margin-top: 20px;
-}
-.form-container > form > p
-{
-    margin-top: 4px;
-    margin-bottom: 4px;
-    font-weight: bolder;
-    font-size: 16px;
-}
-.form-container > form > span
-{
-    position: absolute;
-    color: #f83439;
-    font-size: 20px;
-    margin-left: 10px;
-}
-.form-container > form > input
-{
-    width: 40%;
-    height: 25px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: black;
-    transition-duration: 0.2s;
-    font-size: 16px;
-    border-bottom: 2px solid #0f1621;
-    padding-left: 40px;
 
-}
-.form-container > form > input:hover
-{
-    width: 80%;
-}
-.form-container > form > input:focus
-{
-    width: 80%;
-}
-.form-container > form > p > button
-{
-    border: none;
-    width: 150px;
-    height: 25px;
-    background-color: #f83439;
-    color: white;
-    border-radius: 5px;
-    margin-top: 20px;
-    transition-duration: 0.2s;
-}
-.form-container > form > p > button:hover
-{
-    box-shadow: 0 0 5px 0px #f83439;
-    width: 200px;
-}
-.form-container > form > p > button:active
-{
-    box-shadow: 0 0 20px 0px #f83439;
-}
-.form-container > p
-{
-    font-size: 13px;
-    margin-top: 70px;
-    color: grey;
-}
-.form-container > p > a > span
-{
-    color: grey;
-    transition-duration: 0.2s;
-}
-.form-container > p > a > span:hover
-{
-    color: #f83439;
-}
-.form-container2
-{
-    text-align: center;
-    margin-top: 95px;
-    width: 60%;
-    height: 68%;
-    border-radius: 10px;
-}
-.form-container2 > form > p
-{
-    margin-top: 4px;
-    margin-bottom: 4px;
-    font-weight: bolder;
-    font-size: 16px;
-}
-.form-container2 > form > span
-{
-    position: absolute;
-    color: #f83439;
-    font-size: 20px;
-    margin-left: 10px;
-}
-.form-container2 > form > input
-{
-    width: 40%;
-    height: 25px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: black;
-    transition-duration: 0.2s;
-    font-size: 16px;
-    border-bottom: 2px solid #0f1621;
-    padding-left: 40px;
 
-}
-.form-container2 > form > input:hover
-{
-    width: 80%;
-}
-.form-container2 > form > input:focus
-{
-    width: 80%;
-}
-.form-container2 > form > p > button
-{
-    border: none;
-    width: 150px;
-    height: 25px;
-    background-color: #f83439;
-    color: white;
-    border-radius: 5px;
-    margin-top: 20px;
-    transition-duration: 0.2s;
-}
-.form-container2 > form > p > button:hover
-{
-    width: 200px;
-    box-shadow: 0 0 5px 0px #f83439;
-}
-.form-container2 > form > p > button:active
-{
-    box-shadow: 0 0 20px 0px #f83439;
-}
-.form-container2 > p
-{
-    font-size: 13px;
-    color: grey;
-}
-.form-container2 > p > a > span
-{
-    color: grey;
-    transition-duration: 0.2s;
-}
-.form-container2 > p > a > span:hover
-{
-    color: #f83439;
-}
 .nav-bar
 {
     height: 100%;
@@ -216,11 +29,11 @@ a
     width: 80px;
     display: flex;
     justify-content: center;
-    background-color: white;
-    border-right: lightgray 2px solid;
+    background: rgb(248,52,57);
+    background: linear-gradient(180deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
     transition-duration: 0.3s;
+    z-index: 2;
 }
-
 
 .image-logo-top-nav-bar
 {
@@ -241,7 +54,8 @@ a
     margin-left: 30px;
     transition-delay: 0.1s;
     transition-duration: 0.2s;
-    color: #f83439;
+    cursor: pointer;
+    color: white;
 }
 .button-uwu{
     list-style: none;
@@ -273,7 +87,8 @@ a
     padding-bottom: 5px;
     transition-duration: 0.2s;
     border-radius: 10px;
-    color: #5a5a5a;
+    color: white;
+    cursor: pointer;
 }
 
 .button-icons
@@ -288,14 +103,12 @@ a
 }
 .button-icons > li:hover
 {
-    border-radius: 10px;
-    color: #dfe0e0;
+    color: rgb(238, 238, 238);
 }
 
 .button-text > li:hover
 {
-    border-radius: 10px;
-    color: #dfe0e0;
+    color: rgb(238, 238, 238);
 }
 .lieutant
 {
@@ -308,22 +121,11 @@ a
     transition-duration: 0.2s;
     padding-right: 20px;
     border-radius: 10px;
-    color:#5a5a5a;
+    cursor: pointer;
+    color:white;
 
 }
-.lieutant1
-{
-    color: #f83439;
 
-}
-.lieutant1:hover
-{
-    color: #f83439;
-}
-.lieutant1:active
-{
-    color: #f83439;
-}
 .button-icons > .tatrujka > li
 {
     margin-top: 25px;
@@ -332,13 +134,165 @@ a
     padding-right: 20px;
     border-radius: 10px;
 }
+.main-container
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-repeat: repeat-y;
+}
 .jedendwatrzy
 {
     color: #f83439;
 }
-
+.sklepy-glowna-strona-screen
+{
+    display: flex;
+    justify-content: center;
+    margin-left: 60px;
+    height: 100%;
+}
+.shops-container
+{
+    position: absolute;
+    top: 0;
+    width: 1200px;
+}
+.shop
+{
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
+    width: 250px;
+    height: 250px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 10px 0px #00000091;
+    display: flex;
+    justify-content: center;
+}
+.dodajsklep
+{
+    background-color: #838383;
+    border-radius: 10px;
+    width: 250px;
+    height: 250px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 100px;
+    text-align: center;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+.dodajsklep:active
+{
+    color: black;
+    background-color: white;
+    box-shadow: 0 0 10px 0px #00000091;
+}
+.dodajsklep::after
+{
+    height: 20px;
+    display: block;
+    content: "Dodaj Własny sklep";
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    transition-duration: 0.3s;
+    transition-delay: 0s;
+    margin-top: -10px;
+    opacity: 0;
+}
+.dodajsklep:hover:active::after
+{
+    opacity: 0;
+}
+.dodajsklep:hover::after
+{
+    opacity: 1;
+}
+.dodajsklep:hover
+{
+    background: rgb(248,52,57);
+    background: linear-gradient(180deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    color: transparent;
+}
+.dodajsklep:hover:active
+{
+    color: white;
+}
+.logo-shop
+{
+    width: 80px;
+}
+.logo 
+{
+    position: absolute;
+    margin-top: 10px;
+}
+.opis
+{
+    position: absolute;
+    text-align: center;
+    width: 220px;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-top: 90px;
+}
+.nazwa
+{
+    position: absolute;
+    margin-top: 255px;
+}
+.przejdzdosklepu
+{
+    width: 210px;
+    height: 35px;
+    border-radius: 5px;
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 200px;
+    background: rgb(248,52,57);
+    font-family: var(--addon-font);
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+}
+@media only screen and (max-width: 1300px)
+{
+    .shops-container
+    {
+        width: 600px;
+    }
+}
+@media only screen and (max-width: 680px)
+{
+    .shops-container
+    {
+        width: 300px;
+    }
+}
 @media only screen and (max-width: 450px)
 {
+    .sklepy-glowna-strona-screen
+    {
+        margin-left: -20px;
+    }
     .login-conatiner2
     {
         width: 20rem;
@@ -372,4 +326,9 @@ a
         font-size: 13px;
         margin-top: 17px;
     }
+    .shops-container
+    {
+        margin-left: 110px;
+    }
+
 }
