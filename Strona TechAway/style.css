@@ -274,6 +274,7 @@ a
     padding-bottom: 5px;
     transition-duration: 0.2s;
     border-radius: 10px;
+    color: black;
 }
 
 .button-icons
@@ -288,14 +289,12 @@ a
 }
 .button-icons > li:hover
 {
-    background-color: #f83439;
     border-radius: 10px;
     color: white;
 }
 
 .button-text > li:hover
 {
-    background-color: #f83439;
     border-radius: 10px;
     color: white;
 }
@@ -315,16 +314,16 @@ a
 }
 .lieutant1
 {
-    background-color: #f83439;
+    color: #f83439;
 
 }
 .lieutant1:hover
 {
-    background-color: #f83439;
+    color: #f83439;
 }
 .lieutant1:active
 {
-    background-color: #f83439;
+    color: #f83439;
 }
 .button-icons > .tatrujka > li
 {
