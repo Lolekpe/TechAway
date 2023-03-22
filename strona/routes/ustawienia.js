@@ -18,8 +18,7 @@ router.get("/", (req, res, next) => {
         case 'wyloguj':
             res.clearCookie("logged");
             res.clearCookie("user");
-            res.redirect("/login?akcja=wylogowanie");
-            break;
+            return res.redirect("/login?akcja=wylogowanie");
         case 'usun':
             // coś jeszce przed tym będzie xddd
             con.connect(function () {
@@ -27,8 +26,7 @@ router.get("/", (req, res, next) => {
             })
             res.clearCookie("logged");
             res.clearCookie("user");
-            res.redirect("/login?akcja=usun")
-            break;
+            return res.redirect("/login?akcja=usun")
     }
 
     con.connect(function () {

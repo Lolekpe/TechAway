@@ -18,7 +18,6 @@ router.get('/', function (req, res) {
         let back = "";
         con.query(`SELECT * FROM sklepy`, (err, row) => {
             if (err) return res.send(err);
-            console.log(row);
             let nazwa = row.map((item) => item.nazwa);
             let typ = row.map((item) => item.typ).toString();
             let opis = row.map((item) => item.opis);

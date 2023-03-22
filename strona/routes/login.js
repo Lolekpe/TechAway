@@ -10,10 +10,10 @@ router.get('/', (req, res, next) => {
     }
     switch (req.query.akcja) {
         case 'wylogowanie':
-            res.render('login', { message: `<div class="jedendwatrzy">Zostałeś/aś pomyślnie wylogowany/a</div>`, stage: "TechAway | Logowanie" });
-            break;
+            return res.render('login', { message: `<div class="jedendwatrzy">Zostałeś/aś pomyślnie wylogowany/a</div>`, stage: "TechAway | Logowanie" });
+            
         case 'usun':
-            res.render('login', { message: `<div class="jedendwatrzy">Twoje konto zostało usunięte</div>`, stage: "TechAway | Logowanie" })
+            return res.render('login', { message: `<div class="jedendwatrzy">Twoje konto zostało usunięte</div>`, stage: "TechAway | Logowanie" })
     }
     res.render("login", { message: "", stage: "TechAway | Logowanie" });
 })
