@@ -192,10 +192,18 @@ a
 }
 .sklepy-glowna-strona-screen
 {
-    display: flex;
+    display: none; /*Zmienia się na none z flex*/
     justify-content: center;
     margin-left: 60px;
     height: 100%;
+}
+.regulamin-main-screen
+{
+    display: flex; /*Zmienia się na flex z none*/
+    justify-content: center;
+    margin-left: 60px;
+    height: 100%;
+    align-items: center;
 }
 .shops-container
 {
@@ -511,11 +519,55 @@ a
 {
     box-shadow: 0 0 5px 0 rgb(248,52,57);
 }
+.regulamin-container
+{
+    width: 40%;
+    height: 90%;
+    box-shadow: 0 0 50px 3px #838383;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+.regulamin-napis
+{
+    font-size: 3.5vh;
+    font-family: var(--addon-font);
+    letter-spacing: 0.45vh;
+    margin-top: 0.70vh;
+    font-weight: lighter;
+    position: absolute
+}
+.regulamin-wsrodku
+{
+    height: 80%;
+    width: 100%;
+    overflow: auto;
+    margin-top: 8vh;
+    display: flex;
+    justify-content: center;
+}
+.regulamin-text
+{
+    height: 100%;
+    width: 70%;
+    text-align: left;
+}
+.stopka
+{
+    position: absolute;
+    font-size: 11px;
+    margin-top: 87.5vh
+}
 @media only screen and (max-width: 1300px)
 {
     .shops-container
     {
         width: 600px;
+    }
+    .regulamin-container
+    {
+        width: 60%;
     }
 }
 @media only screen and (max-width: 680px)
@@ -524,9 +576,22 @@ a
     {
         width: 300px;
     }
+    .regulamin-container
+    {
+        width: 80%;
+    }
 }
 @media only screen and (max-width: 450px)
 {
+    .regulamin-container
+    {
+        width: 90%;
+        margin-left: 20px;
+    }
+    .regulamin-text
+    {
+        width: 90%;
+    }
     .sklepy-glowna-strona-screen
     {
         margin-left: -20px;
