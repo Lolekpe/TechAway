@@ -1,6 +1,6 @@
 body, html 
 {
-    background-image: url("../images/strona/Bez_nazwy-2.png");
+    background-image: url("/images/strona/Bez_nazwy-2.png");
     margin: 0;
     padding: 0;
     font-family: var(--main-font);
@@ -8,6 +8,7 @@ body, html
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
     user-select: none;
 }
 :root
@@ -19,7 +20,29 @@ a
 {
     text-decoration: none;
 }
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+    transition-duration: 0.2s;
 
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c21b21;
+    transition-duration: 0.2s;
+    border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c21b21;
+  }
 
 .nav-bar
 {
@@ -90,7 +113,18 @@ a
     color: white;
     cursor: pointer;
 }
-
+.button-text > a > li
+{
+    margin-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition-duration: 0.2s;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
 .button-icons
 {
     font-size: 20px;
@@ -115,6 +149,17 @@ a
     border-radius: 10px;
 }
 .button-icons >  li
+{
+    margin-top: 25px;
+    padding-left: 20px;
+    transition-duration: 0.2s;
+    padding-right: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color:white;
+
+}
+.button-icons > a >  li
 {
     margin-top: 25px;
     padding-left: 20px;
@@ -253,6 +298,7 @@ a
 {
     position: absolute;
     margin-top: 255px;
+    color: black;
 }
 .przejdzdosklepu
 {
@@ -272,6 +318,198 @@ a
     font-family: var(--addon-font);
     cursor: pointer;
     background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+}
+.ustawienia-screen
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url("img/Bez_nazwy-2.png");
+    display: flex;
+    filter: blur(2px);
+    justify-content: center;
+    align-items: center;
+}
+.ustawienia-container
+{
+    width: 75%;
+    height: 90%;
+    position: absolute;
+    box-shadow: 0 0 10px 0px #00000091;
+    border-radius: 10px;
+    background-image: url("img/urozmaicenie.svg");
+}
+.logo-left-fajne
+{
+    width: 12%;
+    position: absolute;
+    right: 0;
+}
+.edytowanie-informacji-konta-container
+{
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: rgb(42, 42, 42);
+    overflow: auto;
+}
+.edytowanie-informacji-konta-container > .div > p
+{
+    margin-bottom: 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0;
+    word-spacing: 0.25vh;
+    font-weight: bolder;
+}
+.guzik
+{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 2vh;
+    font-weight: bolder;
+    border: none;
+    background: rgb(248,52,57);
+    font-family: var(--addon-font);
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    color: white;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-top: 1vh;
+    transition-duration: 0.2s;
+    padding-bottom: 1vh;
+    border-radius: 1.25vh;
+}
+.guzik:hover
+{
+    box-shadow: 0 0 10px 1px rgb(248,52,57);
+}
+.usun:hover
+{
+    background-color: #c21b21;
+}
+.wyloguj:hover
+{
+    background-color: #c21b21;
+}
+.nazwa-ustawienia
+{
+    font-size: 2.5vh;
+    text-transform: uppercase;
+}
+.wartosc-ustawienia
+{
+    font-size: 2.6vh;
+    text-align: center;
+    letter-spacing: 1px;
+}
+.zmiana-wartosci-ustawienia
+{
+    background: rgb(248,52,57);
+    background: linear-gradient(180deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    color: white;
+    padding: 1.25vh;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-size: 2vh;
+    transition-duration: 0.2s;
+}
+.zmiana-wartosci-ustawienia:active
+{
+    box-shadow: 0 0 5px 0 rgb(248,52,57);
+}
+.div
+{
+    text-align: center;
+    width: 40%;
+}
+.emailniepotwierdzony
+{
+    background: rgb(248,52,57);
+    color: white;
+    padding: 1.25vh;
+    border-radius: 1vh;
+    cursor: pointer;
+    font-size: 2vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+.formularz-zmiana-wartosci
+{
+    text-align: center;
+    display: none; /*tutaj z none na flex sie zmienia*/
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    align-items: center;
+}
+.background-tego-forma
+{
+    background-color: white;
+    box-shadow: 0 0 50px 3px #838383;
+    width: 40%;
+    height: 45%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.background-tego-forma > form > p
+{
+    color: black;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bolder;
+    font-family: var(--addon-font);
+    font-size: 1.85vh;
+}
+.background-tego-forma > form > input
+{
+    background-color: transparent;
+    width: 200px;
+    border: none;
+    transition-duration: 0.3s;
+    outline: none;
+    border-bottom: 3px solid black;
+    padding-left: 30px;
+    font-size: 2vh;
+    color: black;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+.background-tego-forma > form > input:hover
+{
+    width: 400px;
+}
+.background-tego-forma > form > input:active
+{
+    width: 400px;
+}
+.guziok
+{
+    width: 100px;
+    height: 25px;
+    font-size: 2vh;
+    background: rgb(248,52,57);
+    background: linear-gradient(180deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition-duration: 0.2s;
+}
+.guziok:hover
+{
+    box-shadow: 0 0 5px 0 rgb(248,52,57);
 }
 @media only screen and (max-width: 1300px)
 {

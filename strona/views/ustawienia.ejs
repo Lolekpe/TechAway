@@ -1,0 +1,44 @@
+<%- include("./parts/header") %>
+
+    <body>
+        <div class="ustawienia-screen">
+
+        </div>
+        <div class="ustawienia-container" data-aos="fade-in" data-aos-duration="1000">
+            <div class="logo-techaway">
+                <div class="logo-left">
+                    <img src="/images/strona/logo2.png" alt="" class="logo-left-fajne">
+                </div>
+            </div>
+            <div class="edytowanie-informacji-konta-container">
+                <div class="div">
+                    <%- informacje %>
+                    <a href="/ustawienia?opcja=wyloguj"><button class="guzik wyloguj">Wyloguj</button></a><a href="/ustawienia?opcja=usun"><button class="guzik usun">Usuń konto</button></a>
+                </div>
+            </div>
+            <div class="formularz-zmiana-wartosci">
+                <div class="background-tego-forma">
+                    <form method="post" class="formularzowskifortmularz">
+                        <p><span>Podaj nowe imię:<!--Zmiana za pomocą js jakie dane mają być wprowadzone--> </span></p>
+                        <input type="text" name="imie" class="formularz-wartosci">
+                        <p>
+                        <p>Podaj ponownie hasło: <!--Pojawia się przy haśle--> </p>
+                        </p>
+                        <input type="passowrd" name="password" class="formularz-wartosci">
+                        <p>
+                            <button class="guziok zastosuj">Zastosuj</button>
+                            <button class="guziok anuluj">Anuluj</button>
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+    </body>
+
+    </html>

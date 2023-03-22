@@ -3,11 +3,17 @@ var router = express.Router();
 
 router.get('/', (req, res, next) => {
     if (req.query.failedLogin) {
-        console.log("xd")
         return res.render('login', { message: `<div class="jedendwatrzy">Zle dane logowania!</div>`, stage: "TechAway | Logowanie" });
     }
     if (req.query.register) {
-        return res.render('login', {message: `<div class="jedendwatrzy">Pomyślnie zarejestrowano, zaloguj się!</div>`, stage: "TechAway | Logowanie"} );
+        return res.render('login', { message: `<div class="jedendwatrzy">Pomyślnie zarejestrowano, zaloguj się!</div>`, stage: "TechAway | Logowanie" });
+    }
+    switch (req.query.akcja) {
+        case 'wylogowanie':
+            res.render('login', { message: `<div class="jedendwatrzy">Zostałeś/aś pomyślnie wylogowany/a</div>`, stage: "TechAway | Logowanie" });
+            break;
+        case 'usun':
+            res.render('login', { message: `<div class="jedendwatrzy">Twoje konto zostało usunięte</div>`, stage: "TechAway | Logowanie" })
     }
     res.render("login", { message: "", stage: "TechAway | Logowanie" });
 })
