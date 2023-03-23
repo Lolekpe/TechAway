@@ -10,6 +10,7 @@ var v_login = require('./routes/v-login');
 var rejestracja = require("./routes/rejestracja");
 var v_rejestracja = require('./routes/v-rejestracja');
 var ustawienia = require("./routes/ustawienia");
+var kreator = require("./routes/kreator/index");
 
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/login', login);
 app.use('/rejestracja', rejestracja)
 app.use('/rejestracja/nowe', v_rejestracja)
 app.use('/ustawienia', ustawienia)
+app.use('/kreator', kreator);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
