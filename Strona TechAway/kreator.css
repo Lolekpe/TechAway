@@ -518,3 +518,7 @@ form > p
     cursor: pointer;
     color: black;
 }
+.guzik-dalej > span
+{
+    color: black;
+}
