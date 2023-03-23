@@ -24,7 +24,9 @@ app.route('/')
             return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: stage1 })
         }
         if(req.query.krok == 2 && req.query.opcja) {
-            return res.send(req.query.opcja);
+            req.session.current_query = req.query.opcja;
+            return res.redirect("/kreator?krok=3");
+
         }
         switch (req.query.krok) {
             case '2': 
@@ -48,7 +50,14 @@ app.route('/')
 
                 return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: stage2 })
             case '3': 
-                return res.send("gitteeeem");
+                console.log(req.session.current_query);
+                var stage3 = `<div class="ulozeniestrony-wybor"><div class="left-ulozenie">` + 
+                `<div class="napis-wybieranie-motywu"><div class="napiski-container"><p class="napisjedenuwu">Wybierz ułożenie swojej strony</p>` + 
+                `<p class="napisdwauwu">Wybierz styl ułożenia swojej strony tak aby jak najbardziej przypadał ci do gustu.</p></div></div>` + 
+                `</div><div class="right-ulozenie"><div class="elementy"><div class="ulozenie-sportowe ulozeniejeden"></div>` + 
+                `<div class="ulozenie-sportowe ulozeniedwa"></div></div></div><div class="anuluj"><span>Anuluj</span></div></div>`;
+
+                return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: stage3 })
         }
 
     }).post((req, res) => {
