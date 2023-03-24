@@ -12,13 +12,13 @@ var con = sql.createConnection({
 
 app.route('/')
     .get((req, res, next) => {
-        if (!req.query.krok) {
+        if (!req.query.krok && !database.nazwa) {
             return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1 })
         }
         switch (req.query.krok) {
             case '2':
                 return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 2 })
-                
+
             case '3':
                 if (database.motyw) {
                     database.motyw = req.query.opcja;
