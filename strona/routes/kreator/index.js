@@ -12,7 +12,8 @@ var con = sql.createConnection({
 
 app.route('/')
     .get((req, res, next) => {
-        if (!req.query.krok && !database.nazwa) {
+        if ((!req.query.krok) || (!database.nazwa)) {
+            console.log("XD?")
             return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1 })
         }
         switch (req.query.krok) {
