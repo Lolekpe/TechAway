@@ -8,7 +8,11 @@ var con = sql.createConnection({
     password: "",
     database: 'techaway'
 });
-
+var newDb = sql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+})
 
 app.route('/')
     .get((req, res, next) => {
@@ -48,11 +52,14 @@ app.route('/')
                     con.query(`SELECT * FROM sklepy WHERE nazwa LIKE "${req.body.nazwa}"`, (err, row) => {
                         if (err) return res.send(err);
                         if (row.length !== 0) return res.send("No niestety");
+                        let x = req.body.nazwa
                         if (database.nazwa) {
                             database.nazwa = req.body.nazwa;
+                            database.nazwa = x.toLowerCase().replaceAll(" ", "-");
                             return res.redirect('/kreator?krok=2');
                         }
                         database.nazwa = req.body.nazwa;
+                        database.nazwa = x.toLowerCase().replaceAll(" ", "-");
                         return res.redirect('/kreator?krok=2');
                     })
                 })
@@ -65,7 +72,11 @@ app.route('/')
                 database.opis = req.body.opis;
                 return res.redirect('/kreator?krok=5');
             case '5':
+                database.numer = req.body.phone;
 
+                newDb.connect(() => {
+                    con.query(`CREATE DATABASE ${database.nazwa}`)
+                })
 
         }
     });
