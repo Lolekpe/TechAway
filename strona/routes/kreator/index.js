@@ -41,7 +41,6 @@ app.route('/')
                 database.uklad = req.query.opcja;
                 return res.render("kreator/index.ejs", { stage: "TechAway | Kreator strony", wyglad: 4 });
             case '5':
-                console.log(database);
                 return res.render("kreator/index.ejs", { stage: "TechAway | Kreator strony", wyglad: 5 })
         }
 
@@ -73,11 +72,32 @@ app.route('/')
                 return res.redirect('/kreator?krok=5');
             case '5':
                 database.numer = req.body.phone;
+                console.log(database);
 
                 newDb.connect(() => {
-                    con.query(`CREATE DATABASE ${database.nazwa}`)
+                    newDb.query(`CREATE DATABASE ${database.nazwa}`, (err, row) => {
+                        if(err) return res.send(err);
+                        var table = sql.createConnection({
+                            host: 'localhost',
+                            user: 'root',
+                            password: "",
+                            database: `${database.nazwa}`
+                        });
+                        table.connect((err) => {
+                            if(err) return res.send(err)
+                            table.query(`CREATE TABLE ustawienia (ID INT AUTO_INCREMENT PRIMARY KEY, nazwa TEXT, motyw INT, wyglad INT, opis TEXT, telefon INT`, (err, row)=>{
+                                if(err) return res.send(err)
+                                table.query(`INSERT INTO ustawienia(ID, nazwa, motyw, wyglad, opis, telefon) VALUES (NULL, ${database.nazwa}, ${database.motyw}, ${database.uklad}, ${database.opis}, ${database.numer})`, (err, row) =>{
+                                    if(err) return res.send(err);
+                                })
+                            })
+                        })
+                    });
+                    con.query(`UPDATE uzytkownicy SET telefon = ${database.numer} WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if(err) return res.send(err);
+                    })
                 })
-
+                return res.send("No to essa");
         }
     });
 
