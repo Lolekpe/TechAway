@@ -1,0 +1,153 @@
+<%- include('./head/head.ejs') %>
+    <div class="logo">
+        <img src="/images/strona/logo2.png" alt="" class="logouwuwuw">
+    </div>
+    <div class="kreator-container">
+        <% if (wyglad == 1) { %>
+            <div class="wybor-nazwy">
+            
+                <div class="tekst-wyboru-nazwy">
+                    <p>Podaj nazwę sklepu</p>
+                </div>
+                <div class="tekst-rozszerzenie-nazwy">
+                    <p>Jak ma się nazywać twój sklep?</p>
+                </div>  
+                <div class="formularz-wpisania-nazwy">
+                    <form action="/kreator?krok=1" method="post">
+                        <span class="ikona"><i class="fa-solid fa-signature"></i></span>
+                        <input type="text" name="nazwa" required autocomplete="off">
+                        
+                        <p>
+                            <button>Dalej<i class="fa-solid fa-arrow-right"></i></button>
+                        </p>
+                    </form>
+                </div>
+                <div class="anuluj">
+                    <span>Anuluj</span>
+                </div>
+            </div>
+    
+        <% } %>
+        <% if (wyglad == 2) { %>
+            <div class="wybur-motywu">
+                <div class="left-motyw">
+                    <div class="napis-wybieranie-motywu">
+                        <div class="napiski-container">
+                            <p class="napisjedenuwu">Wybierz motyw swojej strony</p>
+                            <p class="napisdwauwu">Wybierz w jakim motywie będzie robiona twoja strona, zadecyduj o jej wyglądzie końcowym.</p>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="right-motyw">
+                    <div class="motywy-container">
+                        <div class="motywy">
+                            <div class="motywy-left">
+                                <a href="/kreator?krok=3&opcja=1"><div class="motyw-jest-uwu motywjeden motwy-podwujny">
+                                    <div style="background-color: white; border-top-left-radius: 5px; border-top-right-radius: 5px;"></div>
+                                    <div style="background-color: black; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"></div>
+                                </div></a>
+                                <a href="/kreator?krok=3&opcja=2"><div class="motyw-jest-uwu motywdwa">
+                                    <div style="background-color: #CB997E; border-top-left-radius: 5px; border-top-right-radius: 5px;"></div>
+                                    <div style="background-color: #A5A58D;"></div>
+                                    <div style="background-color: #F0EFEB; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"></div>
+                                </div></a>
+                            </div>
+                            <div class="motywyprawo">
+                                <a href="/kreator?krok=3&opcja=3"><div class="motyw-jest-uwu motywtrzy">
+                                    <div style="background-color:  #FAD2E1; border-top-left-radius: 5px; border-top-right-radius: 5px;"></div>
+                                    <div style="background-color: #BEE1E6;"></div>
+                                    <div style="background-color: #FFFFFC; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"></div>
+                                </div></a>
+                                <a href="/kreator?krok=3&opcja=4"><div class="motyw-jest-uwu motywcztery">
+                                    <div  style="background-color:  #4A2419; border-top-left-radius: 5px; border-top-right-radius: 5px;"></div>
+                                    <div style="background-color: #343434;"></div>
+                                    <div style="background-color: #006466; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;"></div>
+                                </div></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="guzik-dalej">
+                        <span>Dalej</span>
+                    </div>
+                </div>
+                <div class="anuluj">
+                    <span>Anuluj</span>
+                </div>
+            </div>
+    
+        <% } %>
+        <% if (wyglad == 3) { %>
+            <div class="ulozeniestrony-wybor">
+                <div class="left-ulozenie">
+                    <div class="napis-wybieranie-motywu">
+                        <div class="napiski-container">
+                            <p class="napisjedenuwu">Wybierz ułożenie swojej strony</p>
+                            <p class="napisdwauwu">Wybierz styl ułożenia swojej strony tak aby jak najbardziej przypadał ci do gustu.</p>
+                        </div>
+                    </div>
+    
+                </div>
+                <div class="right-ulozenie">
+                    <div class="elementy">
+                        <a href="/kreator?krok=4&opcja=1"><div class="ulozenie-sportowe ulozeniejeden"></div></a>
+                        <a href="/kreator?krok=4&opcja=2"><div class="ulozenie-sportowe ulozeniedwa"></div></a>
+                    </div>
+                </div>
+                <div class="anuluj">
+                    <span>Anuluj</span>
+                </div>
+            </div>
+    
+        <% } %>
+        <% if (wyglad == 4) { %>
+            <div class="podanie-opisu">
+                <div class="opisy">
+                    <div class="napis-podaj-opis wieksze">
+                        <span>Podaj opis sklepu</span>
+                    </div>
+                    <div class="napis-podaj-opis mniejsze">
+                        <span>Dodaj do strony swojego sklepu marginalny opis, opis będzie pojawiał się w odpowiednim miejscu w zależności od wyboru projektu strony.</span>
+                    </div>
+                </div>
+                <div class="formularz123">
+                    <form action="/kreator?krok=4" method="post">
+                        <textarea name="opis" id="" cols="50" rows="10"></textarea>
+                        <p><button>Dalej <i class="fa-solid fa-arrow-right"></i></button></p>
+                    </form>
+                </div>
+            </div>    
+        <% } %>
+        <% if (wyglad == 5) { %>
+            <div class="dodatkowe-ifnormacje">
+                <div class="opisy">
+                    <div class="napis-podaj-opis wieksze">
+                        <span>Podaj dodatkowe informacje</span>
+                    </div>
+                    <div class="napis-podaj-opis mniejsze">
+                        <span>Aby utworzyć twój sklep potrzebujemy uzyskać parę informacji więcej.</span>
+                    </div>
+                </div>
+                <div class="formularz123">
+                    <form action="" method="post" class="innyformularz">
+                        
+                        <p>Numer telefonu: </p>
+                        <p>
+                        <span class="ikonka-phona"><i class="fa-solid fa-phone"></i></span>
+                        <input name="phone" type="number" required autocomplete="off" class="superformularz"></p> 
+                        <p><button>Stwórz <i class="fa-solid fa-arrow-right"></i></button></p>
+                    </form>
+                </div>
+            </div>
+    
+        <% } %>
+
+    </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>

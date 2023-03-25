@@ -1,0 +1,519 @@
+body, html 
+{   
+    background-color: #eeeeee;
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+}
+:root
+{
+    --main-font: 'Open Sans', sans-serif;
+    --addon-font: 'Chivo Mono', monospace;;
+}
+a
+{
+    text-decoration: none;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+    transition-duration: 0.2s;
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c21b21;
+    transition-duration: 0.2s;
+    border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c21b21;
+  }
+.logouwuwuw
+{
+    width: 15vh;
+    
+}
+/*to zmienia się między none a block*/
+.wybor-nazwy
+{
+    display: block;
+}
+/*a to między none a flex*/
+.wybur-motywu
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.ulozeniestrony-wybor
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.podanie-opisu
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.dodatkowe-ifnormacje
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+/*aż do tąd niżej to nie tykaj chuju*/
+.left-motyw
+{
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.right-motyw
+{
+    width: 50%;
+    height: 100%;
+    background-color: #eeeeee;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.left-ulozenie
+{
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.right-ulozenie
+{
+    width: 50%;
+    height: 100%;
+    background-color: #eeeeee;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo 
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 5;
+}
+.tekst-wyboru-nazwy
+{
+    font-size: 6vh;
+    font-weight: bolder;
+    text-align: center;
+}
+.tekst-rozszerzenie-nazwy
+{
+    text-align: center;
+    font-size: 1.8vh;
+    margin-top: 1.25vh;
+}
+form
+{
+    text-align: center;
+}
+form > input
+{
+    background-color: #e7e7e7;
+    border: 0;
+    height: 3vh;
+    width: 50%;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    margin: 30px;
+    outline: none;
+    cursor: pointer;
+    color: black;
+    padding-left: 35px;
+    font-size: 2vh;
+    transition-duration: 0.2s;
+}
+form > input:hover
+{
+    width: 55%;
+}
+form > input:focus
+{
+    width: 55%;
+}
+.ikona
+{
+    position: absolute;
+    margin: 33px;
+    margin-left: 38px;
+    font-size: 1.8vh
+}
+form > p > button
+{
+    border: none;
+    background-color: #c21b21;
+    color: white;
+    width: 15vh;
+    height: 3vh;
+    font-size: 1.6vh;
+    font-weight: bold;
+    border-radius: 3px;
+    cursor: pointer;
+}
+form > p > button > i
+{
+    padding-left: 5px;
+}
+.napis-wybieranie-motywu
+{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 12vh
+}
+.napisjedenuwu
+{
+    font-size: 6vh;
+    font-weight: bolder;
+
+}
+.napisdwauwu
+{
+    font-size: 1.65vh;
+    width: 65%;
+}
+.motywy-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.motywy
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.motyw-jest-uwu
+{
+    height: 18vh;
+    width: 28vh;
+    border-radius: 10px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    box-shadow: 0 0 5px 0px rgb(177, 177, 177);
+}
+
+.motywjeden::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Klasyczny";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border-radius: 10px;
+    text-shadow: 1px 1px 5px black;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.motywjeden:hover::after
+{
+    background-color: transparent;
+}
+.motywdwa:hover::after
+{
+    background-color: transparent;
+}
+.motywtrzy:hover::after
+{
+    background-color: transparent;
+}
+.motywcztery:hover::after
+{
+    background-color: transparent;
+}
+.motywdwa::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "vintage";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-transform: uppercase;
+}
+.motywtrzy::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Pastelowe";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FAD2E1;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-transform: uppercase;
+}
+.motywcztery::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Natura";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #006466;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.motyw-jest-uwu > div
+{
+    width: 100%;
+    height: 33.3333%;
+}
+.motwy-podwujny > div
+{
+    width: 100%;
+    height: 50%;
+}
+.motywy-left
+{
+    transform: translate(-20vh);
+    position: absolute;
+}
+.motywyprawo
+{
+    transform: translate(20vh);
+    position: absolute;
+}
+.ulozenie-sportowe
+{
+    width: 60vh;
+    height: 35vh;
+    margin-top:10vh;
+    background-color: #006466;
+    margin-bottom:10vh;
+    border-radius: 0.80vh;
+}
+.ulozeniejeden::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Strona Firmowa";
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.ulozeniedwa::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Strona Serwis";
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.ulozeniejeden:hover::after
+{
+    background-color: transparent;
+}
+.ulozeniedwa:hover::after
+{
+    background-color: transparent;
+}
+.anuluj
+{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.opisy
+{
+    margin-top: -35vh;
+}
+.wieksze
+{
+    font-size: 6vh;
+    width: 60vh;
+    text-align: center;
+    font-weight: bolder;
+}
+.mniejsze
+{
+    text-align: center;
+    width: 60vh;
+    margin-top: 2vh;
+    font-size: 1.65vh;
+    letter-spacing: 0.15vh;
+}
+.formularz123
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+}
+form > textarea
+{
+    resize: none;
+    padding: 20px;
+    font-size: 1.55vh;
+    width: 40vh;
+    height: 16vh;
+    margin-top: 15vh;
+    border: none;
+    border-radius: 0.45vh;
+    box-shadow: 0 0 10px 1px #d8d8d8;
+    transition-duration: 0.2s;
+}
+form > textarea:focus
+{
+    outline: none;
+    box-shadow: -2px 2px 1px 1px #c21b21;
+}
+form > textarea:hover
+{
+    outline: none;
+    box-shadow: -2px 2px 1px 1px #c21b21;
+}
+form > p
+{
+    margin-bottom: 0px;
+    font-size: 1.75vh;
+}
+.superformularz
+{
+    background-color: #e7e7e7;
+    border: 0;
+    height: 3vh;
+    width: 60%;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    outline: none;
+    cursor: pointer;
+    color: black;
+    padding-left: 35px;
+    font-size: 2vh;
+    transition-duration: 0.2s;
+    text-align: center;
+}
+.innyformularz
+{
+    margin-top: 5vh
+}
+.ikonka-phona
+{
+    position: absolute;
+    margin-top: 0.50vh;
+    margin-left: 0.60vh;
+}
+.superformularz:hover
+{
+    width: 70%;
+}
+.superformularz:focus
+{
+    width: 70%;
+}
+.guzik-dalej
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
