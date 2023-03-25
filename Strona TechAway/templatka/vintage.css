@@ -64,7 +64,7 @@ nav > ul > li:active
 }
 header
 {
-    width: 120vh;
+    width: 80%;
     height: 70vh;
     display: flex;
     justify-content: center;
@@ -80,10 +80,11 @@ header
     font-weight: bolder;
     font-size: 5vh;
     position: absolute;
-    margin-right: 45vh;
     padding-bottom: 5px;
     margin-top: -10vh;
-    border-bottom: solid 0.5vh #a5a58d;
+    border-bottom: solid 0.5vh #a5a58d;    
+    left: 0;
+    margin-left: 50px;
 }
 .header-opis-content
 {
@@ -94,8 +95,8 @@ header
     margin-top: 10vh;
     font-size: 1.7vh;
     width: 40vh;
-    margin-right: 37vh;
-
+    left: 0;
+    margin-left: 50px;
 }
 main
 {
