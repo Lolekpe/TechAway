@@ -25,7 +25,8 @@ app.route('/')
 
                 res.cookie("logged", "true", { maxAge: 192000000 });
                 res.cookie("user", x, { maxAge: 192000000 });
-                res.redirect("/");
+                con.end();
+                return res.redirect("/");
             });
         });
     })
@@ -41,8 +42,8 @@ app.route('/')
                 return res.render('login', { message: `<div class="jedendwatrzy">Zostałeś/aś pomyślnie wylogowany/a</div>`, stage: "TechAway | Logowanie" });
                 
             case 'usun':
-                return res.render('login', { message: `<div class="jedendwatrzy">Twoje konto zostało usunięte</div>`, stage: "TechAway | Logowanie" })
-        }
+                return res.render('login', { message: `<div class="jedendwatrzy">Twoje konto zostało usunięte</div>`, stage: "TechAway | Logowanie" });
+        };
         res.render("login", { message: "", stage: "TechAway | Logowanie" });
     });
 
