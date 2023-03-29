@@ -47,9 +47,11 @@ app.route('/')
                 })
             })
         }
-        if ((!req.query.krok) || (!database.nazwa)) {
-            console.log("XD?")
-            return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1 })
+        if (((!req.query.krok) || (!database.nazwa)) && (!req.query.error)) {
+            return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1, informacja: "" })
+        }
+        if (req.query.error) {
+            return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1, informacja: '<div>Taka nazwa została już użyta!</div>' })
         }
         switch (req.query.krok) {
             case '2':
@@ -82,7 +84,7 @@ app.route('/')
                 con.connect(function () {
                     con.query(`SELECT * FROM sklepy WHERE nazwa LIKE "${req.body.nazwa}"`, (err, row) => {
                         if (err) return res.send(err);
-                        if (row.length !== 0) return res.send("No niestety");
+                        if (row.length !== 0) return res.redirect('/kreator?krok=1&error=true');
                         x = req.body.nazwa
                         if (database.nazwa) {
                             database.nazwa = req.body.nazwa;

@@ -6,7 +6,7 @@
             <img src="/images/strona/logo2.png" alt="" class="logo-nav">
         </div>
         <ul>
-            <a href="#"><li>Strona główna</li></a>
+            <li><a href="#">Strona główna</a></li>
             <li>Produkty</li>
             <li>Nowości</li>
             <li>Koszyk</li>
@@ -16,10 +16,10 @@
     <main>
         <header>
             <div class="header-upper-text">
-                <span>tak</span>
+                <span><%- informacje.nazwa %></span>
             </div>
             <div class="header-opis-content">
-               tak
+               <%- informacje.opis %>
             </div>
         </header>
         <div class="oferty-container">
@@ -36,7 +36,7 @@
                 <br><br>
                 <div class="nr-telefonu">
                     <p class="pierwsze">Zadzwoń do nas na</p>
-                    <p>+48 999 999 999</p>
+                    <p>+48 <%- informacje.telefon %></p>
                 </div>
             </div>
             <div class="social-media">
