@@ -52,7 +52,7 @@
             <% if (zmiana == 3) { %>
                 <div class="formularz-zmiana-wartosci">
                     <div class="background-tego-forma">
-                        <form method="post" class="formularzowskifortmularz">                            
+                        <form action="/ustawienia?change=mail" method="post" class="formularzowskifortmularz">                            
                             <%- message  %>
                             <p><span>Podaj nowe mail:<!--Zmiana za pomocą js jakie dane mają być wprowadzone--> </span></p>
                             <input type="text" name="mail" class="formularz-wartosci">
@@ -68,14 +68,14 @@
             <% if (zmiana == 4) { %>
                 <div class="formularz-zmiana-wartosci">
                     <div class="background-tego-forma">
-                        <form method="post" class="formularzowskifortmularz">
+                        <form action="/ustawienia?change=haslo" method="post" class="formularzowskifortmularz">
                             <%- message  %>
                             <p><span>Podaj stare hasło:<!--Zmiana za pomocą js jakie dane mają być wprowadzone--> </span></p>
                             <input type="password" name="stare" class="formularz-wartosci">
                             <p><span>Podaj nowe hasło:<!--Zmiana za pomocą js jakie dane mają być wprowadzone--> </span></p>
                             <input type="password" name="nowe" class="formularz-wartosci">
                             <p><p>Podaj ponownie hasło: <!--Pojawia się przy haśle--> </p></p>
-                            <input type="passowrd" name="potwierdz" class="formularz-wartosci">
+                            <input type="password" name="potwierdz" class="formularz-wartosci">
                             <p>
                                 <button type="submit" class="guziok zastosuj">Zastosuj</button>
                                 <button type="reset" onclick="history.back()" class="guziok anuluj">Anuluj</button>
