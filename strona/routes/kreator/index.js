@@ -30,11 +30,11 @@ app.route('/')
                     if (err) return res.send(err);
                     table.query(`INSERT INTO informacje (ID, nazwa, motyw, wyglad, opis, telefon) VALUES (NULL, '${database.nazwa.toString()}', ${database.motyw}, ${database.uklad}, '${database.opis}', ${database.numer})`, (err, row) => {
                         if (err) return res.send(err);
+                        table.query(`CREATE TABLE produkty (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), opis VARCHAR(255), cena DECIMAL(2,0)`, (err) => {
+                            if(err) return console.log(err);
+                            return res.redirect("/")
+                        })
                     });
-                    table.query(`CREATE TABLE produkty (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), opis VARCHAR(255), cena DECIMAL(2,0)`, (err) => {
-                        if(err) return console.log(err);
-                        return res.redirect("/")
-                    })
                 });
             })
 

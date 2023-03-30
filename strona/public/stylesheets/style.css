@@ -451,7 +451,7 @@ a
 .formularz-zmiana-wartosci
 {
     text-align: center;
-    display: none; /*tutaj z none na flex sie zmienia*/
+    display: flex; /*tutaj z none na flex sie zmienia*/
     justify-content: center;
     height: 100%;
     width: 100%;

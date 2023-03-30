@@ -17,6 +17,7 @@ app.route('/')
 
             sklep_db.query(`SELECT * FROM informacje`, (err, row) => {
                 console.log(row);
+                informacje.nazwa = row.map((item) => item.nazwa)
                 let m = row.map((item) => item.motyw).toString();
                 switch (m) {
                     case '1':
