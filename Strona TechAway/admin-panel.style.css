@@ -73,6 +73,14 @@ a
 {
     width: 100%;
     height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.motywy-screen
+{
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,4 +145,208 @@ a
 .edytuj > button:active
 {
     box-shadow: 0 0 3px 0px rgb(248,52,57);
+}
+.motywy-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.motywy
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.motyw-jest-uwu
+{
+    height: 18vh;
+    width: 28vh;
+    border-radius: 10px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.motywjeden::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Klasyczny";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border-radius: 10px;
+    text-shadow: 1px 1px 5px black;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.motywjeden:hover::after
+{
+    background-color: transparent;
+}
+.motywdwa:hover::after
+{
+    background-color: transparent;
+}
+.motywtrzy:hover::after
+{
+    background-color: transparent;
+}
+.motywcztery:hover::after
+{
+    background-color: transparent;
+}
+.motywdwa::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "vintage";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-transform: uppercase;
+}
+.motywtrzy::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Pastelowe";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FAD2E1;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-transform: uppercase;
+}
+.motywcztery::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Natura";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #006466;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.motyw-jest-uwu > div
+{
+    width: 100%;
+    height: 33.3333%;
+}
+.motwy-podwujny > div
+{
+    width: 100%;
+    height: 50%;
+}
+.motywy-left
+{
+    transform: translate(-20vh);
+    position: absolute;
+}
+.motywyprawo
+{
+    transform: translate(20vh);
+    position: absolute;
+}
+.ulozenie-sportowe
+{
+    width: 60vh;
+    height: 35vh;
+    margin-top:10vh;
+    background-color: #006466;
+    margin-bottom:10vh;
+    border-radius: 0.80vh;
+}
+.ulozeniejeden::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Strona Firmowa";
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.ulozeniedwa::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Strona Serwis";
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.ulozeniejeden:hover::after
+{
+    background-color: transparent;
+}
+.ulozeniedwa:hover::after
+{
+    background-color: transparent;
+}
+.akceptuj
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    cursor: pointer;
 }
