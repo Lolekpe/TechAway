@@ -1,0 +1,140 @@
+body, html 
+{
+    margin: 0;
+    background-color: #212222;
+    padding: 0;
+    /*282829*/
+    font-family: var(--main-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    color: white;
+}
+:root
+{
+    --main-font: 'Open Sans', sans-serif;
+    --addon-font: 'Chivo Mono', monospace;;
+}
+a
+{
+
+    text-decoration: none;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+    transition-duration: 0.2s;
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c21b21;
+    transition-duration: 0.2s;
+    border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c21b21;
+  }
+  ul{
+    list-style: none;
+  }
+    li{
+    list-style: none;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+.left-panel
+{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+}
+.main-panel
+{
+    width: 80%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.informacje-screen
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.zmiana
+{
+    width: 400px;
+    height: 150px; 
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #282829;
+    border-radius: 10px;;
+}
+.zmiana-nazwy
+{
+    align-items: center;
+}
+.aktualne-nazwa
+{
+    font-size: 20px;
+    font-family: var(--addon-font);
+    text-transform: uppercase;
+
+}
+.foto-na-zmianie
+{
+    width: 100px;
+}
+.aktualne-opis
+{
+    text-align: center;
+    padding: 5px;
+    font-size: 13.5px;
+    font-family: var(--addon-font);
+}
+.edytuj
+{
+    position: absolute;
+}
+.edytuj > button
+{
+    width: 150px;
+    height:25px;
+    margin-top: 110px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: bolder;
+    font-family: var(--addon-font);
+    text-transform: uppercase;    
+    background: rgb(248,52,57);
+    cursor: pointer;
+    background: linear-gradient(180deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    transition-duration: 0.1s;
+}
+.edytuj > button:hover
+{
+    box-shadow: 0 0 7px 0px rgb(248,52,57);
+}
+.edytuj > button:active
+{
+    box-shadow: 0 0 3px 0px rgb(248,52,57);
+}
