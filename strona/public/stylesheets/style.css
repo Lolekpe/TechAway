@@ -192,7 +192,7 @@ a
 }
 .sklepy-glowna-strona-screen
 {
-    display: none; /*Zmienia się na none z flex*/
+    display: flex; /*Zmienia się na none z flex*/
     justify-content: center;
     margin-left: 60px;
     height: 100%;

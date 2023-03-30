@@ -11,6 +11,7 @@
                 </div>
                 <div class="tekst-rozszerzenie-nazwy">
                     <p>Jak ma się nazywać twój sklep?</p>
+                    <%- informacja %>
                 </div>  
                 <div class="formularz-wpisania-nazwy">
                     <form action="/kreator?krok=1" method="post">
@@ -84,6 +85,7 @@
                         <div class="napiski-container">
                             <p class="napisjedenuwu">Wybierz ułożenie swojej strony</p>
                             <p class="napisdwauwu">Wybierz styl ułożenia swojej strony tak aby jak najbardziej przypadał ci do gustu.</p>
+                            <h3>!DOSTĘPNA TYLKO JEDNA OPCJA!</h3>
                         </div>
                     </div>
     
@@ -91,7 +93,7 @@
                 <div class="right-ulozenie">
                     <div class="elementy">
                         <a href="/kreator?krok=4&opcja=1"><div class="ulozenie-sportowe ulozeniejeden"></div></a>
-                        <a href="/kreator?krok=4&opcja=2"><div class="ulozenie-sportowe ulozeniedwa"></div></a>
+                        <a href="/kreator?krok=4&opcja=2" style="display: none;"><div class="ulozenie-sportowe ulozeniedwa"></div></a>
                     </div>
                 </div>
                 <div class="anuluj">

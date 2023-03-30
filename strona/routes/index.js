@@ -46,7 +46,7 @@ router.get('/', function (req, res) {
                     `<span class="przejdzdosklepu"><a href="${link[i]}">Przejedź do sklepu</a></span>`+
                     `</div>`;
             }
-            let nowy = `<div class="dodwaniesklepu"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></div>`
+            let nowy = `<div class="dodwaniesklepu"><a href="/kreator"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></a></div>`
             res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy });
         })
     })

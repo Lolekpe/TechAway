@@ -1,0 +1,317 @@
+body, html
+{
+    margin: 0;
+    background-color: #e6e6e6;
+    padding: 0;
+    font-family: var(--main-font);
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    user-select: none;
+}
+a
+{
+    text-decoration: none;
+}
+:root
+{
+    --main-font: 'Open Sans', sans-serif;
+    --addon-font: 'Chivo Mono', monospace;
+}
+nav
+{
+    width: 100%;
+    height: 8vh;
+    background-color: #ffb6d0  ;
+    position: absolute;
+    z-index: 2;
+}
+nav > ul
+{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin-right: 20vh;
+    top: 0;
+}
+nav > ul > li
+{
+    float: left;
+    color: #bbf6ff;
+    font-size: 1.8vh;
+    margin-left: 3vh;
+    cursor: pointer;
+    height: 0px;
+    margin-top: 2vh;
+    transition-duration: 0.1555s;
+}
+nav > ul > li:active
+{
+    color: #96f1ff;
+}
+.logo-nav
+{
+    width: 7.5vh;
+}
+.logo
+{
+    position: absolute;
+
+}
+header
+{
+    width: 80%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    border-radius: 3px;
+    position: absolute;
+    align-items: center;
+    background-image: url("https://cdn.discordapp.com/attachments/1088408367069921320/1088787002092179506/deer.jpg");
+}
+.header-upper-text
+{
+    color: #96f1ff;
+    font-weight: bolder;
+    font-size: 5vh;
+    position: absolute;
+    left: 0;
+    margin-left: 50px;
+    padding-bottom: 5px;
+    margin-top: -10vh;
+    border-bottom: solid 0.5vh #ffb6d0;
+}
+.header-opis-content
+{
+    text-align: left;
+    color: white;
+    position: absolute;
+    margin-top: 10%;
+    margin-top: 10vh;
+    font-size: 1.7vh;
+    width: 40vh;
+    left: 0;
+    margin-left: 50px;
+}
+main
+{
+    width: 80%;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+}
+.oferty-container
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.oferty-box
+{
+    width: 1430px;
+    margin-top: 80vh
+}
+.oferta
+{
+    width: 400px;
+    height: 250px;
+    background-color: white;
+    border: 3px lightgray solid;
+    border-radius: 5px;
+    float: left;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.image-container
+{
+    width: 100%;
+    border-radius: 5px;
+    height: 135px;
+    display: flex;
+    justify-content: center;
+}
+.obrazek-ofert
+{
+    max-height: 135px;
+}
+.szybki-opis
+{
+    width: 400px;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-top: 20px;
+    text-align: left;
+    position: absolute;
+}
+.szybki-opis > span
+{
+    font-weight: bolder;
+    color: rgb(61, 61, 61);
+    cursor:text;
+}
+.przejdz-oferta-button
+{
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.guzior123
+{
+    border-radius: 5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 2.5vh;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    margin-top: 130px;
+    color: #96f1ff;
+    margin-top: 40px;
+}
+.guzior123:hover
+{
+    color: white;
+}
+.guzior-na-miare-oferty::after
+{
+    display: block;
+    color: black;
+    content: "Dodaj";
+    font-size: 1.7vh;
+    opacity: 0;
+    position: absolute;
+    transition-duration: 0.2s;
+    transform: translate(-7px, -25px);
+    cursor: pointer;
+}
+.guzior-na-miare-oferty:hover::after
+{
+    opacity: 1;
+}
+.guzior-na-miare-czytania-dalej:hover::after
+{
+    opacity: 1;
+}
+.guzior-na-miare-czytania-dalej::after
+{
+    height: 20px;
+    display: block;
+    color: black;
+    width: 100px;
+    position: absolute;
+    content: "Czytaj dalej";
+    font-size: 1.7vh;
+    opacity: 0;
+    transform: translate(-35px, -25px);
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+footer
+{
+    width: 125%;
+    height: 250px;
+    background-color: #bbf6ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: -250px;
+}
+.kontakt
+{
+    position: absolute;
+    left: 0;
+    text-align: center;
+    margin-left: 10vh;
+}
+.mail
+{
+    font-size: 1.55vh;
+    color: black
+}
+.mail > a > p
+{
+    margin-top: 0;
+    color: black;
+    margin-bottom: 0;
+
+}
+.nr-telefonu
+{
+    font-size: 1.55vh;
+
+}
+.nr-telefonu > p
+{
+    margin-top: 0;
+    margin-bottom: 0;
+
+
+}
+.pierwsze
+{
+    font-size: 2vh;
+    font-weight: bolder;
+}
+.social-media
+{
+    position: absolute;
+    right: 0;
+    text-align: center;
+    margin-right: 10vh;
+}
+.brand
+{
+    font-size: 1.75vh;
+    font-weight: bolder;
+    cursor: pointer;
+    color: black;
+}
+.instagram > p > span
+{
+    margin-left: 10px;
+    font-size: 2vh;
+    color: #E1306C;
+}
+.facebook > p > span
+{
+    margin-left: 10px;
+    font-size: 2vh;
+    color: #4267B2;
+}
+.discord > p > span
+{
+    margin-left: 10px;
+    font-size: 2vh;
+    color: #7289da;
+}
+@media only screen and (max-width: 1730px)
+{
+    .oferty-box
+    {
+        max-width: 915px;
+    }
+}
+@media only screen and (max-width: 1350px)
+{
+    .oferty-box
+    {
+        max-width: 460px;
+    }
+    body, html
+    {
+        background-color: white;
+    }
+
+}
+

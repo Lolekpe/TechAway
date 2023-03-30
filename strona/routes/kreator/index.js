@@ -13,15 +13,52 @@ var newDb = sql.createConnection({
     user: 'root',
     password: "",
 })
+let x;
 
 app.route('/')
     .get((req, res, next) => {
-        if ((!req.query.krok) || (!database.nazwa)) {
-            console.log("XD?")
-            return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1 })
+        if (req.query.final) {
+            var table = sql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: "",
+                database: `sklep_${database.nazwa}`
+            });
+            table.connect((err) => {
+                if (err) return res.send(err)
+                table.query(`CREATE TABLE informacje (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), motyw INT, wyglad INT, opis VARCHAR(255), telefon INT)`, (err, row) => {
+                    if (err) return res.send(err);
+                    table.query(`INSERT INTO informacje (ID, nazwa, motyw, wyglad, opis, telefon) VALUES (NULL, '${database.nazwa.toString()}', ${database.motyw}, ${database.uklad}, '${database.opis}', ${database.numer})`, (err, row) => {
+                        if (err) return res.send(err);
+                    });
+                    table.query(`CREATE TABLE produkty (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), opis VARCHAR(255), cena DECIMAL(2,0)`, (err) => {
+                        if(err) return console.log(err);
+                        return res.redirect("/")
+                    })
+                });
+            })
+
+        }
+        if (req.query.settings && database.nazwa) {
+            con.connect(() => {
+                con.query(`UPDATE uzytkownicy SET telefon = ${database.numer} WHERE ID = ${req.cookies.user}`, (err, row) => {
+                    if (err) return res.send(err);
+                    con.query(`INSERT INTO sklepy(ID, nazwa, typ, motyw, uklad, opis, logo, link) VALUES (NULL, '${x}', 0, ${database.motyw}, ${database.uklad}, '${database.opis}', '/images/serwery/${database.nazwa}/logo.png', '/${database.nazwa}/index')`, (err, row) => {
+                        if (err) return res.send(err);
+                        return res.redirect("/kreator?final=true&krok=7");
+                    });
+                })
+            })
+        }
+        if (((!req.query.krok) || (!database.nazwa)) && (!req.query.error)) {
+            return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1, informacja: "" })
+        }
+        if (req.query.error) {
+            return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 1, informacja: '<div>Taka nazwa została już użyta!</div>' })
         }
         switch (req.query.krok) {
             case '2':
+                console.log(con.state)
                 return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 2 })
 
             case '3':
@@ -50,18 +87,19 @@ app.route('/')
                 con.connect(function () {
                     con.query(`SELECT * FROM sklepy WHERE nazwa LIKE "${req.body.nazwa}"`, (err, row) => {
                         if (err) return res.send(err);
-                        if (row.length !== 0) return res.send("No niestety");
-                        let x = req.body.nazwa
+                        if (row.length !== 0) return res.redirect('/kreator?krok=1&error=true');
+                        x = req.body.nazwa
                         if (database.nazwa) {
                             database.nazwa = req.body.nazwa;
-                            database.nazwa = x.toLowerCase().replaceAll(" ", "-");
+                            database.nazwa = x.toLowerCase().replaceAll(" ", "_");
                             return res.redirect('/kreator?krok=2');
                         }
                         database.nazwa = req.body.nazwa;
-                        database.nazwa = x.toLowerCase().replaceAll(" ", "-");
+                        database.nazwa = x.toLowerCase().replaceAll(" ", "_");
                         return res.redirect('/kreator?krok=2');
-                    })
-                })
+                    });
+                });
+
                 break;
             case '4':
                 if (database.opis) {
@@ -75,29 +113,13 @@ app.route('/')
                 console.log(database);
 
                 newDb.connect(() => {
-                    newDb.query(`CREATE DATABASE ${database.nazwa}`, (err, row) => {
-                        if(err) return res.send(err);
-                        var table = sql.createConnection({
-                            host: 'localhost',
-                            user: 'root',
-                            password: "",
-                            database: `${database.nazwa}`
-                        });
-                        table.connect((err) => {
-                            if(err) return res.send(err)
-                            table.query(`CREATE TABLE ustawienia (ID INT AUTO_INCREMENT PRIMARY KEY, nazwa TEXT, motyw INT, wyglad INT, opis TEXT, telefon INT`, (err, row)=>{
-                                if(err) return res.send(err)
-                                table.query(`INSERT INTO ustawienia(ID, nazwa, motyw, wyglad, opis, telefon) VALUES (NULL, ${database.nazwa}, ${database.motyw}, ${database.uklad}, ${database.opis}, ${database.numer})`, (err, row) =>{
-                                    if(err) return res.send(err);
-                                })
-                            })
-                        })
+                    newDb.query(`CREATE DATABASE sklep_${database.nazwa.toString()}`, (err, row) => {
+                        if (err) return res.send(err);
+                        return res.redirect("/kreator?settings=true&krok=6")
                     });
-                    con.query(`UPDATE uzytkownicy SET telefon = ${database.numer} WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if(err) return res.send(err);
-                    })
-                })
-                return res.send("No to essa");
+
+                });
+                break;
         }
     });
 

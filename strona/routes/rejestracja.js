@@ -12,9 +12,9 @@ var resul = 0;
 /* GET home page. */
 app.route('/')
     .post(function (req, res) {
-        var crypto = require("crypto")
-        var sha256 = crypto.createHash("sha256")
-        sha256.update(req.body.haslo, "utf")
+        var crypto = require("crypto");
+        var sha256 = crypto.createHash("sha256");
+        sha256.update(req.body.haslo, "utf");
         resul = sha256.digest("base64");
 
         con.connect(function () {
@@ -26,16 +26,17 @@ app.route('/')
                     res.redirect("/login?register=pass");
                 });
 
-                return res.redirect("/rejestracja?failed=true")
+                con.end();
+                return res.redirect("/rejestracja?failed=true");
             });
         });
     })
     .get((req, res, next) => {
         if (req.query.failed) {
             console.log("xd")
-            return res.render('rejestracja', { message: `<div class="jedendwatrzy">Informacje które podałeś są już w bazie danych!</div>`, stage: "TechAway | Rejestracja" })
+            return res.render('rejestracja', { message: `<div class="jedendwatrzy">Informacje które podałeś są już w bazie danych!</div>`, stage: "TechAway | Rejestracja" });
         }
-        res.render("rejestracja", { message: "", stage: "TechAway | Rejestracja" })
+        res.render("rejestracja", { message: "", stage: "TechAway | Rejestracja" });
     });
 
 module.exports = app;

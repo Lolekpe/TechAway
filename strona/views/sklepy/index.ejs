@@ -1,0 +1,63 @@
+<%- include('./parts/head') %>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="/images/strona/logo2.png" alt="" class="logo-nav">
+        </div>
+        <ul>
+            <li><a href="#">Strona główna</a></li>
+            <li>Produkty</li>
+            <li>Nowości</li>
+            <li>Koszyk</li>
+            <li>kontakt</li>
+        </ul>
+    </nav>
+    <main>
+        <header>
+            <div class="header-upper-text">
+                <span><%- informacje.nazwa %></span>
+            </div>
+            <div class="header-opis-content">
+               <%- informacje.opis %>
+            </div>
+        </header>
+        <div class="oferty-container">
+            <div class="oferty-box">
+
+            </div>
+        </div>
+        <footer>
+            <div class="kontakt">
+                <div class="mail">
+                    <p class="pierwsze">Napisz do nas na</p>
+                   <a href="mailto: mail@gmail.com"><p>Mail@gmail.com</p></a>
+                </div>
+                <br><br>
+                <div class="nr-telefonu">
+                    <p class="pierwsze">Zadzwoń do nas na</p>
+                    <p>+48 <%- informacje.telefon %></p>
+                </div>
+            </div>
+            <div class="social-media">
+                <a href="insta"> <div class="instagram brand">
+                    <p>Wbijaj na <span><i class="fa-brands fa-instagram"></i></span></p>
+                </div></a>
+               <a href="fb"><div class="facebook brand">
+                    <p>Wbijaj na <span> <i class="fa-brands fa-facebook"></i></span></p>
+    
+                </div></a> 
+                <a href="discord"><div class="discord brand">
+                    <p>Wbijaj na <span><i class="fa-brands fa-discord"></i></span></p>
+    
+                </div></a>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+</body>
+</html>
