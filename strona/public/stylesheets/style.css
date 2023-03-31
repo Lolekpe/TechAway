@@ -199,7 +199,7 @@ a
 }
 .regulamin-main-screen
 {
-    display: flex; /*Zmienia się na flex z none*/
+    display: none; /*Zmienia się na flex z none*/
     justify-content: center;
     margin-left: 60px;
     height: 100%;

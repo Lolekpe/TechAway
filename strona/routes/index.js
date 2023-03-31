@@ -23,9 +23,15 @@ router.get('/', function (req, res) {
             let opis = row.map((item) => item.opis);
             let logo = row.map((item) => item.logo);
             let link = row.map((item) => item.link);
-
-
+            let vis = row.map((item) => item.widocznosc);
+            console.log(row);
             for (let i = 0; i < row.length; i++) {
+
+                console.log(vis)
+                if(vis[i] === 0) {
+                    console.log("1")
+                    continue;
+                }
                 switch (typ[i]) {
                     case '1':
                         rodzaj = "Elektronika";

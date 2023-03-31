@@ -36,14 +36,14 @@ app.route('/')
                         })
                     });
                 });
-            })
+            });
 
         }
         if (req.query.settings && database.nazwa) {
             con.connect(() => {
                 con.query(`UPDATE uzytkownicy SET telefon = ${database.numer} WHERE ID = ${req.cookies.user}`, (err, row) => {
                     if (err) return res.send(err);
-                    con.query(`INSERT INTO sklepy(ID, nazwa, typ, motyw, uklad, opis, logo, link) VALUES (NULL, '${x}', 0, ${database.motyw}, ${database.uklad}, '${database.opis}', '/images/serwery/${database.nazwa}/logo.png', '/${database.nazwa}/index')`, (err, row) => {
+                    con.query(`INSERT INTO sklepy(ID, nazwa, typ, motyw, uklad, opis, logo, link, widocznosc) VALUES (NULL, '${x}', 0, ${database.motyw}, ${database.uklad}, '${database.opis}', '/images/serwery/${database.nazwa}/logo.png', '/${database.nazwa}/index', 0)`, (err, row) => {
                         if (err) return res.send(err);
                         return res.redirect("/kreator?final=true&krok=7");
                     });

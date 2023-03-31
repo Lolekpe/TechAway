@@ -30,3 +30,15 @@ function zmiana(){
 }
 
 
+function pokaz(element) {
+    switch (element) {
+        case 'sklepy':
+            document.getElementById(element).style.display = "flex";    
+            document.getElementById("regulamin").style.display = "none";
+            break;
+        case 'regulamin':
+            document.getElementById(element).style.display = "flex";
+            document.getElementById("sklepy").style.display = "none";
+            break;
+    }
+}
