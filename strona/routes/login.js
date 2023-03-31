@@ -25,7 +25,6 @@ app.route('/')
 
                 res.cookie("logged", "true", { maxAge: 192000000 });
                 res.cookie("user", x, { maxAge: 192000000 });
-                con.end();
                 return res.redirect("/");
             });
         });

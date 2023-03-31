@@ -25,8 +25,6 @@ app.route('/')
 
                     res.redirect("/login?register=pass");
                 });
-
-                con.end();
                 return res.redirect("/rejestracja?failed=true");
             });
         });

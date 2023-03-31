@@ -108,25 +108,39 @@ app.route("/")
         }
     })
     .post((req, res, next) => {
+        let id = req.cookies.user;
+
         switch (req.query.change) {
             case 'imie':
-                con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                console.log("1");
+                if (req.body.imie == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/ustawienia"); }
+                con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${id}`, (err, row) => {
+                    if (err) return res.send(err);
+
                     if (req.body.imie == row.map((item) => item.imie)) {
                         return res.redirect("/ustawienia?zmiana=1&blad=true");
                     }
-                    con.query(`UPDATE uzytkownicy SET imie = "${req.body.imie}" WHERE ID = ${req.cookies.user}`);
+                    con.query(`UPDATE uzytkownicy SET imie = "${req.body.imie}" WHERE ID = ${id}`);
                     return res.redirect("/ustawienia");
                 });
+                break;
+
             case 'nazwisko':
+                console.log("2");
+                if (req.body.nazwisko == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/ustawienia"); }
                 con.query(`SELECT nazwisko FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                    if (err) return res.send(err);
+
                     if (req.body.nazwisko == row.map((item) => item.nazwisko)) {
                         return res.redirect("/ustawienia?zmiana=2&blad=true");
                     }
-                    con.query(`UPDATE uzytkownicy SET nazwisko = "${req.body.nazwisko}" WHERE ID = ${req.cookies.user}`);
+                    con.query(`UPDATE uzytkownicy SET nazwisko = "${req.body.nazwisko}" WHERE ID = ${id}`);
                     return res.redirect("/ustawienia");
 
                 });
+                break;
             case 'mail':
+                console.log("3");
                 con.query(`SELECT email FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                     let x = req.body.mail.split("@");
                     if (x[1] == ["admin.com" || "techaway.com"]) {
@@ -135,14 +149,17 @@ app.route("/")
                     if (req.body.mail == row.map((item) => item.mail)) {
                         return res.redirect("/ustawienia?zmiana=3&blad=true");
                     }
-                    con.query(`UPDATE uzytkownicy SET email = "${req.body.mail}", potwierdzony = 0 WHERE ID = ${req.cookies.user}`);
+                    con.query(`UPDATE uzytkownicy SET email = "${req.body.mail}", potwierdzony = 0 WHERE ID = ${id}`);
                     return res.redirect("/ustawienia");
                 });
+                break;
+
             case 'haslo':
+                console.log("4");
                 if (req.body.nowe != req.body.potwierdz) {
-                    return res.redirect("/ustawienia?blad=rozne")
+                    return res.redirect("/ustawienia?zmiana=4&blad=rozne")
                 }
-                con.query(`SELECT haslo FROM uzytkownicy WHERE = ${req.cookies.user}`, (err, row) => {
+                con.query(`SELECT haslo FROM uzytkownicy WHERE ID = ${id}`, (err, row) => {
                     var crypto = require("crypto");
                     var sha256 = crypto.createHash("sha256");
                     var sha256_1 = crypto.createHash("sha256");
@@ -150,17 +167,18 @@ app.route("/")
                     resul = sha256.digest("base64");
                     sha256_1.update(req.body.nowe, "utf");
                     resul_1 = sha256_1.digest("base64");
-
-                    if (resul == row.map((item) => item.haslo)) {
-                        return res.redirect("/ustawienia?blad=stare")
+                    if (resul != row.map((item) => item.haslo)) {
+                        return res.redirect("/ustawienia?zmiana=4&blad=stare")
                     }
                     if (resul_1 == row.map((item) => item.haslo)) {
-                        return res.redirect("/ustawienia?blad=nowe")
+                        return res.redirect("/ustawienia?zmiana=4&blad=nowe")
                     }
-                    con.query(`UPDATE uzytkownicy SET haslo = ${resul_1} WHERE ID = ${req.cookies.user}`, (err) => {
+                    con.query(`UPDATE uzytkownicy SET haslo = "${resul_1}" WHERE ID = ${id}`, (err) => {
                         return res.redirect("/ustawienia")
                     });
                 })
+                break;
+
         }
     })
 
