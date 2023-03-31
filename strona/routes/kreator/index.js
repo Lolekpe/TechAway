@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var sql = require("mysql");
+var fs = require("fs");
 var database = {};
 var con = sql.createConnection({
     host: 'localhost',
@@ -24,6 +25,9 @@ app.route('/')
                 password: "",
                 database: `sklep_${database.nazwa}`
             });
+            fs.mkdir(`./public/images/serwery/${database.nazwa}`, (err) => {
+                return console.log(err)
+            })
             table.connect((err) => {
                 if (err) return res.send(err)
                 table.query(`CREATE TABLE informacje (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), motyw INT, wyglad INT, opis VARCHAR(255), telefon INT)`, (err, row) => {
@@ -64,18 +68,18 @@ app.route('/')
             case '3':
                 if (database.motyw) {
                     database.motyw = req.query.opcja;
-                    return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 3 });
+                    return res.redirect("/kreator?krok=4");
                 }
                 database.motyw = req.query.opcja;
 
-                return res.render('kreator/index.ejs', { stage: "TechAway | Kreator strony", wyglad: 3 });
+                return res.redirect("/kreator?krok=4");
             case '4':
                 if (database.uklad) {
-                    database.uklad = req.query.opcja;
+                    database.uklad = 1;
                     return res.render("kreator/index.ejs", { stage: "TechAway | Kreator strony", wyglad: 4 });
 
                 }
-                database.uklad = req.query.opcja;
+                database.uklad = 1;
                 return res.render("kreator/index.ejs", { stage: "TechAway | Kreator strony", wyglad: 4 });
             case '5':
                 return res.render("kreator/index.ejs", { stage: "TechAway | Kreator strony", wyglad: 5 })
