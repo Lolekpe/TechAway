@@ -1,0 +1,92 @@
+<%- include('./parts/head') %>
+
+    <body>
+        <div class="left-panel">
+            <ul>
+                <li><a href="/">Informacje</a></li>
+                <li><a href="/motywy">Motywy</a></li>
+                <li>Zamówienia</li>
+                <li>Rezerwacje</li>
+                <li><a href="/oferta">Oferty</a></li>
+            </ul>
+        </div>
+        <div class="main-panel">
+            <div class="dodawanie-ofert-screen">
+                <div class="gory-pasek-wyboru">
+                    <span><a href="/oferta?opcja=dodawanie">Dodawanie</a></span>
+                    <span><a href="/oferta?opcja=usuwanie">Usuwanie</a></span>
+                    <span><a href="/oferta?opcja=edit">Edytowanie</a></span>
+                </div>
+                <div class="screen-z-zmienianymi-ofertami">
+                    <div class="oferta">
+                        <div class="image-container">
+                            <form action="" enctype="multipart/form-data"></form>
+                            <input type="file" value="" id="file-input" class="inpucik">
+                            <label for="file-input">
+                                <img src="https://media.discordapp.net/attachments/1088408367069921320/1088786901894443008/abibas2.png?width=750&height=671"
+                                    alt="" class="obrazek-ofert">
+                            </label>
+                        </div>
+                        <div class="szybki-opis">
+                            <span>
+                                <form action="">
+                                    Produkt
+                                    <input type="text" value="Myjobot 3000" class="opis-do-zmian" maxlength="45">
+                                    Cena
+                                    <input type="text" value="49,99" class="opis-do-zmian" maxlength="9">
+
+                                </form>
+                            </span>
+                        </div>
+                        <div class="tu-jest-guzior">
+                            <button class="akceptacja-zmian">Akceptuj</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen-z-dodawanymi-ofertami">
+                    <div class="oferta">
+                        <div class="image-container2">
+                            <form action="" enctype="multipart/form-data"></form>
+                            <input type="file" value="" id="file-input" class="inpucik">
+                            <label for="file-input">
+                                <img src="" alt="" class="obrazek-ofert">
+                                <span style="color: black; cursor: pointer; position:absolute; transform: translate(-75px, 50px); font-size: 25px;
+                            font-weight: bolder;">Dodaj zdjęcie</span>
+                            </label>
+                        </div>
+                        <div class="szybki-opis">
+                            <span>
+                                <form action="">
+                                    <input type="text" value="Dodaj nazwę prodktu" class="opis-do-zmian" maxlength="45">
+                                    <input type="text" value="Dodaj cenę prodktu" class="opis-do-zmian" maxlength="9">
+                                </form>
+                            </span>
+                        </div>
+                        <div class="tu-jest-guzior">
+                            <button class="akceptacja-zmian">Dodaj</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen-z-usuwanymi-ofertami">
+                    <div class="oferta">
+                        <div class="image-container2">
+
+
+                            <img src="https://media.discordapp.net/attachments/1088408367069921320/1088786901894443008/abibas2.png?width=750&height=671"
+                                alt="" class="obrazek-ofert">
+
+                        </div>
+                        <div class="szybki-opis">
+                            <span>Produkt</span>
+                            <span>Myjobot 3000</span><br>
+                            <span>Cena</span>
+                            <span>49,99zł</span>
+                        </div>
+                        <div class="tu-jest-guzior">
+                            <button class="usuwanie-oferty">usuń</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    </body>

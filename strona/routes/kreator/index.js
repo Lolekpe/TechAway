@@ -30,12 +30,12 @@ app.route('/')
             })
             table.connect((err) => {
                 if (err) return res.send(err)
-                table.query(`CREATE TABLE informacje (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), motyw INT, wyglad INT, opis VARCHAR(255), telefon INT)`, (err, row) => {
+                table.query(`CREATE TABLE informacje (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), motyw INT, wyglad INT, opis VARCHAR(255), telefon INT, wlasciciel INT)`, (err, row) => {
                     if (err) return res.send(err);
-                    table.query(`INSERT INTO informacje (ID, nazwa, motyw, wyglad, opis, telefon) VALUES (NULL, '${database.nazwa.toString()}', ${database.motyw}, ${database.uklad}, '${database.opis}', ${database.numer})`, (err, row) => {
+                    table.query(`INSERT INTO informacje (ID, nazwa, motyw, wyglad, opis, telefon, wlasciciel) VALUES (NULL, '${database.nazwa.toString()}', ${database.motyw}, ${database.uklad}, '${database.opis}', ${database.numer}, ${req.cookies.user})`, (err, row) => {
                         if (err) return res.send(err);
                         table.query(`CREATE TABLE produkty (id INT AUTO_INCREMENT PRIMARY KEY, nazwa VARCHAR(255), opis VARCHAR(255), cena DECIMAL(2,0), przecena INT)`, (err) => {
-                            if(err) return console.log(err);
+                            if (err) return console.log(err);
                             return res.redirect("/")
                         })
                     });
@@ -45,7 +45,7 @@ app.route('/')
         }
         if (req.query.settings && database.nazwa) {
             con.connect(() => {
-                con.query(`UPDATE uzytkownicy SET telefon = ${database.numer} WHERE ID = ${req.cookies.user}`, (err, row) => {
+                con.query(`UPDATE uzytkownicy SET telefon = ${database.numer}, sprzedawca = 1 WHERE ID = ${req.cookies.user}`, (err, row) => {
                     if (err) return res.send(err);
                     con.query(`INSERT INTO sklepy(ID, nazwa, typ, motyw, uklad, opis, logo, link, widocznosc) VALUES (NULL, '${x}', 0, ${database.motyw}, ${database.uklad}, '${database.opis}', '/images/serwery/${database.nazwa}/logo.png', '/${database.nazwa}/index', 0)`, (err, row) => {
                         if (err) return res.send(err);

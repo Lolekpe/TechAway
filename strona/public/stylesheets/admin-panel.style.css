@@ -1,0 +1,631 @@
+body, html 
+{
+    margin: 0;
+    background-color: #212222;
+    padding: 0;
+    /*282829*/
+    font-family: var(--main-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    color: white;
+}
+:root
+{
+    --main-font: 'Open Sans', sans-serif;
+    --addon-font: 'Chivo Mono', monospace;;
+}
+a
+{
+
+    text-decoration: none;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+    transition-duration: 0.2s;
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #c21b21;
+    transition-duration: 0.2s;
+    border-radius: 2px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c21b21;
+  }
+  ul{
+    list-style: none;
+  }
+    li{
+    list-style: none;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+.left-panel
+{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+}
+.main-panel
+{
+    width: 80%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.informacje-screen
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dodawanie-ofert-screen
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.motyw-screen
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.zmiana
+{
+    width: 400px;
+    height: 150px; 
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #282829;
+    border-radius: 10px;;
+}
+.zmiana-nazwy
+{
+    align-items: center;
+}
+.aktualne-nazwa
+{
+    font-size: 20px;
+    font-family: var(--addon-font);
+    text-transform: uppercase;
+
+}
+.foto-na-zmianie
+{
+    width: 100px;
+}
+.aktualne-opis
+{
+    text-align: center;
+    padding: 5px;
+    font-size: 13.5px;
+    font-family: var(--addon-font);
+}
+.edytuj
+{
+    position: absolute;
+}
+.edytuj > button
+{
+    width: 150px;
+    height:25px;
+    margin-top: 110px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: bolder;
+    font-family: var(--addon-font);
+    text-transform: uppercase;    
+    background: rgb(248,52,57);
+    cursor: pointer;
+    background: linear-gradient(180deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    transition-duration: 0.1s;
+}
+.edytuj > button:hover
+{
+    box-shadow: 0 0 7px 0px rgb(248,52,57);
+}
+.edytuj > button:active
+{
+    box-shadow: 0 0 3px 0px rgb(248,52,57);
+}
+.motywy-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.motywy
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.motyw-jest-uwu
+{
+    height: 18vh;
+    width: 28vh;
+    border-radius: 10px;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.motywjeden::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Klasyczny";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-transform: uppercase;
+    border-radius: 10px;
+    text-shadow: 1px 1px 5px black;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.motywjeden:hover::after
+{
+    background-color: transparent;
+}
+.motywdwa:hover::after
+{
+    background-color: transparent;
+}
+.motywtrzy:hover::after
+{
+    background-color: transparent;
+}
+.motywcztery:hover::after
+{
+    background-color: transparent;
+}
+.motywdwa::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "vintage";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-transform: uppercase;
+}
+.motywtrzy::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Pastelowe";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FAD2E1;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    text-transform: uppercase;
+}
+.motywcztery::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Natura";
+    background-color: rgb(0,0,0,0.5);
+    margin-top: -18vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #006466;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.motyw-jest-uwu > div
+{
+    width: 100%;
+    height: 33.3333%;
+}
+.motwy-podwujny > div
+{
+    width: 100%;
+    height: 50%;
+}
+.motywy-left
+{
+    transform: translate(-20vh);
+    position: absolute;
+}
+.motywyprawo
+{
+    transform: translate(20vh);
+    position: absolute;
+}
+.ulozenie-sportowe
+{
+    width: 60vh;
+    height: 35vh;
+    margin-top:10vh;
+    background-color: #006466;
+    margin-bottom:10vh;
+    border-radius: 0.80vh;
+}
+.ulozeniejeden::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Strona Firmowa";
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.ulozeniedwa::after
+{
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: "Strona Serwis";
+    background-color: rgb(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CB997E;
+    font-size: 3vh;
+    font-weight: bolder;
+    text-shadow: 1px 1px 5px black;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.ulozeniejeden:hover::after
+{
+    background-color: transparent;
+}
+.ulozeniedwa:hover::after
+{
+    background-color: transparent;
+}
+.akceptuj
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.gory-pasek-wyboru > span
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: whiie;
+    border-radius: 5px;
+    font-size: 2vh;
+    margin: 10px;    background: rgb(248,52,57);
+    cursor: pointer;
+    transition-duration: 0.2s;
+    background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+}
+.gory-pasek-wyboru > span:hover
+{
+    background-color: white;
+    background: white;
+    color: black;
+    box-shadow: 0 0 5px 0px white;
+}
+.gory-pasek-wyboru
+{
+    position: absolute;
+    top: 0;
+    margin-top: 5%;
+}
+.oferta
+{
+    width: 400px;
+    height: 250px;
+    background-color: white;
+    border: 3px lightgray solid;
+    border-radius: 5px;
+    float: left;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.image-container
+{
+    width: 100%;
+    border-radius: 5px;
+    height: 135px;
+    display: flex;
+    justify-content: center;
+}
+.image-container2
+{
+    width: 100%;
+    border-radius: 5px;
+    height: 135px;
+    display: flex;
+    justify-content: center;
+}
+.obrazek-ofert
+{
+    cursor: pointer;
+    max-height: 135px;
+}
+.image-container::after
+{
+    width: 110px;
+    height: 20px; 
+    display: block;
+    content: "Zmień zdjęcie";
+    color: black;
+    position: absolute;
+    margin-top: 100px;
+    opacity: 0;
+    transition-duration: 0.2s;
+}
+.image-container:hover::after
+{
+    opacity: 1;
+
+}
+.szybki-opis
+{
+    width: 400px;
+    border-radius: 5px;
+    padding-left: 20px;
+    padding-top: 0px;
+    text-align: left;
+    position: absolute;
+}
+.szybki-opis > span
+{
+    font-weight: bolder;
+    color: rgb(61, 61, 61);
+    cursor:text;
+}
+.przejdz-oferta-button
+{
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.guzior123
+{
+    border-radius: 5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 2.5vh;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    margin-top: 130px;
+    color: #96f1ff;
+    margin-top: 120px;
+}
+.guzior123:hover
+{
+    color: white;
+}
+.guzior-na-miare-oferty::after
+{
+    display: block;
+    color: black;
+    content: "Dodaj";
+    font-size: 1.7vh;
+    opacity: 0;
+    position: absolute;
+    transition-duration: 0.2s;
+    transform: translate(-7px, -25px);
+    cursor: pointer;
+}
+.guzior-na-miare-oferty:hover::after
+{
+    opacity: 1;
+}
+.guzior-na-miare-czytania-dalej:hover::after
+{
+    opacity: 1;
+}
+.guzior-na-miare-czytania-dalej::after
+{
+    height: 20px;
+    display: block;
+    color: black;
+    width: 100px;
+    position: absolute;
+    content: "Czytaj dalej";
+    font-size: 1.7vh;
+    opacity: 0;
+    transform: translate(-35px, -25px);
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+.screen-z-zmienianymi-ofertami
+{
+    height: 700px;
+    width: 1400px;
+    display: block; /*block*/
+}
+.screen-z-dodawanymi-ofertami
+{
+    display: block; /*block*/
+    height: 700px;
+    width: 1400px;
+}
+.screen-z-usuwanymi-ofertami
+{
+    display: block; /*block*/
+    width: 1400px;
+    height: 700px;
+}
+.akceptacja-zmian
+{
+    width: 200px;
+    height: 25px;
+    color: white;
+    border: none; 
+    background: rgb(248,52,57);
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    border-radius: 3px;
+    transition-duration: 0.2s;
+}
+.akceptacja-zmian:hover
+{
+    box-shadow: 0 0 7px 0 rgba(252,54,136,1);
+}
+.usuwanie-oferty
+{
+    width: 100px;
+    height: 25px;
+    color: white;
+    border: none; 
+    background: rgb(248,52,57);
+    cursor: pointer;
+    background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    border-radius: 3px;
+    transition-duration: 0.2s;
+}
+.usuwanie-oferty:hover
+{
+    box-shadow: 0 0 7px 0 rgba(252,54,136,1);
+}
+.tu-jest-guzior
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+span > form > input
+{
+    width: 300px;
+    height: 25px;
+    margin-top: -25px;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 14px;    
+    font-weight: bolder;
+    color: rgb(61, 61, 61);
+    cursor:text;
+}
+.inpucik
+{
+    display: none;
+}
+@media only screen and (max-width: 1730px)
+{
+    .screen-z-zmienianymi-ofertami
+
+    {
+        height: 600px;
+        max-width: 915px;
+    }
+    .screen-z-dodawanymi-ofertami
+
+    {
+        height: 600px;
+        max-width: 915px;
+    }
+    .screen-z-usuwanymi-ofertami
+
+    {
+        height: 600px;
+        max-width: 915px;
+    }
+}
+@media only screen and (max-width: 1350px)
+{
+    .screen-z-zmienianymi-ofertami
+
+    {
+        max-width: 460px;
+        height: 750px;
+    }
+    .screen-z-dodawanymi-ofertami
+
+    {
+        max-width: 460px;
+        height: 750px;
+    }
+    .screen-z-usuwanymi-ofertami
+
+    {
+        max-width: 460px;
+        height: 750px;
+    }
+
+
+
+}
