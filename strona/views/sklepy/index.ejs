@@ -1,4 +1,4 @@
-<%- include('./parts/head') %>
+<%- include('./parts/index') %>
 
 <body>
     <nav>
@@ -24,7 +24,9 @@
         </header>
         <div class="oferty-container">
             <div class="oferty-box">
-
+                <% for( let i = 0; i < 3; i++ ) { %>
+                    <%- include("./parts/oferta") %>
+                <% } %>
             </div>
         </div>
         <footer>
