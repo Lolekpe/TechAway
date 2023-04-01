@@ -15,7 +15,7 @@
                 <div class="div-na-zmiany">
                     <div class="zmiana-nazwy zmiana">
                         <div class="aktualne-nazwa">
-                            Aktualna nazwa 123
+                            <%- informacje.nazwa %>
                         </div>
                         <div class="edytuj">
                             <button>Edytuj <i class="fa-solid fa-pen"></i></button>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="zmiana-loga zmiana">
                         <div class="aktualne">
-                            <img src="https://cdn.discordapp.com/attachments/1087755044302098503/1087775089673646120/kantyna.png"
+                            <img src="<%- informacje.logo %>"
                                 alt="" class="foto-na-zmianie">
                         </div>
                         <div class="edytuj">
@@ -34,10 +34,7 @@
                     </div>
                     <div class="zmiana-opisu zmiana">
                         <div class="aktualne-opis">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus consectetur cumque aliquid
-                            sint mollitia quos, incidunt sequi qui perspiciatis, doloremque eveniet, obcaecati maxime?
-                            Ullam
-                            explicabo similique quas? Error, libero deleniti!
+                            <%- informacje.opis %>
                         </div>
                         <div class="edytuj">
                             <button>Edytuj <i class="fa-solid fa-pen"></i></button>

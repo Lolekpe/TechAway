@@ -3,7 +3,6 @@ var app = express();
 var sql = require("mysql")
 
 
-
 app.route('/')
     .get((req, res, next) => {
         let sklep = req.baseUrl.split('/');
@@ -21,7 +20,7 @@ app.route('/')
                 for (let i = 0; i < row.length; i++) {
                     let nazwa = row.map((item) => item.nazwa);
                     console.log(nazwa + sklep[1])
-                    if (nazwa[i].toLowerCase() !== sklep[1]) {
+                    if (nazwa[i].toLowerCase().replace(" ", "_") !== sklep[1]) {
                         continue;
                     }
                     exists = true;
@@ -41,7 +40,7 @@ app.route('/')
         
                         sklep_db.query(`SELECT * FROM informacje`, (err, row) => {
                             console.log(row);
-                            informacje.nazwa = row.map((item) => item.nazwa)
+                            informacje.nazwa = row.map((item) => item.nazwa);
                             let m = row.map((item) => item.motyw).toString();
                             switch (m) {
                                 case '1':
