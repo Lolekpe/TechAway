@@ -4,7 +4,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sql = require("mysql");
+let id;
 var multer = require("multer");
+var cdn = multer({ dest: `./public/cdn/temp` });
+var fs = require("fs");
 
 var app = express();
 
@@ -14,9 +17,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, type: "" }));
+app.use(cdn.single("zdjecie"))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((error, req, res, next) => {
+    return res.send(error);
+})
 
 
 app.get('/', (req, res, next) => {
@@ -32,12 +39,18 @@ app.get('/', (req, res, next) => {
     })
     con.connect(() => {
         con.query(`SELECT * FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+            id = row.map((item) => item.ID);
             let nazwa = row.map((item) => item.nazwa);
             let opis = row.map((item) => item.opis);
             let zdj = row.map((item) => item.logo);
             informacje.nazwa = nazwa;
             informacje.logo = zdj;
             informacje.opis = opis;
+            fs.stat(`./public/cdn/${id}`, (err, res) => {
+                if (err) return fs.mkdir(`./public/cdn/${id}`, (err) => {
+                    if (err) return console.log(err);
+                });
+            })
             return res.render('admin/index', { informacje: informacje });
         })
     })
@@ -60,7 +73,6 @@ app.get('/motywy', (req, res, next) => {
             con.query(`UPDATE sklepy SET motyw = ${req.query.opcja} WHERE wlasciciel = ${req.cookies.user}`, () => {
                 con.query(`SELECT nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
                     let nazwa = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                    console.log(nazwa)
                     var sklep_db = sql.createConnection({
                         host: 'localhost',
                         user: 'root',
@@ -90,13 +102,106 @@ app.get('/oferta', (req, res, next) => {
     switch (req.query.opcja) {
         case 'dodawanie':
             return res.render('admin/oferta', { wyswietl: 2 });
+        case 'usuwanie':
+            return res.render('admin/oferta', { wyswietl: 3 });
 
         default:
-            return res.render('admin/oferta', {wyswietl: 1})
+            let combo = "";
+            var con = sql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: "",
+                database: 'techaway'
+            })
+            con.connect(() => {
+                con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                    if (err) return res.send(err);
+                    let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+                    var sklep_db = sql.createConnection({
+                        host: 'localhost',
+                        user: 'root',
+                        password: "",
+                        database: `sklep_${x}`
+                    })
+                    sklep_db.connect(() => {
+                        sklep_db.query(`SELECT * FROM produkty`, (err, row) => {
+                            let nazwa = row.map((item) => item.nazwa)
+                            let id = row.map((item) => item.id)
+                            let cena = row.map((item) => item.cena)
+                            let ikona = row.map((item) => item.ikona)
+                            for (let i = 0; i < row.length; i++) {
+                                combo += `<div class="oferta"><form action="/oferta?zmiana=${id[i]}" enctype="multipart/form-data"><div class="image-container">` +
+                                    `<input name="zdjecie" type="file" value="" id="file-input" class="inpucik"><label for="file-input">` +
+                                    `<img src="${ikona[i]}" alt="" class="obrazek-ofert"></label></div><div class="szybki-opis"><span>Produkt: ` +
+                                    `<input name="produkt" type="text" value="${nazwa[i]}" class="opis-do-zmian" maxlength="45">Cena: ` +
+                                    `<input name="cena" type="text" value="${cena[i]}" class="opis-do-zmian" maxlength="9"></span></div>` +
+                                    `<div class="tu-jest-guzior"><button type="submit" class="akceptacja-zmian">Dodaj</button></div></form></div>`;
+                            }
+                            console.log(combo)
+                            console.log(row)
+
+                            return res.render('admin/oferta', { wyswietl: 1, produkt: combo })
+                        })
+                    })
+                });
+            });
     };
 });
 app.post('/oferta', (req, res, next) => {
-    
-})
+    if (req.query.utworz) {
+        let sklep_id;
+        let prod_id;
+        var tmp_path;
+
+        console.log("files: %j" + req.body.produkt, req.file)
+        var con = sql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: "",
+            database: 'techaway'
+        });
+        con.connect(() => {
+            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user} `, (err, row) => {
+                if (err) return res.send(err);
+                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+                sklep_id = row.map((item) => item.ID);
+                tmp_path = req.file.path;
+                var sklep_db = sql.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: "",
+                    database: `sklep_${x}`
+                })
+                sklep_db.connect((err) => {
+                    if (err) return res.send("1 " + err)
+                    sklep_db.query(`INSERT INTO produkty (id, nazwa, opis, ikona, cena, przecena) VALUES (NULL, '${req.body.produkt}', NULL, NULL, ${req.body.cena.toString()}, NULL)`, (err) => {
+                        if (err) return res.send("2 " + err);
+                        sklep_db.query(`SELECT id FROM produkty WHERE nazwa = '${req.body.produkt}'`, (err, row) => {
+                            prod_id = row.map((item) => item.id).toString();
+                            var cor_path = `./public/cdn/${sklep_id}/${prod_id}.png`;
+                            fs.stat(cor_path, (err) => {
+                                if (err) return fs.mkdirSync(`./public/cdn/${sklep_id}`, { recursive: true });
+                            });
+                            var tmp = fs.createReadStream(tmp_path);
+                            var dest = fs.createWriteStream(cor_path, { flags: "a" });
+
+                            tmp.pipe(dest);
+                            tmp.on('end', () => {
+                                fs.rmSync(req.file.path);
+                                sklep_db.query(`UPDATE produkty SET ikona = '/cdn/${sklep_id}/${prod_id}.png' WHERE id = ${prod_id}`, (err) => {
+                                    console.log(err);
+                                })
+                                return res.redirect("/oferta?opcja=edit");
+                            })
+                            tmp.on('error', (err) => {
+                                console.log(err)
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    };
+});
 
 module.exports = app;
