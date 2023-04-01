@@ -100,10 +100,43 @@ app.get('/oferta', (req, res, next) => {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" })
     }
     switch (req.query.opcja) {
-        case 'dodawanie':
+        case '1':
             return res.render('admin/oferta', { wyswietl: 2 });
-        case 'usuwanie':
-            return res.render('admin/oferta', { wyswietl: 3 });
+        case '2':
+            let edcom = "";
+            var con = sql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: "",
+                database: 'techaway'
+            })
+            con.connect(() => {
+                con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                    if (err) return res.send(err);
+                    let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+                    var sklep_db = sql.createConnection({
+                        host: 'localhost',
+                        user: 'root',
+                        password: "",
+                        database: `sklep_${x}`
+                    })
+                    sklep_db.connect(() => {
+                        sklep_db.query(`SELECT * FROM produkty`, (err, row) => {
+                            let nazwa = row.map((item) => item.nazwa)
+                            let id = row.map((item) => item.id)
+                            let cena = row.map((item) => item.cena)
+                            let ikona = row.map((item) => item.ikona)
+                            for (let i = 0; i < row.length; i++) {
+                                edcom += `<form action="/oferta?usun=${id[i]}" method="post"><div class="oferta"><div class="image-container2"><img src="${ikona[i]}" alt="" class="obrazek-ofert"></div>` +
+                                    `<div class="szybki-opis"><span>Produkt: ${nazwa[i]}</span><br><span>Cena: ${cena[i]}</span></div><div class="tu-jest-guzior">` +
+                                    `<button class="usuwanie-oferty">usuń</button></div></div></form>`;
+                            }
+                            return res.render('admin/oferta', { wyswietl: 3, produkt: edcom });
+                        })
+                    });
+                });
+            });
+            break;
 
         default:
             let combo = "";
@@ -130,21 +163,19 @@ app.get('/oferta', (req, res, next) => {
                             let cena = row.map((item) => item.cena)
                             let ikona = row.map((item) => item.ikona)
                             for (let i = 0; i < row.length; i++) {
-                                combo += `<div class="oferta"><form action="/oferta?zmiana=${id[i]}" enctype="multipart/form-data"><div class="image-container">` +
-                                    `<input name="zdjecie" type="file" value="" id="file-input" class="inpucik"><label for="file-input">` +
-                                    `<img src="${ikona[i]}" alt="" class="obrazek-ofert"></label></div><div class="szybki-opis"><span>Produkt: ` +
+                                combo += `<div class="oferta"><form action="/oferta?zmiana=${id[i]}" enctype="multipart/form-data" method="post"><div class="image-container">` +
+                                    `<input name="zdjecie" type="file" value="" id="file-input" class="inpucik" accept=".jpg, .png, .jpeg, .webp"><label for="file-input">` +
+                                    `<img src="${ikona[i]}" alt="" class="obrazek-ofert"></label></div><div class="szybki-opis"><span>Produkt:` +
                                     `<input name="produkt" type="text" value="${nazwa[i]}" class="opis-do-zmian" maxlength="45">Cena: ` +
                                     `<input name="cena" type="text" value="${cena[i]}" class="opis-do-zmian" maxlength="9"></span></div>` +
-                                    `<div class="tu-jest-guzior"><button type="submit" class="akceptacja-zmian">Dodaj</button></div></form></div>`;
+                                    `<div class="tu-jest-guzior"><button class="akceptacja-zmian">Akceptuj</button></div></form></div>`;
                             }
-                            console.log(combo)
-                            console.log(row)
-
                             return res.render('admin/oferta', { wyswietl: 1, produkt: combo })
                         })
                     })
                 });
             });
+            break;
     };
 });
 app.post('/oferta', (req, res, next) => {
@@ -152,8 +183,6 @@ app.post('/oferta', (req, res, next) => {
         let sklep_id;
         let prod_id;
         var tmp_path;
-
-        console.log("files: %j" + req.body.produkt, req.file)
         var con = sql.createConnection({
             host: 'localhost',
             user: 'root',
@@ -191,7 +220,7 @@ app.post('/oferta', (req, res, next) => {
                                 sklep_db.query(`UPDATE produkty SET ikona = '/cdn/${sklep_id}/${prod_id}.png' WHERE id = ${prod_id}`, (err) => {
                                     console.log(err);
                                 })
-                                return res.redirect("/oferta?opcja=edit");
+                                return res.redirect("/oferta?opcja=3");
                             })
                             tmp.on('error', (err) => {
                                 console.log(err)
@@ -199,6 +228,75 @@ app.post('/oferta', (req, res, next) => {
                         });
                     });
                 });
+            });
+        });
+    };
+    if (req.query.usun) {
+        let id = req.query.usun;
+        var con = sql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: "",
+            database: 'techaway'
+        });
+        con.connect(() => {
+            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                if (err) return res.send(err);
+                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+                var sklep_db = sql.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: "",
+                    database: `sklep_${x}`
+                });
+                sklep_db.connect(() => {
+                    sklep_db.query(`DELETE FROM produkty WHERE id = ${id}`);
+                    return res.redirect("/oferta?opcja=3")
+                })
+            });
+        });
+    };
+    if (req.query.zmiana) {
+        let id = req.query.zmiana;
+        let s_id;
+        var con = sql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: "",
+            database: 'techaway'
+        })
+        if (req.file) { tmp_path = req.file.path };
+        con.connect(() => {
+            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                if (err) return res.send(err);
+                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+                s_id = row.map((item) => item.ID)
+                var sklep_db = sql.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: "",
+                    database: `sklep_${x}`
+                })
+                sklep_db.connect(() => {
+                    sklep_db.query(`UPDATE produkty SET nazwa = '${req.body.produkt}', cena = ${req.body.cena.toString()}`, () => {
+                        if(req.file){
+                            var cor_path = `./public/cdn/${s_id}/${id}.png`;
+                            fs.rmSync(cor_path);
+                            var tmp = fs.createReadStream(tmp_path);
+                            var dest = fs.createWriteStream(cor_path, { flags: "a" });
+    
+                            tmp.pipe(dest);
+                            tmp.on('end', () => {
+                                fs.rmSync(req.file.path);
+                                return res.redirect("/oferta?opcja=3");
+                            })
+                            tmp.on('error', (err) => {
+                                console.log(err)
+                            });
+                        }
+                        return res.redirect("/oferta?opcja=3")
+                    })
+                })
             });
         });
     };

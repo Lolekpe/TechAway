@@ -13,64 +13,49 @@
         <div class="main-panel">
             <div class="dodawanie-ofert-screen">
                 <div class="gory-pasek-wyboru">
-                    <span><a href="/oferta?opcja=dodawanie">Dodawanie</a></span>
-                    <span><a href="/oferta?opcja=usuwanie">Usuwanie</a></span>
-                    <span><a href="/oferta?opcja=edit">Edytowanie</a></span>
+                    <span><a href="/oferta?opcja=1">Dodawanie</a></span>
+                    <span><a href="/oferta?opcja=2">Usuwanie</a></span>
+                    <span><a href="/oferta?opcja=3">Edytowanie</a></span>
                 </div>
                 <% if (wyswietl==1) { %>
                     <div class="screen-z-zmienianymi-ofertami">
-                        <%- produkt %>
+                        <div class="div-na-zmiany">
+                            <%- produkt %>
+                        </div>
                     </div>
                 <% } %>
                 <% if (wyswietl==2) { %>
                     <div class="screen-z-dodawanymi-ofertami">
-                                <form action="/oferta?utworz=true" enctype="multipart/form-data" method="post">
-                                    <div class="oferta">
-                                        <div class="image-container2">
-                                            <input type="file" value="" id="file-input" class="inpucik" name="zdjecie"
-                                                accept=".png, .jpg, .webp, .jpeg">
-                                            <label for="file-input">
-                                                <img src="" alt="" class="obrazek-ofert">
-                                                <span
-                                                    style="color: black; cursor: pointer; position:absolute; transform: translate(-75px, 50px); font-size: 25px;font-weight: bolder;">Dodaj
-                                                    zdjęcie</span>
-                                            </label>
-                                        </div>
-                                        <div class="szybki-opis">
-                                            <span>
-                                                <input type="text" value="Dodaj nazwę prodktu" class="opis-do-zmian"
-                                                    maxlength="45" name="produkt">
-                                                <input type="text" value="Dodaj cenę prodktu" class="opis-do-zmian"
-                                                    maxlength="9" name="cena">
-                                            </span>
-                                        </div>
-                                        <div class="tu-jest-guzior">
-                                            <button class="akceptacja-zmian">Dodaj</button>
-                                        </div>
-                                    </div>
-                                </form>
+                        <form action="/oferta?utworz=true" enctype="multipart/form-data" method="post">
+                            <div class="oferta">
+                                <div class="image-container2">
+                                    <input type="file" value="" id="file-input" class="inpucik" name="zdjecie"
+                                        accept=".png, .jpg, .webp, .jpeg">
+                                    <label for="file-input">
+                                        <img src="" alt="" class="obrazek-ofert">
+                                        <span
+                                            style="color: black; cursor: pointer; position:absolute; transform: translate(-75px, 50px); font-size: 25px;font-weight: bolder;">Dodaj
+                                            zdjęcie</span>
+                                    </label>
+                                </div>
+                                <div class="szybki-opis">
+                                    <span>
+                                        <input type="text" value="Dodaj nazwę prodktu" class="opis-do-zmian"
+                                            maxlength="45" name="produkt">
+                                        <input type="text" value="Dodaj cenę prodktu" class="opis-do-zmian"
+                                            maxlength="9" name="cena">
+                                    </span>
+                                </div>
+                                <div class="tu-jest-guzior">
+                                    <button class="akceptacja-zmian">Dodaj</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 <% } %>
                 <% if (wyswietl==3) { %>
                     <div class="screen-z-usuwanymi-ofertami">
-                                        <div class="oferta">
-                                            <div class="image-container2">
-
-
-                                                <img src="https://media.discordapp.net/attachments/1088408367069921320/1088786901894443008/abibas2.png?width=750&height=671"
-                                                    alt="" class="obrazek-ofert">
-
-                                            </div>
-                                            <div class="szybki-opis">
-                                                <span>Produkt: </span>
-                                                <span>Myjobot 3000</span><br>
-                                                <span>Cena: </span>
-                                                <span>49,99zł</span>
-                                            </div>
-                                            <div class="tu-jest-guzior">
-                                                <button class="usuwanie-oferty">usuń</button>
-                                            </div>
-                                        </div>
+                        <%- produkt %>
                     </div>
                 <% } %>
 
