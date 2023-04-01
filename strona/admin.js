@@ -56,6 +56,71 @@ app.get('/', (req, res, next) => {
     })
 
 });
+app.post('/', (req, res, next) => {
+    if (req.query.logo) {
+        var tmp_path;
+        let sklep;
+        var con = sql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: "",
+            database: 'techaway'
+        });
+        con.connect(() => {
+            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user} `, (err, row) => {
+                if (err) return res.send(err);
+                sklep = row.map((item) => item.nazwa);
+                tmp_path = req.file.path;
+                prod_id = row.map((item) => item.id).toString();
+                var cor_path = `./public/images/serwery/${sklep.toString().toLowerCase().replace(" ", "_")}/logo.png`;
+                if (fs.existsSync(cor_path)) {
+                    fs.rmSync(cor_path);
+                }
+                var tmp = fs.createReadStream(tmp_path);
+                var dest = fs.createWriteStream(cor_path, { flags: "a" });
+
+                tmp.pipe(dest);
+                tmp.on('end', () => {
+                    fs.rmSync(req.file.path);
+                    return res.redirect("/");
+                })
+                tmp.on('error', (err) => {
+                    console.log(err)
+                });
+
+            });
+        });
+
+    }
+    if (req.query.opis) {
+        var con = sql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: "",
+            database: 'techaway'
+        });
+        con.connect(() => {
+            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                if (err) return res.send(err);
+                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+                var sklep_db = sql.createConnection({
+                    host: 'localhost',
+                    user: 'root',
+                    password: "",
+                    database: `sklep_${x}`
+                })
+                sklep_db.connect(() => {
+                    sklep_db.query(`UPDATE informacje SET opis = '${req.body.dobre}' WHERE id = 1`, () => {
+                        con.query(`UPDATE sklepy SET opis = '${req.body.dobre}' WHERE wlasciciel = ${req.cookies.user}`, () => {
+                            return res.redirect('/')
+                        })
+                    })
+                });
+            });
+        });
+    };
+})
+
 app.get('/motywy', (req, res, next) => {
     if (!req.cookies.logged) {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });
@@ -94,7 +159,6 @@ app.get('/motywy', (req, res, next) => {
     }
 
 });
-
 app.get('/oferta', (req, res, next) => {
     if (!req.cookies.logged) {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" })
@@ -279,12 +343,12 @@ app.post('/oferta', (req, res, next) => {
                 })
                 sklep_db.connect(() => {
                     sklep_db.query(`UPDATE produkty SET nazwa = '${req.body.produkt}', cena = ${req.body.cena.toString()}`, () => {
-                        if(req.file){
+                        if (req.file) {
                             var cor_path = `./public/cdn/${s_id}/${id}.png`;
                             fs.rmSync(cor_path);
                             var tmp = fs.createReadStream(tmp_path);
                             var dest = fs.createWriteStream(cor_path, { flags: "a" });
-    
+
                             tmp.pipe(dest);
                             tmp.on('end', () => {
                                 fs.rmSync(req.file.path);

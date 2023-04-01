@@ -622,6 +622,87 @@ form > div > div > span > input[type="text"] {
 {
     display: none;
 }
+.formularz-container-powiadomienia
+{
+    top: 0;
+    margin-top: 20px;    
+    display: flex; /*flex*/
+    justify-content: center;
+}
+.edytowanie-imienia
+{
+    width: 500px;
+    height: 200px;
+    background-color: #8a8a8a;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    margin-top: 200px;
+    position: absolute;
+    z-index: 2;
+}
+.edytowanie-imienia > form
+{
+    text-align: center;
+}
+.edytowanie-imienia > form > textarea
+{
+    text-align: left;
+    height: 100px;
+    resize: none;
+    background-color: #303030;
+    outline: none;
+    padding: 10px;
+    color: white;
+}
+.edytowanie-imienia > form > p
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+    font-family: var(--addon-font);
+}
+.edytowanie-imienia > form > input
+{
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #303030;
+    color: white;
+}
+.edytowanie-imienia > form > p > button
+{
+    width: 100px;
+    height: 25px;
+    font-size: 15px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    background: rgb(248,52,57);
+    margin-top: 15px;
+    background: linear-gradient(90deg, rgba(248,52,57,1) 0%, rgba(252,54,136,1) 100%);
+    cursor: pointer;
+}
+.edytowanie-imienia > form > p > button:hover
+{
+    box-shadow: 0 0 7px 0px rgba(252,54,136,1);
+}
+.formularz-zmiana-opis
+{
+    display: none; /*block*/
+}
+.formularz-zmiana-nazwy
+{
+    display: none;/*block*/
+}
+.formularz-zmiana-loga
+{
+    display: none;/*block*/
+}
 @media only screen and (max-width: 1730px)
 {
     .screen-z-zmienianymi-ofertami
