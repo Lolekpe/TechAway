@@ -53,13 +53,12 @@ a
 ul
 {
     list-style-type: none;
-
 }
 ul > li
 {
     color: white;
     margin-top: 20px;
-
+    cursor: pointer;
 }
 ul > li > i
 {

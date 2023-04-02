@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false, type: "" }));
-app.use(cdn.single("zdjecie"))
+app.use(cdn.array("zdjecie"))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((error, req, res, next) => {
@@ -233,7 +233,7 @@ app.get('/oferta', (req, res, next) => {
                             let ikona = row.map((item) => item.ikona)
                             for (let i = 0; i < row.length; i++) {
                                 combo += `<div class="oferta"><form action="/oferta?zmiana=${id[i]}" enctype="multipart/form-data" method="post"><div class="image-container">` +
-                                    `<input name="zdjecie" type="file" value="" id="file-input" class="inpucik" accept=".jpg, .png, .jpeg, .webp"><label for="file-input">` +
+                                    `<input name="zdjecie" value="" id="file-input-${id[i]}" type="file" class="inpucik" accept=".jpg, .png, .jpeg, .webp"><label for="file-input">` +
                                     `<img src="${ikona[i]}" alt="" class="obrazek-ofert"></label></div><div class="szybki-opis"><span>Produkt:` +
                                     `<input name="produkt" type="text" value="${nazwa[i]}" class="opis-do-zmian" maxlength="45">Cena: ` +
                                     `<input name="cena" type="text" value="${cena[i]}" class="opis-do-zmian" maxlength="9"></span></div>` +
@@ -334,6 +334,8 @@ app.post('/oferta', (req, res, next) => {
             password: "",
             database: 'techaway'
         })
+        console.dir(req.file)
+        console.dir(req.files)
         if (req.file) { tmp_path = req.file.path };
         con.connect(() => {
             con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
@@ -347,7 +349,7 @@ app.post('/oferta', (req, res, next) => {
                     database: `sklep_${x}`
                 })
                 sklep_db.connect(() => {
-                    sklep_db.query(`UPDATE produkty SET nazwa = '${req.body.produkt}', cena = ${req.body.cena.toString()}`, () => {
+                    sklep_db.query(`UPDATE produkty SET nazwa = '${req.body.produkt}', cena = ${req.body.cena.toString()} WHERE id = ${id}`, () => {
                         if (req.file) {
                             var cor_path = `./public/cdn/${s_id}/${id}.png`;
                             fs.rmSync(cor_path);
@@ -362,8 +364,9 @@ app.post('/oferta', (req, res, next) => {
                             tmp.on('error', (err) => {
                                 console.log(err)
                             });
+                        } else {
+                            return res.redirect("/oferta?zmiana=3")
                         }
-                        return res.redirect("/oferta?opcja=3")
                     })
                 })
             });

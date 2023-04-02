@@ -29,7 +29,6 @@ app.route('/')
     })
     .get((req, res, next) => {
         if (req.query.failed) {
-            console.log("xd")
             return res.render('rejestracja', { message: `<div class="jedendwatrzy">Informacje które podałeś są już w bazie danych!</div>`, stage: "TechAway | Rejestracja" });
         }
         res.render("rejestracja", { message: "", stage: "TechAway | Rejestracja" });

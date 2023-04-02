@@ -67,7 +67,6 @@ app.route('/')
                 con.connect(() => {
                     con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
-                        console.log(req.body.imie)
                         if (req.body.imie == row.map((item) => item.imie)) return res.redirect("/profil?error=imie");
                         con.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
                             return res.redirect("/profil?udane=imie");
@@ -109,16 +108,11 @@ app.route('/')
                 sha256.update(req.body.haslo_stare, "utf")
                 resul = sha256.digest("base64");
                 var sha256_1 = crypto.createHash("sha256");
-                console.log(req.body.haslo_nowe)
                 sha256_1.update(req.body.haslo_nowe, "utf")
                 resul_1 = sha256_1.digest("base64");
                 con.connect(() => {
-                    console.log("xd!")
                     con.query(`SELECT haslo FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
-                        console.log(resul);
-                        console.log(resul_1);
-                        console.log(row.map((item) => item.haslo))
                         if (resul != row.map((item) => item.haslo)) return res.redirect("/profil?error=haslo");
                         con.query(`UPDATE uzytkownicy SET haslo = '${resul_1}' WHERE ID = ${req.cookies.user}`, (err, row) => {
                             if (err) return res.send(err)
@@ -132,7 +126,6 @@ app.route('/')
                 con.connect(() => {
                     con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
-                        console.log(req.body.imie)
                         if (req.body.imie == row.map((item) => item.imie)) return res.redirect("/profil?error=imie");
                         con.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
                             return res.redirect("/profil?udane=imie");

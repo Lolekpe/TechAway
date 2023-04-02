@@ -19,12 +19,10 @@ app.route('/')
                 if (err) return console.log(err);
                 for (let i = 0; i < row.length; i++) {
                     let nazwa = row.map((item) => item.nazwa);
-                    console.log(nazwa + sklep[1])
                     if (nazwa[i].toLowerCase().replace(" ", "_") !== sklep[1]) {
                         continue;
                     }
                     exists = true;
-                    console.log(exists);
                 }
                 if(!exists) return res.send("<h1>Podany link jest nie właściwy!</h1><br><p>Dzieje sie tak, kiedy przepisując link wybierzesz zły znak, albo właściciel strony wyłączył ją z użytku!</p><br><button onclick='history.back()'>Wróć do wcześniejszej strony</button>")
                 if (sklep[2] == "index" && exists) {
@@ -39,7 +37,6 @@ app.route('/')
                         if (err) return console.log(err);
         
                         sklep_db.query(`SELECT * FROM informacje`, (err, row) => {
-                            console.log(row);
                             informacje.nazwa = row.map((item) => item.nazwa);
                             let m = row.map((item) => item.motyw).toString();
                             switch (m) {

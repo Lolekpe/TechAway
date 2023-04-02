@@ -15,9 +15,7 @@ app.route('/')
         var crypto = require("crypto");
         var sha256 = crypto.createHash("sha256");
         sha256.update(req.body.haslo, "utf")
-        console.log(req.body.haslo)
         resul = sha256.digest("base64");
-        console.log(resul)
         con.connect(function () {
             con.query(`SELECT * FROM uzytkownicy WHERE email = '${req.body.mail}' AND haslo = '${resul}'`, (err, row) => {
                 if (err) return console.log(err);
