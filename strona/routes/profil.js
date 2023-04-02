@@ -11,6 +11,11 @@ let resul;
 let resul_1;
 app.route('/')
     .get((req, res, next) => {
+        if (req.query.wylogowanie) {
+            res.clearCookie("user");
+            res.clearCookie("logged");
+            return res.redirect("/login?akcja=wylogowanie")
+        }
         let wiadomosc = "";
         switch (req.query.error) {
             case 'imie':
@@ -58,6 +63,7 @@ app.route('/')
     .post((req, res, next) => {
         switch (req.query.form) {
             case 'imie':
+                if (req.body.imie == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/profil"); }
                 con.connect(() => {
                     con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
@@ -71,6 +77,7 @@ app.route('/')
                 })
                 break;
             case 'nazwisko':
+                if (req.body.nazwisko == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/ustawienia"); }
                 con.connect(() => {
                     con.query(`SELECT nazwisko FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
@@ -83,6 +90,8 @@ app.route('/')
                 })
                 break;
             case 'mail':
+                let x = req.body.mail.split("@");
+                if (x[1] == ["admin.com" || "techaway.com"]) { return res.redirect("/profil") }
                 con.connect(() => {
                     con.query(`SELECT email FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
@@ -137,9 +146,9 @@ app.route('/')
                     con.query(`SELECT ustawienia FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                         if (err) return res.send(err)
                         let final = {};
-                        final.email = req.body.email == 'on' ? true : false;  
-                        final.popout = req.body.popout == 'on' ? true : false;  
-                        final.strona = req.body.strona == 'on' ? true : false;  
+                        final.email = req.body.email == 'on' ? true : false;
+                        final.popout = req.body.popout == 'on' ? true : false;
+                        final.strona = req.body.strona == 'on' ? true : false;
                         con.query(`UPDATE uzytkownicy SET ustawienia = '${JSON.stringify(final)}' WHERE ID = ${req.cookies.user}`);
                         return res.redirect("/profil")
                     })

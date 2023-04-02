@@ -31,6 +31,9 @@ app.get('/', (req, res, next) => {
     if (!req.cookies.logged) {
         return res.redirect("http://51.83.250.85:3000")
     }
+    if(req.query.brak) {
+        return res.send("<body style='background-color:black; color: white'><p style='font-size: 32px'>Wynika na to że nie posiadasz żadnych sklepów...</p><br><p style='font-size:32px' onclick='history.go(-1)'>Wróć do wcześniejszej strony i utwórz sklep! Kliknij na mnie!</p>")
+    }
     var con = sql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -39,7 +42,9 @@ app.get('/', (req, res, next) => {
     })
     con.connect(() => {
         con.query(`SELECT * FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
-            if (row.length === 0) return res.redirect("/");
+            if (row.length === 0) {
+                return res.redirect("http://51.83.250.85:8000/?brak=true")
+            };
             id = row.map((item) => item.ID);
             let nazwa = row.map((item) => item.nazwa);
             let opis = row.map((item) => item.opis);
@@ -120,8 +125,7 @@ app.post('/', (req, res, next) => {
             });
         });
     };
-})
-
+});
 app.get('/motywy', (req, res, next) => {
     if (!req.cookies.logged) {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });

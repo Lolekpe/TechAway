@@ -11,6 +11,7 @@ body, html
 }
 a
 {
+    color: white;
     text-decoration: none;
 }
 
@@ -176,7 +177,6 @@ main
     cursor: pointer;
     color: #a5a58d;
     margin-top: 130px;
-    margin-top: 40px;
 }
 .guzior123:hover
 {

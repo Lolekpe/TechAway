@@ -12,7 +12,14 @@ var rodzaj;
 router.get('/', function (req, res) {
     if (!req.cookies.logged) {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Strona Główna" });
-
+    }
+    if (req.cookies.user) {
+        con.connect(() => {
+            con.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) =>{
+                if(err) return res.send(err);
+                if(row.length === 0) return res.redirect('/login')
+            })
+        });
     }
     con.connect(function () {
         let back = "";
