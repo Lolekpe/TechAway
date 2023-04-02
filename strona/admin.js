@@ -29,7 +29,7 @@ app.use((error, req, res, next) => {
 app.get('/', (req, res, next) => {
     var informacje = {};
     if (!req.cookies.logged) {
-        return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });
+        return res.redirect("http://51.83.250.85:3000")
     }
     var con = sql.createConnection({
         host: 'localhost',
@@ -39,6 +39,7 @@ app.get('/', (req, res, next) => {
     })
     con.connect(() => {
         con.query(`SELECT * FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+            if (row.length === 0) return res.redirect("/");
             id = row.map((item) => item.ID);
             let nazwa = row.map((item) => item.nazwa);
             let opis = row.map((item) => item.opis);

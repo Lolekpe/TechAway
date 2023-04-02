@@ -6,7 +6,7 @@
         </div>
         <div class="form-container" id="conteiner">
             <%- message %>
-            <form action="http://127.0.0.1:3000/login/validate" method="post" autocomplete="off">
+            <form action="/login/validate" method="post" autocomplete="off">
                 <p>Podaj Mail: </p>
                 <span><i class="fa-regular fa-envelope"></i></span>
                 <input type="email" name="mail" required autocomplete="off">
@@ -15,7 +15,7 @@
                 <input type="password" name="haslo" required autocomplete="off">
                 <p><button type="submit">Zaloguj</button></p>
             </form>
-            <p>Jeśli nie posiadasz jeszcze konta?<br><a href="http://127.0.0.1:3000/rejestracja"><span>Zarejestruj się!</span></a></p>
+            <p>Jeśli nie posiadasz jeszcze konta?<br><a href="/rejestracja"><span>Zarejestruj się!</span></a></p>
         </div>
     </div>
     <script src="/javascripts/cookie.js" crossorigin="anonymous"></script>
