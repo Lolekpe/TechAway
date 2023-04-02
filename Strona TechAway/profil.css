@@ -82,7 +82,6 @@ ul > li > i
 {
     display: none;
     position: absolute;
-    background-color: red;
 }
 .naziwksko-container 
 {
@@ -91,13 +90,11 @@ ul > li > i
 }
 .haslo-container2
 {
-    background-color: blue;
-    display: none;
+    display: flex;
     position: absolute;
 }
 .e-mail-container 
 {
-    background-color: red;
     position: absolute;
     display: none;
 }
@@ -109,7 +106,7 @@ ul > li > i
 .zamowienia-container
 {
     position: absolute;
-    display: flex;
+    display: none;
 }
 .left-words
 {
@@ -352,7 +349,4 @@ ul > li > i
     width: 100%;
 
 }
-.usun-obiekt > span
-{
-    mtop: 250px;
-}
+
