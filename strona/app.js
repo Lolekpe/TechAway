@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var login = require("./routes/login")
 var rejestracja = require("./routes/rejestracja");
-var ustawienia = require("./routes/ustawienia");
+var profil = require("./routes/profil");
 var kreator = require("./routes/kreator/index");
 var sklepy = require("./routes/sklepy/index");
 
@@ -26,12 +26,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', routes);
+app.use('/profil', profil);
 app.use('/index', routes);
 app.use('/login/validate', login);
 app.use('/login', login);
 app.use('/rejestracja', rejestracja)
 app.use('/rejestracja/nowe', rejestracja)
-app.use('/ustawienia', ustawienia)
 app.use('/kreator', kreator);
 app.use('/:site/:view', sklepy);
 

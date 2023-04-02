@@ -1,0 +1,263 @@
+<%- include('./parts/heads') %>
+
+    <body>
+        <div class="left-nav-bar">
+            <ul>
+                <li onclick="ui('imie')"><i class="fa-solid fa-user"></i>Imię</li>
+                <li onclick="ui('nazwisko')"><i class="fa-solid fa-user"></i>Nazwisko</li>
+                <li onclick="ui('mail')"><i class="fa-solid fa-envelope"></i>E-Mail</li>
+                <li onclick="ui('haslo')"><i class="fa-solid fa-lock"></i>Hasło</li>
+                <li onclick="ui('powiadomienia')"><i class="fa-solid fa-bell"></i>Powiadomienia</li>
+                <li onclick="ui('zamowienia')"><i class="fa-solid fa-box"></i>Zamówienia</li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="imie-container container" id="imie">
+                <div class="tabelka">
+                    <div class="left-words">
+                        Ustawienia osobiste
+                    </div>
+                    <div class="right-words">
+                        Imię
+                    </div>
+                    <div class="center-div-in-tabelka">
+                        <div class="informacje-container">
+                            <%-message %>
+                            <div class="ifnformacja">
+                                <div class="napis">
+                                    Imię: <%- informacje.imie %>
+                                </div>
+                                <div class="edytuj" onclick="edytuj('imie_f')">
+                                    Edytuj
+                                </div>
+                            </div>
+                            <div class="formularz-container" id="imie_f">
+                                <div class="edytowanie-imienia">
+                                    <form method="post" action="/profil?form=imie">
+                                        <p>Podaj nowe imię</p>
+                                        <input type="text" name="imie">
+                                        <p>
+                                            <button type="submit">Zatwierdź</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="naziwksko-container container" id="nazwisko">
+                <div class="tabelka">
+                    <div class="left-words">
+                        Ustawienia osobiste
+                    </div>
+                    <div class="right-words">
+                        Nazwisko
+                    </div>
+                    <div class="center-div-in-tabelka">
+                        <div class="informacje-container">
+                            <div class="ifnformacja">
+                                <div class="napis">
+                                    Nazwisko: <%- informacje.nazwisko %>
+                                </div>
+                                <div class="edytuj" onclick="edytuj('nazwisko_f')">
+                                    Edytuj
+                                </div>
+                            </div>
+                            <div class="formularz-container" id="nazwisko_f">
+                                <div class="edytowanie-imienia">
+                                    <form method="post" action="/profil?form=nazwisko">
+                                        <p>Podaj nowe nazwisko</p>
+                                        <input type="text" name="nazwisko">
+                                        <p>
+                                            <button type="submit">Zatwierdź</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="e-mail-container container" id="mail">
+                <div class="tabelka">
+                    <div class="left-words">
+                        Ustawienia osobiste
+                    </div>
+                    <div class="right-words">
+                        Email
+                    </div>
+                    <div class="center-div-in-tabelka">
+                        <div class="informacje-container">
+                            <div class="ifnformacja">
+                                <div class="napis">
+                                    Mail: <%- informacje.mail %>
+                                </div>
+                                <div class="edytuj" onclick="edytuj('email_f')">
+                                    Edytuj
+                                </div>
+                            </div>
+                            <div class="formularz-container" id="email_f">
+                                <div class="edytowanie-imienia">
+                                    <form action="/profil?form=mail" method="post">
+                                        <p>Podaj nowy email</p>
+                                        <input type="email" name="mail">
+                                        <p>
+                                            <button type="submit">Zatwierdź</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="haslo-container2 container" id="haslo">
+                <div class="tabelka">
+                    <div class="left-words">
+                        Ustawienia prywatności
+                    </div>
+                    <div class="right-words">
+                        Hasło
+                    </div>
+                    <div class="center-div-in-tabelka">
+                        <div class="informacje-container">
+                            <div class="ifnformacja">
+                                <div class="napis">
+                                    Hasło: *********
+                                </div>
+                                <div class="edytuj" onclick="edytuj('haslo_f')">
+                                    Edytuj
+                                </div>
+                            </div>
+                            <div class="formularz-container" id="haslo_f">
+                                <div class="edytowanie-imienia">
+                                    <form action="/profil?form=haslo" method="post">
+                                        <p>Podaj stare hasło</p>
+                                        <input type="password" name="haslo_stare">
+                                        <p>Podaj nowe hasło</p>
+                                        <input type="password" name="haslo_nowe">
+                                        <p>
+                                            <button type="submit">Zatwierdź</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="powiadomienia-container container" id="powiadomienia">
+                <div class="tabelka">
+                    <div class="left-words">
+                        Ustawienia powiadomień
+                    </div>
+                    <div class="right-words">
+                        Powiadomienia
+                    </div>
+                    <div class="center-div-in-tabelka">
+                        <div class="informacje-container">
+                            <div class="formularz-container-powiadomienia">
+                                <div class="edytowanie-imienia">
+                                    <form action="/profil?form=ustawienia" method="post">
+                                        <label>
+                                            <p class="pe" id="email">Email
+                                                <input type="checkbox" name="email" <%- informacje.p_email %>>
+                                            </p>
+                                        </label>
+                                        <label>
+                                            <p class="pe" id="popout">Pop out
+                                                <input type="checkbox" name="popout" <%- informacje.p_pop %>>
+                                            </p>
+                                        </label>
+                                        <label>
+                                            <p class="pe" id="strona">Strona
+                                                <input type="checkbox" name="strona" <%- informacje.p_strona %>>
+                                            </p>
+                                        </label>
+                                        <p>
+                                            <button type="submit">Zatwierdź</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zamowienia-container container" id="zamowienia">
+                <div class="main2">
+                    <div class="koszyk-napis">
+                        <span>Twoje zamówienia</span>
+                    </div>
+                    <div class="produkt-w-koszyku">
+                        <div class="oferty">
+                            <div class="oferty-sklepowa-w-koszu">
+                                <div class="image-place">
+                                    <img src="https://cdn.discordapp.com/attachments/1088408367069921320/1088786901894443008/abibas2.png"
+                                        alt="" class="zdjecie-obiektu">
+                                </div>
+                                <div class="nazwa-obiektu">
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                </div>
+                                <div class="cena-obiektu">
+                                    350/zł
+                                </div>
+                                <div class="usun-obiekt">
+                                    <span>W czasie realizacji</span>
+                                </div>
+                            </div>
+                            <div class="oferty-sklepowa-w-koszu">
+                                <div class="image-place">
+                                    <img src="https://cdn.discordapp.com/attachments/1088408367069921320/1088786901894443008/abibas2.png"
+                                        alt="" class="zdjecie-obiektu">
+                                </div>
+                                <div class="nazwa-obiektu">
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                </div>
+                                <div class="cena-obiektu">
+                                    350/zł
+                                </div>
+                                <div class="usun-obiekt">
+                                    <span>Gotowe do odbioru</span>
+
+                                </div>
+                            </div>
+                            <div class="oferty-sklepowa-w-koszu">
+                                <div class="image-place">
+                                    <img src="https://cdn.discordapp.com/attachments/1088408367069921320/1088786901894443008/abibas2.png"
+                                        alt="" class="zdjecie-obiektu">
+                                </div>
+                                <div class="nazwa-obiektu">
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                    Szybkie, sportowe buty abibas
+                                </div>
+                                <div class="cena-obiektu">
+                                    350/zł
+                                </div>
+                                <div class="usun-obiekt">
+                                    <span>Odebrane</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src="/javascripts/profil.js"></script>
+        <script>
+            AOS.init();
+        </script>
+    </body>
+
+    </html>

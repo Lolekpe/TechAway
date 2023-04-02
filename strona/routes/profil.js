@@ -1,0 +1,152 @@
+var express = require('express');
+var app = express();
+var sql = require("mysql")
+var con = sql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+    database: 'techaway'
+});
+let resul;
+let resul_1;
+app.route('/')
+    .get((req, res, next) => {
+        let wiadomosc = "";
+        switch (req.query.error) {
+            case 'imie':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: red">Nowe i stare imię jest takie same!</div>`
+                break;
+            case 'nazwisko':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: red">Nowe i stare nazwisko jest takie same!</div>`
+                break;
+            case 'mail':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: red">Nowy i stary email są takie same!</div>`
+                break;
+            case 'haslo':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: red">Nowe i stare hasło są takie same!</div>`
+                break;
+        }
+        switch (req.query.udane) {
+            case 'imie':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: green">Pomyślnie zmieniono imię!</div>`
+                break;
+            case 'nazwisko':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: green">Pomyślnie zmieniono nazwisko!</div>`
+                break;
+            case 'mail':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: green">Pomyślnie zmieniono email!</div>`
+                break;
+            case 'haslo':
+                wiadomosc = `<div style="justify-content: center; display: flex; color: green">Pomyślnie zmieniono hasło!</div>`
+                break;
+        }
+        let data = {};
+        con.connect(() => {
+            con.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user.toString()}`, (err, row) => {
+                data.imie = row.map((item) => item.imie);
+                data.nazwisko = row.map((item) => item.nazwisko);
+                data.mail = row.map((item) => item.email);
+                data.haslo = row.map((item) => item.haslo)
+                let x = JSON.parse(row.map((item) => item.ustawienia));
+                data.p_email = x.email ? "checked" : "";
+                data.p_pop = x.popout ? "checked" : "";
+                data.p_strona = x.strona ? "checked" : "";
+                return res.render('profil', { informacje: data, message: wiadomosc });
+            })
+        })
+    })
+    .post((req, res, next) => {
+        switch (req.query.form) {
+            case 'imie':
+                con.connect(() => {
+                    con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) return res.send(err)
+                        console.log(req.body.imie)
+                        if (req.body.imie == row.map((item) => item.imie)) return res.redirect("/profil?error=imie");
+                        con.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
+                            return res.redirect("/profil?udane=imie");
+                        })
+
+                    })
+                })
+                break;
+            case 'nazwisko':
+                con.connect(() => {
+                    con.query(`SELECT nazwisko FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) return res.send(err)
+                        if (req.body.nazwisko == row.map((item) => item.nazwisko)) return res.redirect("/profil?error=nazwisko");
+                        con.query(`UPDATE uzytkownicy SET nazwisko = '${req.body.nazwisko}' WHERE ID = ${req.cookies.user}`, () => {
+                            return res.redirect("/profil?udane=nazwisko");
+                        })
+
+                    })
+                })
+                break;
+            case 'mail':
+                con.connect(() => {
+                    con.query(`SELECT email FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) return res.send(err)
+                        if (req.body.mail == row.map((item) => item.email)) return res.redirect("/profil?error=mail");
+                        con.query(`UPDATE uzytkownicy SET email = '${req.body.mail}' WHERE ID = ${req.cookies.user}`, () => {
+                            return res.redirect("/profil?udane=mail");
+                        })
+
+                    })
+                })
+                break;
+            case 'haslo':
+                var crypto = require("crypto");
+                var sha256 = crypto.createHash("sha256");
+                sha256.update(req.body.haslo_stare, "utf")
+                resul = sha256.digest("base64");
+                var sha256_1 = crypto.createHash("sha256");
+                console.log(req.body.haslo_nowe)
+                sha256_1.update(req.body.haslo_nowe, "utf")
+                resul_1 = sha256_1.digest("base64");
+                con.connect(() => {
+                    console.log("xd!")
+                    con.query(`SELECT haslo FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) return res.send(err)
+                        console.log(resul);
+                        console.log(resul_1);
+                        console.log(row.map((item) => item.haslo))
+                        if (resul != row.map((item) => item.haslo)) return res.redirect("/profil?error=haslo");
+                        con.query(`UPDATE uzytkownicy SET haslo = '${resul_1}' WHERE ID = ${req.cookies.user}`, (err, row) => {
+                            if (err) return res.send(err)
+                            return res.redirect("/profil?udane=haslo");
+                        })
+
+                    })
+                })
+                break;
+            case 'imie':
+                con.connect(() => {
+                    con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) return res.send(err)
+                        console.log(req.body.imie)
+                        if (req.body.imie == row.map((item) => item.imie)) return res.redirect("/profil?error=imie");
+                        con.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
+                            return res.redirect("/profil?udane=imie");
+                        })
+
+                    })
+                })
+                break;
+            case 'ustawienia':
+                con.connect(() => {
+                    con.query(`SELECT ustawienia FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) return res.send(err)
+                        let final = {};
+                        final.email = req.body.email == 'on' ? true : false;  
+                        final.popout = req.body.popout == 'on' ? true : false;  
+                        final.strona = req.body.strona == 'on' ? true : false;  
+                        con.query(`UPDATE uzytkownicy SET ustawienia = '${JSON.stringify(final)}' WHERE ID = ${req.cookies.user}`);
+                        return res.redirect("/profil")
+                    })
+                })
+                break;
+
+        }
+    })
+
+module.exports = app;

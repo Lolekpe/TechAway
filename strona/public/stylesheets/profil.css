@@ -80,7 +80,7 @@ ul > li > i
 }
 .imie-container
 {
-    display: none;
+    display: flex;
     position: absolute;
     background-color: red;
 }
@@ -109,7 +109,7 @@ ul > li > i
 .zamowienia-container
 {
     position: absolute;
-    display: flex;
+    display: none;
 }
 .left-words
 {
@@ -354,5 +354,5 @@ ul > li > i
 }
 .usun-obiekt > span
 {
-    mtop: 250px;
+    top: 250px;
 }
