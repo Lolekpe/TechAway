@@ -149,3 +149,14 @@ a
     font-weight: bolder;
     cursor: pointer;
 }
+@media only screen and (max-width: 1300px)
+{
+    .main
+    {
+        margin-top: 300px;
+    }
+    .dokonaj-zakupu
+    {
+        margin-top: -70px;
+    }
+}

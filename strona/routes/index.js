@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
             let link = row.map((item) => item.link);
             let vis = row.map((item) => item.widocznosc);
             for (let i = 0; i < row.length; i++) {
-                if(vis[i] === 0) {
+                if (vis[i] === 0) {
                     continue;
                 }
                 switch (typ[i]) {
@@ -45,11 +45,11 @@ router.get('/', function (req, res) {
                 back += `<div class="shop"><span class="logo"> <img src="${logo[i]}" alt="" class="logo-shop"> </span>` +
                     `<span class="nazwa"> ${nazwa[i]} </span>` +
                     `<span class="opis"> ${opis[i]} </span>` +
-                    `<span class="przejdzdosklepu"><a href="${link[i]}">Przejedź do sklepu</a></span>`+
+                    `<span class="przejdzdosklepu"><a href="${link[i]}">Przejedź do sklepu</a></span>` +
                     `</div>`;
             }
             let nowy = `<div class="dodwaniesklepu"><a href="/kreator"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></a></div>`
-            res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy });
+            res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy, admin: x });
         })
     })
 

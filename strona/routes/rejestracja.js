@@ -10,7 +10,7 @@ var con = sql.createConnection({
 var resul = 0;
 /* GET home page. */
 app.route('/')
-.post(function (req, res) {
+    .post(function (req, res) {
         var crypto = require("crypto");
         var sha256 = crypto.createHash("sha256");
         sha256.update(req.body.haslo, "utf");
