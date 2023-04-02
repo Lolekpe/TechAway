@@ -13,22 +13,59 @@
         <div class="main-panel">
             <div class="informacje-screen">
                 <div class="div-na-zmiany">
+                    <!-- <div class="formularz-zmiana-nazwy" id="nazwy">
+                        <div class="formularz-container-powiadomienia">
+                            <div class="edytowanie-imienia">
+                                <form method="post" action="/?nazwa=true">
+                                    <p>Podaj nową nazwę</p>
+                                    <input type="text" name="nazwa">
+                                    <p>
+                                        <button type="submit">Zatwierdź</button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="formularz-zmiana-loga" id="loga">
+                        <div class="formularz-container-powiadomienia">
+                            <div class="edytowanie-imienia" >
+                                <form method="post" action="/?logo=true" enctype="multipart/form-data">
+                                    <p>Wybierz nowe logo</p>
+                                    <input type="file" name="zdjecie" accept=".jpg, .png, .jpeg, .webp">
+                                    <p>
+                                        <button type="submit">Zatwierdź</button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formularz-zmiana-opis" id="opis">
+                        <div class="formularz-container-powiadomienia">
+                            <div class="edytowanie-imienia">
+                                <form method="post" action="/?opis=true">
+                                    <p>Napisz nowy opis</p>
+                                    <textarea name="dobre" id="" cols="30" rows="10"></textarea>
+                                    <p>
+                                        <button type="submit">Zatwierdź</button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="zmiana-nazwy zmiana">
                         <div class="aktualne-nazwa">
                             <%- informacje.nazwa %>
                         </div>
-                        <div class="edytuj">
-                            <button>Edytuj <i class="fa-solid fa-pen"></i></button>
-
-                        </div>
+                        <!-- <div class="edytuj">
+                            <button onclick="pokaz('nazwy')">Edytuj <i class="fa-solid fa-pen"></i></button>
+                        </div> -->
                     </div>
                     <div class="zmiana-loga zmiana">
                         <div class="aktualne">
-                            <img src="<%- informacje.logo %>"
-                                alt="" class="foto-na-zmianie">
+                            <img src="<%- informacje.logo %>" alt="" class="foto-na-zmianie">
                         </div>
                         <div class="edytuj">
-                            <button>Edytuj <i class="fa-solid fa-pen"></i></button>
+                            <button  onclick="pokaz('loga')">Edytuj <i class="fa-solid fa-pen"></i></button>
 
                         </div>
                     </div>
@@ -37,7 +74,7 @@
                             <%- informacje.opis %>
                         </div>
                         <div class="edytuj">
-                            <button>Edytuj <i class="fa-solid fa-pen"></i></button>
+                            <button  onclick="pokaz('opis')">Edytuj <i class="fa-solid fa-pen"></i></button>
                         </div>
                     </div>
 
@@ -45,6 +82,7 @@
             </div>
         </div>
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src="/javascripts/admin.js"></script>
         <script>
             AOS.init();
         </script>
