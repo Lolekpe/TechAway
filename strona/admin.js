@@ -25,7 +25,6 @@ app.use((error, req, res, next) => {
     return res.send(error);
 })
 
-
 app.get('/', (req, res, next) => {
     var informacje = {};
     if (!req.cookies.logged) {

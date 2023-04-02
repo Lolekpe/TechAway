@@ -36,11 +36,9 @@ app.use('/kreator', kreator);
 app.use('/:site/:view', sklepy);
 
 /// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+app.use((error, req, res, next) => {
+    return res.send(error)
+})
 
 /// error handlers
 
