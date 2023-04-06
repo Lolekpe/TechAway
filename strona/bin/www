@@ -27,10 +27,10 @@ var server2 = http.createServer(app2)
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, "51.83.250.85");
+server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-server2.listen(8000, "51.83.250.85");
+server2.listen(8000);
 server2.on('error', onError);
 server2.on('listening', onListening);
 
