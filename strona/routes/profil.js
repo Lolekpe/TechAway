@@ -1,12 +1,6 @@
 var express = require('express');
 var app = express();
 var sql = require("mysql")
-var con = sql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: "",
-    database: 'techaway'
-});
 let resul;
 let resul_1;
 app.route('/')
@@ -61,14 +55,27 @@ app.route('/')
         })
     })
     .post((req, res, next) => {
+        var con = sql.createPool({
+            host: 'localhost',
+            user: 'root',
+            password: "",
+            database: 'techaway'
+        });
         switch (req.query.form) {
             case 'imie':
                 if (req.body.imie == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/profil"); }
-                con.connect(() => {
-                    con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) return res.send(err)
-                        if (req.body.imie == row.map((item) => item.imie)) return res.redirect("/profil?error=imie");
-                        con.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
+                con.getConnection((err, connection) => {
+                    connection.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) {
+                            connection.release();
+                            return res.send(err)
+                        }
+                        if (req.body.imie == row.map((item) => item.imie)) {
+                            connection.release();
+                            return res.redirect("/profil?error=imie");
+                        }
+                        connection.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
+                            connection.release();
                             return res.redirect("/profil?udane=imie");
                         })
 
@@ -77,11 +84,18 @@ app.route('/')
                 break;
             case 'nazwisko':
                 if (req.body.nazwisko == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/ustawienia"); }
-                con.connect(() => {
-                    con.query(`SELECT nazwisko FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) return res.send(err)
-                        if (req.body.nazwisko == row.map((item) => item.nazwisko)) return res.redirect("/profil?error=nazwisko");
-                        con.query(`UPDATE uzytkownicy SET nazwisko = '${req.body.nazwisko}' WHERE ID = ${req.cookies.user}`, () => {
+                con.getConnection((err, connection) => {
+                    connection.query(`SELECT nazwisko FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) {
+                            connection.release();
+                            return res.send(err)
+                        }
+                        if (req.body.nazwisko == row.map((item) => item.nazwisko)) {
+                            connection.release();
+                            return res.redirect("/profil?error=nazwisko");
+                        }
+                        connection.query(`UPDATE uzytkownicy SET nazwisko = '${req.body.nazwisko}' WHERE ID = ${req.cookies.user}`, () => {
+                            connection.release();
                             return res.redirect("/profil?udane=nazwisko");
                         })
 
@@ -91,11 +105,18 @@ app.route('/')
             case 'mail':
                 let x = req.body.mail.split("@");
                 if (x[1] == ["admin.com" || "techaway.com"]) { return res.redirect("/profil") }
-                con.connect(() => {
-                    con.query(`SELECT email FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) return res.send(err)
-                        if (req.body.mail == row.map((item) => item.email)) return res.redirect("/profil?error=mail");
-                        con.query(`UPDATE uzytkownicy SET email = '${req.body.mail}' WHERE ID = ${req.cookies.user}`, () => {
+                con.getConnection((err, connection) => {
+                    connection.query(`SELECT email FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) {
+                            connection.release();
+                            return res.send(err)
+                        }
+                        if (req.body.mail == row.map((item) => item.email)) {
+                            connection.release();
+                            return res.redirect("/profil?error=mail");
+                        }
+                        connection.query(`UPDATE uzytkownicy SET email = '${req.body.mail}' WHERE ID = ${req.cookies.user}`, () => {
+                            connection.release();
                             return res.redirect("/profil?udane=mail");
                         })
 
@@ -110,39 +131,41 @@ app.route('/')
                 var sha256_1 = crypto.createHash("sha256");
                 sha256_1.update(req.body.haslo_nowe, "utf")
                 resul_1 = sha256_1.digest("base64");
-                con.connect(() => {
-                    con.query(`SELECT haslo FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) return res.send(err)
-                        if (resul != row.map((item) => item.haslo)) return res.redirect("/profil?error=haslo");
+                con.getConnection((err, connection) => {
+                    connection.query(`SELECT haslo FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) {
+                            connection.release();
+                            return res.send(err)
+                        }
+                        if (resul != row.map((item) => item.haslo)) {
+                            connection.release();
+                            return res.redirect("/profil?error=haslo");
+                        }
                         con.query(`UPDATE uzytkownicy SET haslo = '${resul_1}' WHERE ID = ${req.cookies.user}`, (err, row) => {
-                            if (err) return res.send(err)
+                            if (err) {
+                                connection.release();
+                                return res.send(err);
+                            }
+                            connection.release();
                             return res.redirect("/profil?udane=haslo");
                         })
 
                     })
                 })
                 break;
-            case 'imie':
-                con.connect(() => {
-                    con.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) return res.send(err)
-                        if (req.body.imie == row.map((item) => item.imie)) return res.redirect("/profil?error=imie");
-                        con.query(`UPDATE uzytkownicy SET imie = '${req.body.imie}' WHERE ID = ${req.cookies.user}`, () => {
-                            return res.redirect("/profil?udane=imie");
-                        })
-
-                    })
-                })
-                break;
             case 'ustawienia':
-                con.connect(() => {
-                    con.query(`SELECT ustawienia FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) return res.send(err)
+                con.getConnection((err, connection) => {
+                    connection.query(`SELECT ustawienia FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                        if (err) {
+                            connection.release();
+                            return res.send(err)
+                        }
                         let final = {};
                         final.email = req.body.email == 'on' ? true : false;
                         final.popout = req.body.popout == 'on' ? true : false;
                         final.strona = req.body.strona == 'on' ? true : false;
-                        con.query(`UPDATE uzytkownicy SET ustawienia = '${JSON.stringify(final)}' WHERE ID = ${req.cookies.user}`);
+                        connection.query(`UPDATE uzytkownicy SET ustawienia = '${JSON.stringify(final)}' WHERE ID = ${req.cookies.user}`);
+                        connection.release();
                         return res.redirect("/profil")
                     })
                 })

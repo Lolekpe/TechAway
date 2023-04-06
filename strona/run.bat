@@ -1,1 +1,1 @@
-npm run test
+npx nodemon ./bin/www

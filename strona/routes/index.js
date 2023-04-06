@@ -1,29 +1,36 @@
 var express = require('express');
 var router = express.Router();
-var sql = require("mysql")
-var con = sql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: "",
-    database: 'techaway'
-})
 var rodzaj;
+var sql = require("mysql");
 /* GET home page. */
 router.get('/', function (req, res) {
+    var con = sql.createPool({
+        host: 'localhost',
+        user: 'root',
+        password: "",
+        database: 'techaway'
+    })
     if (!req.cookies.logged) {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Strona Główna" });
     }
     if (req.cookies.user) {
-        con.connect(() => {
-            con.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) =>{
-                if(err) return res.send(err);
-                if(row.length === 0) return res.redirect('/login')
+        con.getConnection((err, connection) => {
+            if(err) return res.send(err);
+            connection.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
+                if (err) {
+                    connection.release();
+                    return res.send(err);
+                }
+                if (row.length === 0) {
+                    connection.release();
+                    return res.redirect('/login')
+                }
             })
-        });
+        })
     }
-    con.connect(function () {
+    con.getConnection((err, connection) => {
         let back = "";
-        con.query(`SELECT * FROM sklepy`, (err, row) => {
+        connection.query(`SELECT * FROM sklepy`, (err, row) => {
             if (err) return res.send(err);
             let nazwa = row.map((item) => item.nazwa);
             let typ = row.map((item) => item.typ).toString();
@@ -55,8 +62,9 @@ router.get('/', function (req, res) {
                     `<span class="przejdzdosklepu"><a href="${link[i]}">Przejedź do sklepu</a></span>` +
                     `</div>`;
             }
-            let nowy = `<div class="dodwaniesklepu"><a href="/kreator"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></a></div>`
-            res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy });
+            let nowy = `<div class="dodwaniesklepu"><a href="/kreator"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></a></div>`;
+            connection.release();
+            return res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy });
         })
     })
 

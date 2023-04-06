@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false, type: "" }));
-app.use(cdn.array("zdjecie"))
+app.use(cdn.single("zdjecie"))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((error, req, res, next) => {
@@ -231,8 +231,8 @@ app.get('/oferta', (req, res, next) => {
                             let cena = row.map((item) => item.cena)
                             let ikona = row.map((item) => item.ikona)
                             for (let i = 0; i < row.length; i++) {
-                                combo += `<div class="oferta"><form action="/oferta?zmiana=${id[i]}" enctype="multipart/form-data" method="post"><div class="image-container">` +
-                                    `<input name="zdjecie" value="" id="file-input-${id[i]}" type="file" class="inpucik" accept=".jpg, .png, .jpeg, .webp"><label for="file-input">` +
+                                combo += `<div class="oferta"><form action="/oferta?produkt=${id[i]}" enctype="multipart/form-data" method="post"><div class="image-container">` +
+                                    `<input name="zdjecie" value="" id="file-input" type="file" class="inpucik" accept=".jpg, .png, .jpeg, .webp"><label for="file-input">` +
                                     `<img src="${ikona[i]}" alt="" class="obrazek-ofert"></label></div><div class="szybki-opis"><span>Produkt:` +
                                     `<input name="produkt" type="text" value="${nazwa[i]}" class="opis-do-zmian" maxlength="45">Cena: ` +
                                     `<input name="cena" type="text" value="${cena[i]}" class="opis-do-zmian" maxlength="9"></span></div>` +
