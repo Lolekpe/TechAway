@@ -65,7 +65,8 @@ router.get('/', function (req, res) {
             }
             let nowy = `<div class="dodwaniesklepu"><a href="/kreator"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></a></div>`;
             connection.release();
-            let origin = req.cookies.origin;
+            let origin = req.cookies.origin === "server" ? "51.83.250.85:8000" : "127.0.0.1:8000";
+
             res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
             res.setHeader('Pragma', 'no-cache');
             res.setHeader('Expires', '0');
