@@ -20,10 +20,6 @@ let x;
 
 app.route('/')
     .get((req, res, next) => {
-        if (!req.cookies.logged) {
-            let x = req.cookies.origin === "server" ? "51.83.250.85:3000" : "127.0.0.1:3000";
-            return res.redirect(`http://${x}/login?loginFirst=true`);
-        }    
         if (req.query.final) {
             var table = sql.createPool({
                 host: 'localhost',

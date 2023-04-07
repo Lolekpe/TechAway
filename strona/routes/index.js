@@ -11,9 +11,7 @@ var con = sql.createPool({
 })
 /* GET home page. */
 router.get('/', function (req, res) {
-    const origin = req.cookies.origin === "server" ? "51.83.250.85:8000" : "127.0.0.1:8000";
     if (!req.cookies.logged) {
-        let x = req.cookies.origin === "server" ? "51.83.250.85:3000" : "127.0.0.1:3000";
         return res.redirect(`http://${x}/login?loginFirst=true`);
     }
     if (req.cookies.user) {

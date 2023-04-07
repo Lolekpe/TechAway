@@ -32,6 +32,8 @@ app.route('/')
         });
     })
     .get((req, res, next) => {
+
+        res.cookie("origin", app.locals.ip, { maxAge: 1000 * 60 * 60 * 10 });
         if (req.query.loginFirst) {
             return res.render('login', { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });
         }
