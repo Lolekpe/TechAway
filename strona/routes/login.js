@@ -32,6 +32,9 @@ app.route('/')
         });
     })
     .get((req, res, next) => {
+        if (req.query.loginFirst) {
+            return res.render('login', { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });
+        }
         if (req.query.failedLogin) {
             return res.render('login', { message: `<div class="jedendwatrzy">Zle dane logowania!</div>`, stage: "TechAway | Logowanie" });
         }

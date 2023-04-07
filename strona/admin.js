@@ -29,7 +29,8 @@ app.use((error, req, res, next) => {
 app.get('/', (req, res, next) => {
     var informacje = {};
     if (!req.cookies.logged) {
-        return res.redirect("")
+        let x = req.cookies.origin === "server" ? "51.83.250.85:3000" : "127.0.0.1:3000";
+        return res.redirect(`http://${x}/login?loginFirst=true`);
     }
     if (req.query.brak) {
         return res.send("<body style='background-color:black; color: white'><p style='font-size: 32px'>Wynika na to że nie posiadasz żadnych sklepów...</p><br><p style='font-size:32px' onclick='history.go(-1)'>Wróć do wcześniejszej strony i utwórz sklep! Kliknij na mnie!</p>")
@@ -133,7 +134,8 @@ app.post('/', (req, res, next) => {
 });
 app.get('/motywy', (req, res, next) => {
     if (!req.cookies.logged) {
-        return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });
+        let x = req.cookies.origin === "server" ? "51.83.250.85:3000" : "127.0.0.1:3000";
+        return res.redirect(`http://${x}/login?loginFirst=true`);
     }
 
     if (req.query.opcja) {
@@ -180,7 +182,8 @@ app.get('/motywy', (req, res, next) => {
 });
 app.get('/oferta', (req, res, next) => {
     if (!req.cookies.logged) {
-        return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" })
+        let x = req.cookies.origin === "server" ? "51.83.250.85:3000" : "127.0.0.1:3000";
+        return res.redirect(`http://${x}/login?loginFirst=true`);
     }
     switch (req.query.opcja) {
         case '1':
