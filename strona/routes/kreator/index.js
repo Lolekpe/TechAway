@@ -7,12 +7,14 @@ var con = sql.createPool({
     host: 'localhost',
     user: 'root',
     password: "",
-    database: 'techaway'
+    database: 'techaway',
+    connectionLimit: 300,
 });
 var newDb = sql.createPool({
     host: 'localhost',
     user: 'root',
     password: "",
+    connectionLimit: 300,
 });
 let x;
 
@@ -23,7 +25,8 @@ app.route('/')
                 host: 'localhost',
                 user: 'root',
                 password: "",
-                database: `sklep_${database.nazwa}`
+                database: `sklep_${database.nazwa}`,
+                connectionLimit: 300,
             });
             fs.mkdir(`./public/images/serwery/${database.nazwa}`, (err) => {
                 return console.log(err)
@@ -65,7 +68,7 @@ app.route('/')
                         connection.release();
                         return res.send(err);
                     }
-                    con.query(`INSERT INTO sklepy(ID, nazwa, typ, motyw, uklad, opis, logo, link, widocznosc, wlasciciel) VALUES (NULL, '${x}', 0, ${database.motyw}, ${database.uklad}, '${database.opis}', '/images/serwery/${database.nazwa}/logo.png', '/${database.nazwa}/index', 1, ${req.cookies.user})`, (err, row) => {
+                    con.query(`INSERT INTO sklepy(ID, nazwa, typ, motyw, uklad, opis, logo, link, widocznosc, wlasciciel) VALUES (NULL, '${x}', 0, ${database.motyw}, ${database.uklad}, '${database.opis}', '/images/serwery/${database.nazwa}/logo.png', '/skl/${database.nazwa}/index', 1, ${req.cookies.user})`, (err, row) => {
                         if (err) {
                             connection.release();
                             return res.send(err);

@@ -3,6 +3,14 @@ var app = express();
 var sql = require("mysql")
 let resul;
 let resul_1;
+var con = sql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+    database: 'techaway',
+    connectionLimit: 300,
+});
+
 app.route('/')
     .get((req, res, next) => {
         if (req.query.wylogowanie) {
@@ -40,8 +48,8 @@ app.route('/')
                 break;
         }
         let data = {};
-        con.connect(() => {
-            con.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user.toString()}`, (err, row) => {
+        con.getConnection((err, connection) => {
+            connection.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user.toString()}`, (err, row) => {
                 data.imie = row.map((item) => item.imie);
                 data.nazwisko = row.map((item) => item.nazwisko);
                 data.mail = row.map((item) => item.email);
@@ -50,26 +58,17 @@ app.route('/')
                 data.p_email = x.email ? "checked" : "";
                 data.p_pop = x.popout ? "checked" : "";
                 data.p_strona = x.strona ? "checked" : "";
+                connection.release();
                 return res.render('profil', { informacje: data, message: wiadomosc });
             })
         })
     })
     .post((req, res, next) => {
-        var con = sql.createPool({
-            host: 'localhost',
-            user: 'root',
-            password: "",
-            database: 'techaway'
-        });
         switch (req.query.form) {
             case 'imie':
                 if (req.body.imie == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/profil"); }
                 con.getConnection((err, connection) => {
                     connection.query(`SELECT imie FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) {
-                            connection.release();
-                            return res.send(err)
-                        }
                         if (req.body.imie == row.map((item) => item.imie)) {
                             connection.release();
                             return res.redirect("/profil?error=imie");
@@ -86,10 +85,6 @@ app.route('/')
                 if (req.body.nazwisko == ["Techaway" || "Administrator" || "techaway" || "administrator"]) { return res.redirect("/ustawienia"); }
                 con.getConnection((err, connection) => {
                     connection.query(`SELECT nazwisko FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) {
-                            connection.release();
-                            return res.send(err)
-                        }
                         if (req.body.nazwisko == row.map((item) => item.nazwisko)) {
                             connection.release();
                             return res.redirect("/profil?error=nazwisko");
@@ -107,10 +102,6 @@ app.route('/')
                 if (x[1] == ["admin.com" || "techaway.com"]) { return res.redirect("/profil") }
                 con.getConnection((err, connection) => {
                     connection.query(`SELECT email FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) {
-                            connection.release();
-                            return res.send(err)
-                        }
                         if (req.body.mail == row.map((item) => item.email)) {
                             connection.release();
                             return res.redirect("/profil?error=mail");
@@ -133,19 +124,11 @@ app.route('/')
                 resul_1 = sha256_1.digest("base64");
                 con.getConnection((err, connection) => {
                     connection.query(`SELECT haslo FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
-                        if (err) {
-                            connection.release();
-                            return res.send(err)
-                        }
                         if (resul != row.map((item) => item.haslo)) {
                             connection.release();
                             return res.redirect("/profil?error=haslo");
                         }
                         con.query(`UPDATE uzytkownicy SET haslo = '${resul_1}' WHERE ID = ${req.cookies.user}`, (err, row) => {
-                            if (err) {
-                                connection.release();
-                                return res.send(err);
-                            }
                             connection.release();
                             return res.redirect("/profil?udane=haslo");
                         })

@@ -2,20 +2,22 @@ var express = require('express');
 var router = express.Router();
 var rodzaj;
 var sql = require("mysql");
+var con = sql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+    database: 'techaway',
+    connectionLimit: 300,
+})
 /* GET home page. */
 router.get('/', function (req, res) {
-    var con = sql.createPool({
-        host: 'localhost',
-        user: 'root',
-        password: "",
-        database: 'techaway'
-    })
+    const origin = req.cookies.origin === "server" ? "51.83.250.85:8000" : "127.0.0.1:8000";
     if (!req.cookies.logged) {
         return res.render("login", { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Strona Główna" });
     }
     if (req.cookies.user) {
         con.getConnection((err, connection) => {
-            if(err) return res.send(err);
+            if (err) return res.send(err);
             connection.query(`SELECT * FROM uzytkownicy WHERE ID = ${req.cookies.user}`, (err, row) => {
                 if (err) {
                     connection.release();
@@ -64,7 +66,11 @@ router.get('/', function (req, res) {
             }
             let nowy = `<div class="dodwaniesklepu"><a href="/kreator"><div class="dodajsklep"><i class="fa-solid fa-plus"></i></div></a></div>`;
             connection.release();
-            return res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy });
+
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+            res.setHeader('Pragma', 'no-cache');
+            res.setHeader('Expires', '0');
+            return res.render('index', { stage: "TechAway | Strona Główna", sklepy: back, nowy: nowy, admin: origin });
         })
     })
 

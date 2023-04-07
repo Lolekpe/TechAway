@@ -2,15 +2,16 @@ var express = require('express');
 var app = express();
 var sql = require("mysql");
 var resul = 0;
+var con = sql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: "",
+    database: 'techaway',
+    connectionLimit: 300,
+})
 /* GET home page. */
 app.route('/')
     .post(function (req, res) {
-        var con = sql.createPool({
-            host: 'localhost',
-            user: 'root',
-            password: "",
-            database: 'techaway'
-        })
         var crypto = require("crypto");
         var sha256 = crypto.createHash("sha256");
         sha256.update(req.body.haslo, "utf");

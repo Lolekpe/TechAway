@@ -9,7 +9,7 @@
             <li><a href="#">Strona główna</a></li>
             <li><a href="#produkty">Produkty</a></li>
             <li>Nowości</li>
-            <li><a href="/<%- informacje.nazwa %>/koszyk">Koszyk</a></li>
+            <li><a href="/skl/<%- informacje.nazwa %>/koszyk">Koszyk</a></li>
             <li><a href="#kontakt">Kontakt</a></li>
         </ul>
     </nav>
@@ -24,8 +24,8 @@
         </header>
         <div class="oferty-container">
             <div class="oferty-box" id="produkty">
-                <% for( let i = 0; i < 3; i++ ) { %>
-                    <%- include("./parts/oferta") %>
+                <% for (let i = 0; i < produkt.length; i++) { %>
+                    <%- include("./parts/oferta", {i: i}) %>
                 <% } %>
             </div>
         </div>

@@ -8,6 +8,7 @@ let id;
 var multer = require("multer");
 var cdn = multer({ dest: `./public/cdn/temp` });
 var fs = require("fs");
+const rateLimit = require("express-rate-limit");
 
 var app = express();
 
@@ -28,7 +29,7 @@ app.use((error, req, res, next) => {
 app.get('/', (req, res, next) => {
     var informacje = {};
     if (!req.cookies.logged) {
-        return res.redirect("http://127.0.0.1:3000")
+        return res.redirect("")
     }
     if (req.query.brak) {
         return res.send("<body style='background-color:black; color: white'><p style='font-size: 32px'>Wynika na to że nie posiadasz żadnych sklepów...</p><br><p style='font-size:32px' onclick='history.go(-1)'>Wróć do wcześniejszej strony i utwórz sklep! Kliknij na mnie!</p>")
@@ -37,48 +38,49 @@ app.get('/', (req, res, next) => {
         host: 'localhost',
         user: 'root',
         password: "",
-        database: 'techaway'
+        database: 'techaway',
+        connectionLimit: 300,
     })
     con.getConnection((err, connection) => {
         connection.query(`SELECT * FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
             if (row.length === 0) {
                 connection.release();
-                return res.redirect("http://127.0.0.1:8000/?brak=true")
+                return res.redirect("..")
             };
             id = row.map((item) => item.ID);
             let nazwa = row.map((item) => item.nazwa);
             let opis = row.map((item) => item.opis);
             let zdj = row.map((item) => item.logo);
-            informacje.nazwa = nazwa;
-            informacje.logo = zdj;
-            informacje.opis = opis;
-            fs.stat(`./public/cdn/${id}`, (err, res) => {
-                if (err) return fs.mkdir(`./public/cdn/${id}`, (err) => {
+            informacje.nazwa = nazwa[0];
+            informacje.logo = zdj[0];
+            informacje.opis = opis[0];
+            fs.stat(`./public/cdn/${id[0]}`, (err, res) => {
+                if (err) return fs.mkdir(`./public/cdn/${id[0]}`, (err) => {
                     if (err) return console.log(err);
                 });
             })
+            connection.release();
             return res.render('admin/index', { informacje: informacje });
         })
     })
 
 });
 app.post('/', (req, res, next) => {
+    var con = sql.createPool({
+        host: 'localhost',
+        user: 'root',
+        password: "",
+        database: 'techaway',
+        connectionLimit: 300,
+    });
     if (req.query.logo) {
         var tmp_path;
         let sklep;
-        var con = sql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: "",
-            database: 'techaway'
-        });
-        con.connect(() => {
-            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user} `, (err, row) => {
-                if (err) return res.send(err);
+        con.getConnection((err, connection) => {
+            connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user} `, (err, row) => {
                 sklep = row.map((item) => item.nazwa);
                 tmp_path = req.file.path;
-                prod_id = row.map((item) => item.id).toString();
-                var cor_path = `./public/images/serwery/${sklep.toString().toLowerCase().replace(" ", "_")}/logo.png`;
+                var cor_path = `./public/images/serwery/${sklep[0].toString().toLowerCase().replace(" ", "_")}/logo.png`;
                 if (fs.existsSync(cor_path)) {
                     fs.rmSync(cor_path);
                 }
@@ -88,9 +90,11 @@ app.post('/', (req, res, next) => {
                 tmp.pipe(dest);
                 tmp.on('end', () => {
                     fs.rmSync(req.file.path);
+                    connection.release();
                     return res.redirect("/");
                 })
                 tmp.on('error', (err) => {
+                    connection.release();
                     console.log(err)
                 });
 
@@ -99,25 +103,26 @@ app.post('/', (req, res, next) => {
 
     }
     if (req.query.opis) {
-        var con = sql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: "",
-            database: 'techaway'
-        });
-        con.connect(() => {
-            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
-                if (err) return res.send(err);
-                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                var sklep_db = sql.createConnection({
+        con.getConnection((err, connection) => {
+            connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                if (err) {
+                    connection.release();
+                    return res.send(err);
+                }
+                let y = row.map((item) => item.nazwa);
+                let x = y[0].toString().toLowerCase().replace(" ", "_");
+                var sklep_db = sql.createPool({
                     host: 'localhost',
                     user: 'root',
                     password: "",
-                    database: `sklep_${x}`
+                    database: `sklep_${x}`,
+                    connectionLimit: 300,
                 })
-                sklep_db.connect(() => {
+                connection.release();
+                sklep_db.getConnection((err, connection) => {
                     sklep_db.query(`UPDATE informacje SET opis = '${req.body.dobre}' WHERE id = 1`, () => {
                         con.query(`UPDATE sklepy SET opis = '${req.body.dobre}' WHERE wlasciciel = ${req.cookies.user}`, () => {
+                            connection.release();
                             return res.redirect('/')
                         })
                     })
@@ -132,27 +137,36 @@ app.get('/motywy', (req, res, next) => {
     }
 
     if (req.query.opcja) {
-        var con = sql.createConnection({
+        var con = sql.createPool({
             host: 'localhost',
             user: 'root',
             password: "",
-            database: 'techaway'
+            database: 'techaway',
+            connectionLimit: 300,
         });
-        con.connect((err) => {
-            if (err) return res.send(err);
-            con.query(`UPDATE sklepy SET motyw = ${req.query.opcja} WHERE wlasciciel = ${req.cookies.user}`, () => {
-                con.query(`SELECT nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+        con.getConnection((err, connection) => {
+            connection.query(`UPDATE sklepy SET motyw = ${req.query.opcja} WHERE wlasciciel = ${req.cookies.user}`, () => {
+                connection.query(`SELECT nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
                     let nazwa = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                    var sklep_db = sql.createConnection({
+                    var sklep_db = sql.createPool({
                         host: 'localhost',
                         user: 'root',
                         password: "",
-                        database: `sklep_${nazwa}`
+                        database: `sklep_${nazwa}`,
+                        connectionLimit: 300,
                     })
-                    sklep_db.connect((err) => {
-                        if (err) return res.send(err)
+                    connection.release();
+                    sklep_db.getConnection((err, connection) => {
+                        if (err) {
+                            connection.release();
+                            return res.send(err)
+                        }
                         sklep_db.query(`UPDATE informacje SET motyw = ${req.query.opcja} WHERE wlasciciel = ${req.cookies.user}`, (err) => {
-                            if (err) return res.send(err)
+                            if (err) {
+                                connection.release();
+                                return res.send(err)
+                            }
+                            connection.release();
                             return res.render("admin/motywy", { message: "<div style='position: absolute; top:100px'>Pomyślnie zmieniono motyw!</div>" });
                         })
                     })
@@ -173,24 +187,32 @@ app.get('/oferta', (req, res, next) => {
             return res.render('admin/oferta', { wyswietl: 2 });
         case '2':
             let edcom = "";
-            var con = sql.createConnection({
+            var con = sql.createPool({
                 host: 'localhost',
                 user: 'root',
                 password: "",
-                database: 'techaway'
+                database: 'techaway',
+                connectionLimit: 300,
             })
-            con.connect(() => {
-                con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
-                    if (err) return res.send(err);
-                    let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                    var sklep_db = sql.createConnection({
+            con.getConnection((err, connection) => {
+                connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                    if (err) {
+                        connection.release();
+                        return res.send(err);
+                    }
+                    let y = row.map((item) => item.nazwa);
+                    let x = y[0].toString().toLowerCase().replace(" ", "_");
+
+                    var sklep_db = sql.createPool({
                         host: 'localhost',
                         user: 'root',
                         password: "",
-                        database: `sklep_${x}`
+                        database: `sklep_${x}`,
+                        connectionLimit: 300,
                     })
-                    sklep_db.connect(() => {
-                        sklep_db.query(`SELECT * FROM produkty`, (err, row) => {
+                    connection.release();
+                    sklep_db.getConnection((err, connection) => {
+                        connection.query(`SELECT * FROM produkty`, (err, row) => {
                             let nazwa = row.map((item) => item.nazwa)
                             let id = row.map((item) => item.id)
                             let cena = row.map((item) => item.cena)
@@ -200,6 +222,7 @@ app.get('/oferta', (req, res, next) => {
                                     `<div class="szybki-opis"><span>Produkt: ${nazwa[i]}</span><br><span>Cena: ${cena[i]}</span></div><div class="tu-jest-guzior">` +
                                     `<button class="usuwanie-oferty">usuń</button></div></div></form>`;
                             }
+                            connection.release();
                             return res.render('admin/oferta', { wyswietl: 3, produkt: edcom });
                         })
                     });
@@ -209,24 +232,32 @@ app.get('/oferta', (req, res, next) => {
 
         default:
             let combo = "";
-            var con = sql.createConnection({
+            var con = sql.createPool({
                 host: 'localhost',
                 user: 'root',
                 password: "",
-                database: 'techaway'
+                database: 'techaway',
+                connectionLimit: 300,
             })
-            con.connect(() => {
-                con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
-                    if (err) return res.send(err);
-                    let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                    var sklep_db = sql.createConnection({
+            con.getConnection((err, connection) => {
+                connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                    if (err) {
+                        connection.release();
+                        return res.send(err);
+                    }
+                    let a = row.map((item) => item.nazwa);
+                    let x = a[0].toString().toLowerCase().replace(" ", "_");
+                    var sklep_db = sql.createPool({
                         host: 'localhost',
                         user: 'root',
                         password: "",
-                        database: `sklep_${x}`
+                        database: `sklep_${x}`,
+                        connectionLimit: 300,
                     })
-                    sklep_db.connect(() => {
-                        sklep_db.query(`SELECT * FROM produkty`, (err, row) => {
+                    connection.release();
+                    sklep_db.getConnection((err, connection) => {
+                        if (err) return res.send(err);
+                        connection.query(`SELECT * FROM produkty`, (err, row) => {
                             let nazwa = row.map((item) => item.nazwa)
                             let id = row.map((item) => item.id)
                             let cena = row.map((item) => item.cena)
@@ -239,6 +270,7 @@ app.get('/oferta', (req, res, next) => {
                                     `<input name="cena" type="text" value="${cena[i]}" class="opis-do-zmian" maxlength="9"></span></div>` +
                                     `<div class="tu-jest-guzior"><button class="akceptacja-zmian">Akceptuj</button></div></form></div>`;
                             }
+                            connection.release();
                             return res.render('admin/oferta', { wyswietl: 1, produkt: combo })
                         })
                     })
@@ -252,31 +284,37 @@ app.post('/oferta', (req, res, next) => {
         let sklep_id;
         let prod_id;
         var tmp_path;
-        var con = sql.createConnection({
+        var con = sql.createPool({
             host: 'localhost',
             user: 'root',
             password: "",
-            database: 'techaway'
-        });
-        con.connect(() => {
-            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user} `, (err, row) => {
-                if (err) return res.send(err);
-                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
+            database: 'techaway',
+            connectionLimit: 300,
+        })
+
+        con.getConnection((err, connection) => {
+            connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user} `, (err, row) => {
+                if (err) {
+                    connection.release();
+                    return res.send(err);
+                };
+                let y = row.map((item) => item.nazwa);
+                let x = y[0].toString().toLowerCase().replace(" ", "_");
                 sklep_id = row.map((item) => item.ID);
                 tmp_path = req.file.path;
-                var sklep_db = sql.createConnection({
+                var sklep_db = sql.createPool({
                     host: 'localhost',
                     user: 'root',
                     password: "",
-                    database: `sklep_${x}`
-                })
-                sklep_db.connect((err) => {
-                    if (err) return res.send("1 " + err)
-                    sklep_db.query(`INSERT INTO produkty (id, nazwa, opis, ikona, cena, przecena) VALUES (NULL, '${req.body.produkt}', NULL, NULL, ${req.body.cena.toString()}, NULL)`, (err) => {
-                        if (err) return res.send("2 " + err);
-                        sklep_db.query(`SELECT id FROM produkty WHERE nazwa = '${req.body.produkt}'`, (err, row) => {
+                    database: `sklep_${x}`,
+                    connectionLimit: 300,
+                });
+                connection.release();
+                sklep_db.getConnection((err, connection) => {
+                    connection.query(`INSERT INTO produkty (id, nazwa, opis, ikona, cena, przecena) VALUES (NULL, '${req.body.produkt}', NULL, NULL, ${req.body.cena.toString()}, NULL)`, (err) => {
+                        connection.query(`SELECT id FROM produkty WHERE nazwa = '${req.body.produkt}'`, (err, row) => {
                             prod_id = row.map((item) => item.id).toString();
-                            var cor_path = `./public/cdn/${sklep_id}/${prod_id}.png`;
+                            var cor_path = `./public/cdn/${sklep_id[0]}/${prod_id}.png`;
                             fs.stat(cor_path, (err) => {
                                 if (err) return fs.mkdirSync(`./public/cdn/${sklep_id}`, { recursive: true });
                             });
@@ -287,12 +325,13 @@ app.post('/oferta', (req, res, next) => {
                             tmp.on('end', () => {
                                 fs.rmSync(req.file.path);
                                 sklep_db.query(`UPDATE produkty SET ikona = '/cdn/${sklep_id}/${prod_id}.png' WHERE id = ${prod_id}`, (err) => {
-                                    console.log(err);
+                                    connection.release();
                                 })
                                 return res.redirect("/oferta?opcja=3");
                             })
                             tmp.on('error', (err) => {
-                                console.log(err)
+                                connection.release();
+                                return res.send("Wystapil problem przy przesylaniu zdjecia! Sprobuj ponownie pozniej\n" + err);
                             });
                         });
                     });
@@ -302,55 +341,72 @@ app.post('/oferta', (req, res, next) => {
     };
     if (req.query.usun) {
         let id = req.query.usun;
-        var con = sql.createConnection({
+        var con = sql.createPool({
             host: 'localhost',
             user: 'root',
             password: "",
-            database: 'techaway'
+            database: 'techaway',
+            connectionLimit: 300,
         });
-        con.connect(() => {
-            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
-                if (err) return res.send(err);
-                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                var sklep_db = sql.createConnection({
+        con.getConnection((err, connection) => {
+            connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                if (err) {
+                    connection.release();
+                    return res.send(err);
+                }
+                let y = row.map((item) => item.nazwa);
+                let x = y[0].toString().toLowerCase().replace(" ", "_");
+                var sklep_db = sql.createPool({
                     host: 'localhost',
                     user: 'root',
                     password: "",
-                    database: `sklep_${x}`
+                    database: `sklep_${x}`,
+                    connectionLimit: 300,
+
                 });
-                sklep_db.connect(() => {
-                    sklep_db.query(`DELETE FROM produkty WHERE id = ${id}`);
+                connection.release()
+                sklep_db.getConnection((err, connection) => {
+                    connection.query(`DELETE FROM produkty WHERE id = ${id}`);
+                    connection.release();
                     return res.redirect("/oferta?opcja=3")
                 })
             });
         });
     };
-    if (req.query.zmiana) {
-        let id = req.query.zmiana;
+    if (req.query.produkt) {
+        let id = req.query.produkt;
         let s_id;
-        var con = sql.createConnection({
+        var con = sql.createPool({
             host: 'localhost',
             user: 'root',
             password: "",
-            database: 'techaway'
-        })
-        console.dir(req.file)
-        console.dir(req.files)
+            database: 'techaway',
+            connectionLimit: 300,
+        });
         if (req.file) { tmp_path = req.file.path };
-        con.connect(() => {
-            con.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
-                if (err) return res.send(err);
-                let x = row.map((item) => item.nazwa).toString().toLowerCase().replace(" ", "_");
-                s_id = row.map((item) => item.ID)
-                var sklep_db = sql.createConnection({
+        con.getConnection((err, connection) => {
+            connection.query(`SELECT ID, nazwa FROM sklepy WHERE wlasciciel = ${req.cookies.user}`, (err, row) => {
+                if (err) {
+                    connection.release();
+                    return res.send(err);
+                }
+                let a = row.map((item) => item.nazwa);
+                let x = a[0].toString().toLowerCase().replace(" ", "_");
+                let y = row.map((item) => item.ID);
+                s_id = y[0];
+
+                var sklep_db = sql.createPool({
                     host: 'localhost',
                     user: 'root',
                     password: "",
-                    database: `sklep_${x}`
+                    database: `sklep_${x}`,
+                    connectionLimit: 300,
                 })
-                sklep_db.connect(() => {
-                    sklep_db.query(`UPDATE produkty SET nazwa = '${req.body.produkt}', cena = ${req.body.cena.toString()} WHERE id = ${id}`, () => {
+                connection.release();
+                sklep_db.getConnection((err, connection) => {
+                    connection.query(`UPDATE produkty SET nazwa = '${req.body.produkt}', cena = ${req.body.cena.toString()} WHERE id = ${id}`, () => {
                         if (req.file) {
+                            connection.release();
                             var cor_path = `./public/cdn/${s_id}/${id}.png`;
                             fs.rmSync(cor_path);
                             var tmp = fs.createReadStream(tmp_path);
@@ -362,20 +418,16 @@ app.post('/oferta', (req, res, next) => {
                                 return res.redirect("/oferta?opcja=3");
                             })
                             tmp.on('error', (err) => {
-                                console.log(err)
+                                console.log(err);
                             });
                         } else {
-                            return res.redirect("/oferta?zmiana=3")
-                        }
-                    })
-                })
+                            return res.redirect("/oferta?zmiana=3");
+                        };
+                    });
+                });
             });
         });
     };
-    if (req.query.produkt) {
-        let id = req.query.produkt;
-
-    }
 });
 
 module.exports = app;
