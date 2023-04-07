@@ -4,7 +4,7 @@
   "description": "",
   "main": "/bin/www",
   "scripts": {
-    "test": "node ./bin/www"
+    "localhost": "npx nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
