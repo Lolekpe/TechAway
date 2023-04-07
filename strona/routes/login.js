@@ -22,18 +22,16 @@ app.route('/')
                 if (err) return console.log(err);
                 if (row.length === 0) return res.redirect("/login?failedLogin=true");
                 let x = row.map((item) => item.ID).toString();
-                let y = req.headers.host === '51.83.250.85:3000' ? "server" : "localhost";
                 connection.release();
                 res.cookie("logged", "true", { maxAge: 192000000 });
                 res.cookie("user", x, { maxAge: 192000000 });
-                res.cookie("origin", y, { maxAge: 192000000 })
                 return res.redirect("/");
             });
         });
     })
     .get((req, res, next) => {
-
-        res.cookie("origin", app.locals.ip, { maxAge: 1000 * 60 * 60 * 10 });
+        let y = req.headers.host === '51.83.250.85:3000' ? "server" : "localhost";
+        res.cookie("origin", y, { maxAge: 1000 * 60 * 60 * 10 });
         if (req.query.loginFirst) {
             return res.render('login', { message: `<div class="jedendwatrzy">Aby przejść dalej zaloguj się!</div>`, stage: "TechAway | Logowanie" });
         }

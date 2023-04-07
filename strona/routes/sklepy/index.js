@@ -98,21 +98,28 @@ app.route('/')
                         connectionLimit: 300,
                     });
                     if (req.query.produkt && !req.cookies.koszyk) {
-
-                        console.dir(req.query);
+                        zakupy.id = req.query.produkt;
+                        zakupy.nazwa = req.query.nazwa;
+                        zakupy.cena = req.query.cena;
+                        res.cookie("koszyk", zakupy, { maxAge: 1000 * 60 * 10 });
+                    } else if (!req.cookies.koszyk) {
+                        zakupy.id = 0;
+                        zakupy.nazwa = "Pusty koszyk!";
+                        zakupy.cena = "2137.99"; 
+                    } else if (req.query.produkt) {
+                        res.clearCookie("koszyk");
                         zakupy.id = req.query.produkt;
                         zakupy.nazwa = req.query.nazwa;
                         zakupy.cena = req.query.cena;
                         res.cookie("koszyk", zakupy, { maxAge: 1000 * 60 * 10 });
                     } else {
                         let x = req.cookies.koszyk;
-                        console.dir(x);
                         zakupy.id = x.id;
                         zakupy.nazwa = x.nazwa;
                         zakupy.cena = x.cena;
                     }
                     db.getConnection((err, connection) => {
-                        connection.query(`SELECT * FROM sklepy WHERE nazwa LIKE '${sklep[1]}'`, (err, row) => {
+                        connection.query(`SELECT * FROM sklepy WHERE nazwa LIKE '${sklep[2]}'`, (err, row) => {
                             let img = row.map((item) => item.logo);
                             connection.release();
                             res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
